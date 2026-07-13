@@ -1,0 +1,100 @@
+[
+  {
+    "id": "whiteface",
+    "name": "The Whiteface",
+    "values": "Discipline, earned craft, formal authority, the laughter that costs something to win.",
+    "look": "Full white face and neck, red-tipped ears, formal and immaculate dress.",
+    "affinityPaths": ["sworn", "host", "illusionist"],
+    "relationships": "Locked in an old, unacknowledged mutual dependency with the Augustes. Publicly dismissive of the School of Failure, privately fascinated. Sees the New Circus as the force stripping the craft of its old prestige.",
+    "passives": {
+      "founding": { "name": "Ring Authority", "renown": 1, "text": "Once per scene, +2 dice to a Persuasion or Intimidation roll against a mortal or Clown of lower Renown than you; if the target is a mortal of low or middling social status, the roll succeeds automatically instead of requiring a check." },
+      "affinity": { "name": "Director's Eye", "renown": 3, "text": "Sense, at a glance and without a roll, when someone nearby is \"performing\" (lying, faking a role, covering a botched Bit) — only tells you that they're performing, not what's true underneath. If you walk an Affinity Path, once per scene you may also lower House Difficulty by 1 whenever you're the one directing the moment." },
+      "recognition": { "name": "Ring Reputation", "renown": 6, "text": "Other Clowns with Trade Lore 2+ recognize your name and rank on sight, no roll needed." },
+      "legend": { "name": "The Master's Word", "renown": 9, "text": "Once per session, issue a single order that no mortal present can refuse, and that a Clown of lower Renown than you can only refuse by spending 1 Face. Permanently, allies within your presence gain +2 dice to resist fear and manipulation." }
+    }
+  },
+  {
+    "id": "augustes",
+    "name": "The Augustes",
+    "values": "Genuine spontaneity, failure as the whole point, closeness to ordinary people over prestige.",
+    "look": "Flesh-toned base makeup, exaggerated red-and-black features, a red ball nose, deliberately mismatched clothing.",
+    "affinityPaths": ["strongman", "pickpocket", "host"],
+    "relationships": "Dependency and resentment with the Whiteface. Mutual awe with the School of Failure. The most painful tension is with the New Circus, which has steadily shrunk the clown's role in its own spotlight.",
+    "passives": {
+      "founding": { "name": "Beloved of the Crowd / Off-Script", "renown": 1, "text": "Beloved of the Crowd: mortals of low or middling status warm to you unusually fast, no roll needed. Off-Script: +2 dice resisting any Gift that would impose structure or control on you." },
+      "affinity": { "name": "Accumulated Chaos", "renown": 3, "text": "Each genuine rule you break in a scene grants a stacking +1 die (max +3) to your next roll, resets at end of Act. If the chaos genuinely hurts someone real, lose Face at double rate for that action. If you walk an Affinity Path, each stack also converts into 1 point of that Path's own resource." },
+      "recognition": { "name": "Hallway Legend", "renown": 6, "text": "Untraceable, unmistakable, word-of-mouth fame anywhere you go." },
+      "legend": { "name": "Turn a Corpsing Into a Flop", "renown": 9, "text": "Once per session, turn an ally's Corpsing into a Flop instead. Permanently, your presence lowers House Difficulty by 1 in festive or chaotic scenes for the whole party." }
+    }
+  },
+  {
+    "id": "school_of_failure",
+    "name": "The School of Failure",
+    "values": "Radical honesty earned through public failure, distrust of cheap laughs, near-monastic devotion to teaching.",
+    "look": "Deliberately unglamorous rehearsal clothes; the only shared marker is a small red nose worn with something close to reverence.",
+    "affinityPaths": ["shackled", "illusionist", "pickpocket"],
+    "relationships": "The truest kinship in the Backstage is with the Laughter Doctors. Sees the New Circus's polish as a kind of betrayal of the craft's soul.",
+    "passives": {
+      "founding": { "name": "Failure Pays More / Smell the Real Fear", "renown": 1, "text": "Failure Pays More: a sold Flop grants 1 extra Laughter beyond the normal 1-2. Smell the Real Fear: sense masked fear or shame in someone nearby, no roll needed." },
+      "affinity": { "name": "Calculated Disaster", "renown": 3, "text": "After failing a roll (0 successes) where the House Die lands in Jeers territory, spend 1 Laughter to treat that House Die result as Cheers instead, turning it into a Flop. If you walk an Affinity Path, once per scene for free before needing to spend Laughter." },
+      "recognition": { "name": "Master's Reputation / School Complicity", "renown": 6, "text": "Master's Reputation: recognized instantly within the Troupe's own circles. School Complicity: when another School of Failure member present sells a Flop, you both gain the Failure Pays More bonus." },
+      "legend": { "name": "Monsieur/Madame Flop", "renown": 9, "text": "Once per session, when you suffer a genuine high-stakes Flop, declare that the disaster achieved your goal anyway, through no explicable means — the table agrees on the exact shape of the outcome." }
+    }
+  },
+  {
+    "id": "laughter_doctors",
+    "name": "The Laughter Doctors",
+    "values": "Presence over cleverness, service to the vulnerable, showing up for people no one else will sit with.",
+    "look": "Modified medical whites — a lab coat with colorful patches, a doctor's bag, a quiet clown flourish.",
+    "affinityPaths": ["physician", "host", "sworn"],
+    "relationships": "Deep kinship with the School of Failure. Same compassionate root as the Rebel Clown Army, opposite methods. The Whiteface resents how much cultural recognition they've earned.",
+    "passives": {
+      "founding": { "name": "Clinical Eye", "renown": 1, "text": "Sense, without a roll, when a nearby Face is within 2 points of hitting 0." },
+      "affinity": { "name": "Healing Hands", "renown": 3, "text": "Once per scene, restore 1 Face to a nearby ally at no Laughter or Comfort cost. If you walk an Affinity Path, usable twice per scene, and works even in a scene defined by real suffering without counting against your limit there." },
+      "recognition": { "name": "A Coat You Trust", "renown": 6, "text": "Real access to spaces of suffering (hospitals, hospices, disaster zones) that would otherwise be closed to you, and even hostile Clowns hesitate to attack you mid-treatment." },
+      "legend": { "name": "No One Walks Alone", "renown": 9, "text": "Once per session, suspend an ally about to hit 0 Face instead of losing them (as the Physician's Sit at the Threshold, usable even if you aren't a Physician). Permanently, enemies whose power feeds on fear or dread have that power reduced by 2 dice while you're present." }
+    }
+  },
+  {
+    "id": "rebel_clown_army",
+    "name": "The Rebel Clown Army",
+    "values": "Absurdity as resistance, refusing hierarchy, disarming power with ridicule instead of violence.",
+    "look": "Military surplus mixed with bright clown flourishes; masks or face paint doubling as both performance and anonymity.",
+    "affinityPaths": ["sworn", "pickpocket", "host"],
+    "relationships": "Direct opposition to the Whiteface. Natural sympathy with the Tramp. The Ushers are their built-in institutional enemy.",
+    "passives": {
+      "founding": { "name": "The Clowns Are Organizing", "renown": 1, "text": "The first time each scene an authority figure attempts to intimidate or command you, their attempt automatically fails, no roll needed. Non-violent limit: if you genuinely hurt an unarmed, defenseless target this scene, this passive stops working for the rest of it." },
+      "affinity": { "name": "Against the Giants", "renown": 3, "text": "+2 dice against any foe of higher Renown or higher institutional status than you. If you walk an Affinity Path, this bonus also converts into 1 point of that Path's own resource the first time you use it in a scene." },
+      "recognition": { "name": "The Flock Network", "renown": 6, "text": "Access to a clandestine network of safe houses and contacts almost anywhere. Cost: the MC gains a standing narrative thread representing the risk of infiltration." },
+      "legend": { "name": "Contagious Absurdity", "renown": 9, "text": "Once per session, turn a crowd or enemy force present into unwitting, briefly uncontrollable participants in your act — for a scene, their commanders' orders simply don't land." }
+    }
+  },
+  {
+    "id": "tramp",
+    "name": "The Tramp",
+    "values": "Quiet endurance, dignity without spectacle, gallows humor, deep distrust of belonging to any institution.",
+    "look": "Deliberately ragged — an oversized worn coat, broken shoes, minimal makeup, often just a suggested sad mouth.",
+    "affinityPaths": ["shackled", "pickpocket", "strongman"],
+    "relationships": "Natural allies with the Rebel Clown Army. A painful mirror image with the New Circus.",
+    "passives": {
+      "founding": { "name": "No One Looks Twice", "renown": 1, "text": "You generate half as much Suspicion as normal from a botched Bit (round down), and mortals struggle to describe or recall you accurately afterward." },
+      "affinity": { "name": "Survive Anything", "renown": 3, "text": "Once per scene, ignore the first grave consequence that would drop you — you're still standing, at 1 box/point. If you walk an Affinity Path, use this a second time in the same scene by paying 1 Face." },
+      "recognition": { "name": "The Road's Codes", "renown": 6, "text": "Hidden signs, safehouses, and Backstage shortcuts other Troupes don't know exist; +2 die to Trade Lore or Awareness navigating or hiding in the margins of any city." },
+      "legend": { "name": "The Dignity That Won't Be Taken", "renown": 9, "text": "Once per session, flatly and automatically negate an attempt to Seize your Motley or break your Face, no roll needed. Permanently, your Face costs enemies +1 additional success to reduce through any Gift or attack." }
+    }
+  },
+  {
+    "id": "new_circus",
+    "name": "The New Circus",
+    "values": "Artistic ambition, spectacle, elevating the craft past its old low-brow reputation.",
+    "look": "High-production designer costuming, closer to an acrobat or dancer's aesthetic than a traditional clown's.",
+    "affinityPaths": ["illusionist", "host", "strongman"],
+    "relationships": "The most painful tension is with the Augustes, whom their success displaced. A mirror image with the Tramp. The School of Failure considers a flawless New Circus number a dead one.",
+    "passives": {
+      "founding": { "name": "High Production", "renown": 1, "text": "Lower House Difficulty by 1 in any prepared or staged venue; a well-produced Bit needs no extra roll to sell if it was already prepared in advance." },
+      "affinity": { "name": "The Big Number", "renown": 3, "text": "Your area- or group-affecting Gifts reach 50% more targets (round up) or deal +2 dice worth of effect, whichever the Gift's design allows. If you walk an Affinity Path, add a further +1 die to that effect." },
+      "recognition": { "name": "Marquee Name", "renown": 6, "text": "Real mortal-world fame, resources, and connections available as a story resource. Cost: you're also unusually easy for anyone to find." },
+      "legend": { "name": "The Show of the Century", "renown": 9, "text": "Once per session, turn a large space into your stage for a scene, affecting every mortal present at a scale no other Troupe can match." }
+    }
+  }
+]

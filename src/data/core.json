@@ -1,0 +1,100 @@
+{
+  "attributes": [
+    { "id": "strength", "name": "Strength", "governs": "Raw physical power, weighty pratfalls, how hard a hit lands" },
+    { "id": "grace", "name": "Grace", "governs": "Agility, physical timing, juggling, controlled falls, dodging" },
+    { "id": "charisma", "name": "Charisma", "governs": "Magnetism, the pull that makes people want to watch you" },
+    { "id": "poise", "name": "Poise", "governs": "Composure under pressure, holding the Face together" },
+    { "id": "wit", "name": "Wit", "governs": "Mental speed, comic timing, reading a room fast, quick deception" },
+    { "id": "knowledge", "name": "Knowledge", "governs": "Learning, memory, long-term planning" }
+  ],
+  "attributeCreation": {
+    "maxPoints": 15,
+    "minDots": 1,
+    "maxDotsPerAttribute": 5,
+    "allowUnspentPoints": true,
+    "note": "Player may spend up to 15 points total across the 6 Attributes (1 point = 1 dot), and may spend fewer than 15 if they choose. Applied before age-band modifiers."
+  },
+  "skills": [
+    { "id": "brawl", "name": "Brawl", "attribute": "strength", "covers": "Hand-to-hand combat, a pratfall with real weight" },
+    { "id": "acrobatics", "name": "Acrobatics", "attribute": "grace", "covers": "Juggling, controlled falls, dodging" },
+    { "id": "toughness", "name": "Toughness", "attribute": null, "covers": "How much punishment the body absorbs; used as flat soak in combat, never rolled", "flatSoak": true },
+    { "id": "persuasion", "name": "Persuasion", "attribute": "charisma", "covers": "Convincing, charming, selling an idea" },
+    { "id": "subterfuge", "name": "Subterfuge", "attribute": "wit", "covers": "Deceiving, stealing, misdirection" },
+    { "id": "perception", "name": "Perception", "attribute": "wit_or_knowledge", "covers": "Mundane awareness: details, body language, ordinary lies" },
+    { "id": "awareness", "name": "Awareness", "attribute": "wit_or_poise", "covers": "The craft's sixth sense: sensing rising Suspicion, a failing Bit, a nearby Threshold or power" },
+    { "id": "trade_lore", "name": "Trade Lore", "attribute": "knowledge", "covers": "Knowledge of the hidden world: Troupes, Ring Legends, the Backstage's own history" },
+    { "id": "scholarship", "name": "Scholarship", "attribute": "knowledge", "covers": "General knowledge, planning, book learning" }
+  ],
+  "skillCreation": {
+    "maxPoints": 18,
+    "costPerNormalDot": 1,
+    "maxDotsAtCreation": 5,
+    "allowUnspentPoints": true,
+    "note": "Player may spend up to 18 points across the 9 Skills and Performance, and may spend fewer than 18 if they choose. Performance dots cost the same 1 point each within this pool (see performance block for its own separate max)."
+  },
+  "performance": {
+    "id": "performance",
+    "name": "Performance",
+    "minFreeDots": 1,
+    "minFreeDotsTentBorn": 2,
+    "maxBoughtAtCreation": 3,
+    "maxTotalDots": 10,
+    "note": "Rises automatically with Rank regardless of points spent; bought dots render as filled circles, Rank-granted dots render as stars in the sheet design.",
+    "rankBonusTable": [
+      { "rankId": "first_of_may", "renownRange": [1, 2], "bonus": 0 },
+      { "rankId": "tent_veteran", "renownRange": [3, 4], "bonus": 1 },
+      { "rankId": "ring_name", "renownRange": [5, 6], "bonus": 2 },
+      { "rankId": "backstage_legend", "renownRange": [7, 8], "bonus": 3 },
+      { "rankId": "ring_legend", "renownRange": [9, 10], "bonus": 4 }
+    ]
+  },
+  "ranks": [
+    { "id": "first_of_may", "name": "First of May", "renownRange": [1, 2] },
+    { "id": "tent_veteran", "name": "Tent Veteran", "renownRange": [3, 4] },
+    { "id": "ring_name", "name": "Ring Name", "renownRange": [5, 6] },
+    { "id": "backstage_legend", "name": "Backstage Legend", "renownRange": [7, 8] },
+    { "id": "ring_legend", "name": "Ring Legend", "renownRange": [9, 10] }
+  ],
+  "ageBands": [
+    { "id": "young_adult", "name": "Young Adult", "ageRange": "18-38", "bonus": "grace", "penalty": "poise", "startingPurse": 20 },
+    { "id": "adult", "name": "Adult", "ageRange": "39-59", "bonus": "poise", "penalty": "strength", "startingPurse": 35 },
+    { "id": "elder", "name": "Elder", "ageRange": "60+", "bonus": "knowledge", "penalty": "grace", "startingPurse": 50 }
+  ],
+  "personalityTraits": [
+    { "id": "messy_hyperactive", "name": "Messy / Hyperactive", "effect": "Takes the face in one minute instead of five, but must roll Perception to remember every prop; on a failure, the look comes out incomplete." },
+    { "id": "perfectionist", "name": "Perfectionist", "effect": "Never comes out incomplete by accident, but can never rush getting into character." },
+    { "id": "melancholic", "name": "Melancholic", "effect": "+1 die generating Laughter from genuine sadness or vulnerability; -1 die with pure slapstick nonsense." },
+    { "id": "loudmouth", "name": "Loudmouth", "effect": "+1 die to Subterfuge when bluffing on the spot; higher risk of Corpsing if it fails." },
+    { "id": "private", "name": "Private", "effect": "Generates less Suspicion by default; generates Laughter more slowly." },
+    { "id": "control_freak", "name": "Control Freak", "effect": "+1 die on Gifts that impose order or structure; a Flop in a chaotic situation costs an extra point of Face." },
+    { "id": "generous", "name": "Generous", "effect": "Recovers Face faster from genuine generosity resolved in play; loses it faster when a Gift is used selfishly." },
+    { "id": "reckless_bravery", "name": "Reckless Bravery", "effect": "One Creative Gambit per session doesn't need table approval; its Face cost on failure doubles." }
+  ],
+  "personalityTraitCreation": { "min": 2, "max": 5, "custom": "May negotiate a custom trait with the MC" },
+  "specialtyCreation": { "min": 2, "max": 4, "diceBonus": 1, "exceptionalBonus": 2, "note": "An exceptionally deep Specialty can count as two, granting +2, but counts double against the character's limit." },
+  "insecurityCreation": { "min": 0, "max": 2 },
+  "resources": {
+    "laughter": { "name": "Laughter", "range": [0, 10], "startingFormula": "poise + charisma", "regensPassively": false },
+    "face": { "name": "Face", "range": [1, 10], "startingValue": 7, "zeroCondition": "Character gets stuck in the mask permanently (the only true death condition in this game)." },
+    "renown": { "name": "Renown", "range": [1, 10], "startingValue": 1, "spent": false },
+    "health": { "name": "Health", "boxesFormula": "3 + toughness", "halfOrFewerPenalty": -1, "lastBoxPenalty": -2 }
+  },
+  "gettingIntoCharacter": [
+    { "id": "full", "name": "Full", "time": "5 minutes", "roll": null, "result": "Always complete" },
+    { "id": "rushed", "name": "Rushed", "time": "3 minutes", "roll": "Perception", "result": "Success: complete on time. Success with complication: complete but one detail out of place. Failure: incomplete." },
+    { "id": "lightning", "name": "Lightning", "time": "1 minute", "requiresTrait": "messy_hyperactive", "roll": "Perception (higher difficulty)", "result": "Same scheme as Rushed, higher risk of incomplete." }
+  ],
+  "tentBorn": {
+    "rule": "Character raised by two Clown parents of different Troupes chooses ONE parent's Troupe as full membership (all passives). From the OTHER parent they inherit a single always-on Heritage Trait, not full membership.",
+    "performanceMinDots": 2,
+    "heritageTraitsByTroupe": {
+      "whiteface": { "name": "A Natural Air of Command", "effect": "+1 die when giving someone a direction and expecting it followed" },
+      "augustes": { "name": "Grew Up Falling Down", "effect": "+1 die to Acrobatics for pratfalls and controlled falls" },
+      "school_of_failure": { "name": "Raised on Flops", "effect": "Once per session, downgrade a Corpsing result to a Flop" },
+      "laughter_doctors": { "name": "A Gentle Hand", "effect": "+1 die when comforting or calming someone in real distress" },
+      "rebel_clown_army": { "name": "Knows Power When It Sees It", "effect": "Always know who in a scene actually holds institutional authority" },
+      "tramp": { "name": "Traveled Light", "effect": "One additional Specialty at creation, reflecting a hardscrabble upbringing" },
+      "new_circus": { "name": "Stage-Trained Young", "effect": "+1 die to Performance in any prepared or staged venue" }
+    }
+  }
+}
