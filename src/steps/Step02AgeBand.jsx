@@ -11,34 +11,33 @@ export default function Step02AgeBand() {
 
   return (
     <div>
-      <h2>Step 2 — Age band</h2>
-      <div style={{ display: 'flex', gap: 12 }}>
+      <div className="section-title">Step 2 — Age band</div>
+      <div className="pill-group">
         {core.ageBands.map(band => (
           <label
             key={band.id}
-            style={{
-              border: '1px solid #999',
-              padding: 8,
-              borderRadius: 6,
-              background: character.ageBandId === band.id ? '#eee' : 'transparent',
-            }}
+            className={`pill${character.ageBandId === band.id ? ' selected' : ''}`}
+            style={{ flexDirection: 'column', alignItems: 'flex-start' }}
           >
-            <input
-              type="radio"
-              name="ageBand"
-              checked={character.ageBandId === band.id}
-              onChange={() => setAgeBand(band.id)}
-            />
-            <strong>{band.name}</strong> ({band.ageRange})
-            <div style={{ fontSize: 12 }}>
+            <span>
+              <input
+                type="radio"
+                name="ageBand"
+                checked={character.ageBandId === band.id}
+                onChange={() => setAgeBand(band.id)}
+                style={{ marginRight: 6 }}
+              />
+              <strong>{band.name}</strong> ({band.ageRange})
+            </span>
+            <span style={{ fontSize: 11, opacity: 0.8 }}>
               +1 {band.bonus} / -1 {band.penalty} &middot; Purse {band.startingPurse} Coin
-            </div>
+            </span>
           </label>
         ))}
       </div>
 
-      <h3 style={{ marginTop: 24 }}>Tent-Born</h3>
-      <label>
+      <div className="section-title">Tent-Born</div>
+      <label style={{ fontSize: 13 }}>
         <input
           type="checkbox"
           checked={character.tentBorn.isTentBorn}
@@ -48,10 +47,10 @@ export default function Step02AgeBand() {
       </label>
 
       {character.tentBorn.isTentBorn && (
-        <div style={{ marginTop: 8 }}>
-          <p style={{ fontSize: 13 }}>
-            Choose the <em>second</em> parent's Troupe — you'll pick your primary (full-membership)
-            Troupe in Step 6. This second one only grants a Heritage Trait.
+        <div style={{ marginTop: 12 }}>
+          <p className="helper-text">
+            Choose the <em>second</em> parent's Troupe — your primary (full-membership) Troupe is
+            chosen in Step 6. This second one only grants a Heritage Trait.
           </p>
           <select
             value={character.tentBorn.secondTroupeId}
@@ -63,11 +62,11 @@ export default function Step02AgeBand() {
             ))}
           </select>
           {character.tentBorn.secondTroupeId && (
-            <p style={{ fontSize: 13, marginTop: 8 }}>
+            <div className="accent-block" style={{ fontSize: 13 }}>
               <strong>Heritage Trait:</strong>{' '}
               {core.tentBorn.heritageTraitsByTroupe[character.tentBorn.secondTroupeId]?.name} —{' '}
               {core.tentBorn.heritageTraitsByTroupe[character.tentBorn.secondTroupeId]?.effect}
-            </p>
+            </div>
           )}
         </div>
       )}

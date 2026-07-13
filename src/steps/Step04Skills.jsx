@@ -7,8 +7,8 @@ export default function Step04Skills() {
   const { character, dispatch } = useCharacter();
 
   const skillSpent = sumDots(character.skills);
-  const performanceSpent = character.performanceDots;
-  const totalSpent = skillSpent + performanceSpent;
+  const performanceCost = character.performanceDots * core.performance.costPerDot;
+  const totalSpent = skillSpent + performanceCost;
   const max = core.skillCreation.maxPoints;
   const remaining = max - totalSpent;
 
@@ -20,7 +20,7 @@ export default function Step04Skills() {
   };
 
   const setPerformance = (n) => {
-    const delta = n - performanceSpent;
+    const delta = (n - character.performanceDots) * core.performance.costPerDot;
     if (delta > 0 && delta > remaining) return;
     if (n > core.performance.maxBoughtAtCreation) return;
     dispatch({ type: 'SET_FIELD', field: 'performanceDots', value: n });
@@ -40,20 +40,16 @@ export default function Step04Skills() {
 
   return (
     <div>
-      <h2>Step 4 — Skills, Performance & Specialties</h2>
-      <p>
-        Spend up to <strong>{max}</strong> points across the nine Skills and Performance
-        (1 point = 1 dot, max {core.skillCreation.maxDotsAtCreation} per Skill). Performance is
-        capped at {core.performance.maxBoughtAtCreation} bought dots at creation — it rises
-        further on its own as Renown increases.
+      <div className="section-title">Step 4 — Skills, Performance & Specialties</div>
+      <p className="helper-text">
+        Spend up to {max} points across the nine Skills and Performance (max {core.skillCreation.maxDotsAtCreation} per Skill). Performance is capped at {core.performance.maxBoughtAtCreation} bought dots at creation — it rises further on its own with Rank.
       </p>
-      <p style={{ fontWeight: 'bold' }}>Remaining: {remaining} / {max}</p>
+      <span className="remaining-badge">Remaining: {remaining} / {max}</span>
 
       {core.skills.map(skill => (
-        <div key={skill.id} style={{ display: 'flex', justifyContent: 'space-between', maxWidth: 320, padding: '4px 0' }}>
+        <div className="stat-row" key={skill.id} style={{ maxWidth: 320 }}>
           <span title={skill.covers}>
-            {skill.name}
-            {skill.flatSoak && ' (flat soak, not rolled)'}
+            {skill.name}{skill.flatSoak && <span style={{ color: 'var(--hint)', fontSize: 11 }}> (soak)</span>}
           </span>
           <DotTracker
             value={character.skills[skill.id]}
@@ -63,29 +59,29 @@ export default function Step04Skills() {
         </div>
       ))}
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: 320, padding: '8px 0', background: '#f5f5f5' }}>
-        <span>Performance (bought, max {core.performance.maxBoughtAtCreation})</span>
+      <div className="accent-block" style={{ display: 'flex', justifyContent: 'space-between', maxWidth: 320 }}>
+        <span style={{ fontSize: 13, fontWeight: 600 }}>Performance <span style={{ fontWeight: 400, fontSize: 11 }}>(2 pts/dot)</span></span>
         <DotTracker
-          value={performanceSpent}
+          value={character.performanceDots}
           max={core.performance.maxBoughtAtCreation}
           onChange={setPerformance}
         />
       </div>
 
-      <h3 style={{ marginTop: 24 }}>Specialties ({core.specialtyCreation.min}–{specialtyMax})</h3>
+      <div className="section-title">Specialties ({core.specialtyCreation.min}–{specialtyMax})</div>
       {specialties.map((s, i) => (
-        <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+        <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
           <input
+            type="text"
             value={s}
             placeholder='e.g. "Pediatric ICU nurse"'
             onChange={e => setSpecialty(i, e.target.value)}
-            style={{ flex: 1 }}
           />
-          <button type="button" onClick={() => removeSpecialty(i)}>Remove</button>
+          <button type="button" className="small-btn" onClick={() => removeSpecialty(i)}>Remove</button>
         </div>
       ))}
       {specialties.length < specialtyMax && (
-        <button type="button" onClick={addSpecialty}>+ Add specialty</button>
+        <button type="button" className="small-btn" onClick={addSpecialty}>+ Add specialty</button>
       )}
     </div>
   );

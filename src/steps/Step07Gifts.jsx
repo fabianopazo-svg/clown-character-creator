@@ -8,8 +8,8 @@ export default function Step07Gifts() {
   if (!path) {
     return (
       <div>
-        <h2>Step 7 — Starting Gifts</h2>
-        <p>Select a Path in Step 6 first.</p>
+        <div className="section-title">Step 7 — Starting Gifts</div>
+        <p className="helper-text">Select a Path in Step 6 first.</p>
       </div>
     );
   }
@@ -26,27 +26,30 @@ export default function Step07Gifts() {
 
   return (
     <div>
-      <h2>Step 7 — Starting Gifts</h2>
-      <p>
-        Choose {chooseCount} Grade I Gifts for {path.name}
-        {character.subtypeId && ` (subtype-restricted Gifts filtered to your chosen subtype)`}.
-        {' '}({character.gifts.length} / {chooseCount} selected)
+      <div className="section-title">Step 7 — Starting Gifts</div>
+      <p className="helper-text">
+        Choose {chooseCount} Grade I Gifts for {path.name}.
       </p>
+      <span className="remaining-badge">{character.gifts.length} / {chooseCount} selected</span>
 
       {available.map(gift => (
-        <label key={gift.name} style={{ display: 'block', marginBottom: 6, border: '1px solid #ddd', borderRadius: 6, padding: 8 }}>
+        <label
+          key={gift.name}
+          className={`gift-card${character.gifts.includes(gift.name) ? ' selected' : ''}`}
+          style={{ display: 'block' }}
+        >
           <input
             type="checkbox"
             checked={character.gifts.includes(gift.name)}
             onChange={() => toggleGift(gift.name)}
           />
-          {' '}<strong>{gift.name}</strong>
+          {' '}<span className="gift-name">{gift.name}</span>
           {gift.subtype && gift.subtype !== 'open' && (
-            <span style={{ fontSize: 11, color: '#666' }}> [{gift.subtype}]</span>
+            <span style={{ fontSize: 11, color: 'var(--hint)' }}> [{gift.subtype}]</span>
           )}
-          <div style={{ fontSize: 13 }}>Cost: {gift.cost}</div>
-          <div style={{ fontSize: 13 }}>{gift.effect || gift.domain}</div>
-          {gift.limit && <div style={{ fontSize: 12, color: '#666' }}>Limit: {gift.limit}</div>}
+          <div className="gift-cost">Cost: {gift.cost}</div>
+          <div className="gift-effect">{gift.effect || gift.domain}</div>
+          {gift.limit && <div style={{ fontSize: 11, color: 'var(--hint)' }}>Limit: {gift.limit}</div>}
         </label>
       ))}
     </div>

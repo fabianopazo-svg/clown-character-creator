@@ -22,35 +22,40 @@ export default function Step05Traits() {
 
   return (
     <div>
-      <h2>Step 5 — Personality traits</h2>
-      <p>
+      <div className="section-title">Step 5 — Personality traits</div>
+      <p className="helper-text">
         Choose {traitMin}–{traitMax} traits ({character.personalityTraits.length} selected).
       </p>
       {core.personalityTraits.map(trait => (
-        <label key={trait.id} style={{ display: 'block', marginBottom: 6 }}>
+        <label
+          key={trait.id}
+          className={`gift-card${character.personalityTraits.includes(trait.id) ? ' selected' : ''}`}
+          style={{ display: 'block' }}
+        >
           <input
             type="checkbox"
             checked={character.personalityTraits.includes(trait.id)}
             onChange={() => toggleTrait(trait.id)}
           />
-          {' '}<strong>{trait.name}</strong> — {trait.effect}
+          {' '}<span className="gift-name">{trait.name}</span>
+          <div className="gift-effect">{trait.effect}</div>
         </label>
       ))}
 
-      <h3 style={{ marginTop: 24 }}>Insecurities (0–{insecurityMax}, optional at creation)</h3>
+      <div className="section-title">Insecurities (0–{insecurityMax}, optional at creation)</div>
       {insecurities.map((s, i) => (
-        <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+        <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
           <input
+            type="text"
             value={s}
             placeholder="Describe the insecurity and its small mechanical hook"
             onChange={e => setInsecurity(i, e.target.value)}
-            style={{ flex: 1 }}
           />
-          <button type="button" onClick={() => removeInsecurity(i)}>Remove</button>
+          <button type="button" className="small-btn" onClick={() => removeInsecurity(i)}>Remove</button>
         </div>
       ))}
       {insecurities.length < insecurityMax && (
-        <button type="button" onClick={addInsecurity}>+ Add insecurity</button>
+        <button type="button" className="small-btn" onClick={addInsecurity}>+ Add insecurity</button>
       )}
     </div>
   );

@@ -25,63 +25,78 @@ export default function Summary() {
 
   return (
     <div>
-      <h2>Summary</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '3px solid var(--ink)', paddingBottom: 12, marginBottom: 16 }}>
+        <div>
+          <div className="field-label">Ring name</div>
+          <div style={{ fontSize: 24, fontWeight: 600 }}>{character.ringName || '(unnamed Clown)'}</div>
+          <div style={{ fontSize: 13, color: 'var(--muted)' }}>
+            {character.humanName} &middot; {character.occupation} &middot; Age {character.age}
+          </div>
+        </div>
+        <span className="accent-block" style={{ height: 'fit-content', fontWeight: 600 }}>
+          Renown {character.renown} &middot; {rank.name}
+        </span>
+      </div>
 
-      <h3>{character.ringName || '(unnamed Clown)'}</h3>
-      <p>{character.humanName} &middot; {character.occupation} &middot; Age {character.age} ({band?.name})</p>
-      <p>{troupe?.name} &middot; {path?.name}{subtype ? ` (${subtype.name})` : ''} &middot; Renown {character.renown} &middot; {rank.name}</p>
+      <div className="three-col" style={{ marginBottom: 16 }}>
+        <div className="accent-block"><div className="field-label" style={{ color: 'var(--accent-text)' }}>Troupe</div>{troupe?.name || '—'}</div>
+        <div className="accent-block"><div className="field-label" style={{ color: 'var(--accent-text)' }}>Path</div>{path?.name || '—'}</div>
+        <div className="accent-block"><div className="field-label" style={{ color: 'var(--accent-text)' }}>Subtype</div>{subtype?.name || '—'}</div>
+      </div>
 
       {character.tentBorn.isTentBorn && character.tentBorn.secondTroupeId && (
-        <p>
+        <p className="helper-text">
           Tent-born — Heritage from {troupes.find(t => t.id === character.tentBorn.secondTroupeId)?.name}:{' '}
           {core.tentBorn.heritageTraitsByTroupe[character.tentBorn.secondTroupeId]?.name}
         </p>
       )}
 
-      <h4>Attributes (final, after age modifiers)</h4>
-      <ul>
+      <div className="section-title">Attributes</div>
+      <div className="three-col">
         {core.attributes.map(a => (
-          <li key={a.id}>{a.name}: {finalAttributes[a.id]}</li>
+          <div className="stat-row" key={a.id}><span>{a.name}</span><span>{finalAttributes[a.id]}</span></div>
         ))}
-      </ul>
+      </div>
 
-      <h4>Skills</h4>
-      <ul>
+      <div className="section-title">Skills</div>
+      <div className="two-col">
         {core.skills.map(s => (
-          <li key={s.id}>{s.name}: {character.skills[s.id]}</li>
+          <div className="stat-row" key={s.id}><span>{s.name}</span><span>{character.skills[s.id]}</span></div>
         ))}
-        <li>Performance: {character.performanceDots} bought + {perfRankBonus} rank = {perfTotal}</li>
-      </ul>
+      </div>
+      <div className="accent-block" style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>Performance</span>
+        <span>{character.performanceDots} bought + {perfRankBonus} rank = {perfTotal}</span>
+      </div>
 
-      <h4>Specialties</h4>
+      <div className="section-title">Specialties</div>
       <p>{character.specialties.filter(Boolean).join(', ') || '—'}</p>
 
-      <h4>Personality traits</h4>
+      <div className="section-title">Personality traits</div>
       <p>
         {character.personalityTraits
           .map(id => core.personalityTraits.find(t => t.id === id)?.name)
           .join(', ') || '—'}
       </p>
 
-      <h4>Starting Gifts</h4>
-      <ul>
-        {character.gifts.map(g => <li key={g}>{g}</li>)}
-      </ul>
+      <div className="section-title">Starting Gifts</div>
+      {character.gifts.map(g => (
+        <div key={g} className="gift-card"><span className="gift-name">{g}</span></div>
+      ))}
 
-      <h4>Resources</h4>
-      <ul>
-        <li>Laughter: {calcStartingLaughter(finalAttributes)}</li>
-        <li>Face: 7</li>
-        <li>Health boxes: {calcHealthBoxes(character.skills)}</li>
-        <li>Purse: {character.purseCurrent ?? band?.startingPurse ?? '—'} Coin</li>
-      </ul>
+      <div className="section-title">Resources</div>
+      <div className="three-col">
+        <div className="accent-block"><strong>Laughter</strong><div>{calcStartingLaughter(finalAttributes)}</div></div>
+        <div className="accent-block"><strong>Face</strong><div>7</div></div>
+        <div className="accent-block"><strong>Purse</strong><div>{character.purseCurrent ?? band?.startingPurse ?? '—'} Coin</div></div>
+      </div>
 
-      <h4>Backstory</h4>
+      <div className="section-title">Backstory</div>
       <p><strong>Cryptic sign:</strong> {character.backstory.crypticSign || '—'}</p>
       <p><strong>Keeping the truth from:</strong> {character.backstory.keepingTruthFrom || '—'}</p>
       <p><strong>Motley worn:</strong> {character.backstory.motleyWorn || '—'}</p>
 
-      <p style={{ marginTop: 24, fontStyle: 'italic' }}>
+      <p style={{ marginTop: 24, fontStyle: 'italic', color: 'var(--muted)' }}>
         PDF export button goes here — next build step.
       </p>
     </div>

@@ -22,53 +22,33 @@ export default function Step09Resources() {
 
   return (
     <div>
-      <h2>Step 9 — Starting resources & Backstory</h2>
+      <div className="section-title">Step 9 — Starting resources</div>
+      <div className="three-col">
+        <div className="accent-block"><strong>Laughter</strong><div>{laughter}</div></div>
+        <div className="accent-block"><strong>Face</strong><div>7</div></div>
+        <div className="accent-block"><strong>Health</strong><div>{health} boxes</div></div>
+      </div>
 
-      <ul>
-        <li>Laughter (0–10): <strong>{laughter}</strong> (Poise + Charisma, after age modifiers)</li>
-        <li>Face (1–10): <strong>7</strong> (default)</li>
-        <li>Renown (1–10): <strong>1</strong></li>
-        <li>Health boxes: <strong>{health}</strong> (3 + Toughness)</li>
-        <li>
-          Purse:{' '}
-          <input
-            type="number"
-            value={purseValue}
-            onChange={e => setPurse(Number(e.target.value))}
-            style={{ width: 80 }}
-          />
-          {' '}Coin (starting default for {band?.name || 'your age band'}: {band?.startingPurse ?? '—'})
-        </li>
-      </ul>
+      <div className="field-row" style={{ marginTop: 16 }}>
+        <label className="field-label">
+          Purse (Coin) — default for {band?.name || 'your age band'}: {band?.startingPurse ?? '—'}
+        </label>
+        <input type="number" value={purseValue} onChange={e => setPurse(Number(e.target.value))} style={{ width: 120 }} />
+      </div>
 
-      <h3>Backstory</h3>
-      <label style={{ display: 'block', marginBottom: 12 }}>
-        Who left your first cryptic sign, and do you still have it?
-        <textarea
-          rows={2}
-          style={{ width: '100%' }}
-          value={character.backstory.crypticSign}
-          onChange={e => setBackstory('crypticSign', e.target.value)}
-        />
-      </label>
-      <label style={{ display: 'block', marginBottom: 12 }}>
-        Who are you keeping the truth from?
-        <textarea
-          rows={2}
-          style={{ width: '100%' }}
-          value={character.backstory.keepingTruthFrom}
-          onChange={e => setBackstory('keepingTruthFrom', e.target.value)}
-        />
-      </label>
-      <label style={{ display: 'block' }}>
-        What Motley besides your own have you worn, and what did it cost?
-        <textarea
-          rows={2}
-          style={{ width: '100%' }}
-          value={character.backstory.motleyWorn}
-          onChange={e => setBackstory('motleyWorn', e.target.value)}
-        />
-      </label>
+      <div className="section-title">Backstory</div>
+      <div className="field-row">
+        <label className="field-label">Who left your first cryptic sign, and do you still have it?</label>
+        <textarea rows={2} value={character.backstory.crypticSign} onChange={e => setBackstory('crypticSign', e.target.value)} />
+      </div>
+      <div className="field-row">
+        <label className="field-label">Who are you keeping the truth from?</label>
+        <textarea rows={2} value={character.backstory.keepingTruthFrom} onChange={e => setBackstory('keepingTruthFrom', e.target.value)} />
+      </div>
+      <div className="field-row">
+        <label className="field-label">What Motley besides your own have you worn, and what did it cost?</label>
+        <textarea rows={2} value={character.backstory.motleyWorn} onChange={e => setBackstory('motleyWorn', e.target.value)} />
+      </div>
     </div>
   );
 }

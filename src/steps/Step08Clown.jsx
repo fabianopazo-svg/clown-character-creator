@@ -9,57 +9,49 @@ export default function Step08Clown() {
 
   return (
     <div>
-      <h2>Step 8 — The Clown</h2>
+      <div className="section-title">Step 8 — The Clown</div>
 
-      <label>
-        Ring name
-        <input value={character.ringName} onChange={e => setField('ringName', e.target.value)} />
-      </label>
+      <div className="field-row">
+        <label className="field-label">Ring name</label>
+        <input type="text" value={character.ringName} onChange={e => setField('ringName', e.target.value)} />
+      </div>
 
-      <label style={{ display: 'block', marginTop: 12 }}>
-        Makeup & costume
-        <textarea
-          rows={3}
-          style={{ width: '100%' }}
-          value={character.clown.makeup}
-          onChange={e => setClown('makeup', e.target.value)}
-        />
-      </label>
+      <div className="field-row">
+        <label className="field-label">Makeup & costume</label>
+        <textarea rows={3} value={character.clown.makeup} onChange={e => setClown('makeup', e.target.value)} />
+      </div>
 
-      <label style={{ display: 'block', marginTop: 12 }}>
-        Human description
-        <textarea
-          rows={3}
-          style={{ width: '100%' }}
-          value={character.clown.humanDescription}
-          onChange={e => setClown('humanDescription', e.target.value)}
-        />
-      </label>
+      <div className="field-row">
+        <label className="field-label">Human description</label>
+        <textarea rows={3} value={character.clown.humanDescription} onChange={e => setClown('humanDescription', e.target.value)} />
+      </div>
 
-      <label style={{ display: 'block', marginTop: 12 }}>
-        Relationship to taking the face (does it cost you? is it a shield?)
-        <textarea
-          rows={2}
-          style={{ width: '100%' }}
-          value={character.clown.relationshipToFace}
-          onChange={e => setClown('relationshipToFace', e.target.value)}
-        />
-      </label>
+      <div className="field-row">
+        <label className="field-label">Relationship to taking the face</label>
+        <textarea rows={2} value={character.clown.relationshipToFace} onChange={e => setClown('relationshipToFace', e.target.value)} />
+      </div>
 
-      <h3 style={{ marginTop: 16 }}>Getting-ready time</h3>
-      {core.gettingIntoCharacter.map(mode => (
-        <label key={mode.id} style={{ display: 'block' }}>
-          <input
-            type="radio"
-            name="gettingReady"
-            checked={character.clown.gettingReadyId === mode.id}
-            disabled={mode.requiresTrait && !character.personalityTraits.includes(mode.requiresTrait)}
-            onChange={() => setClown('gettingReadyId', mode.id)}
-          />
-          {' '}{mode.name} ({mode.time})
-          {mode.requiresTrait && ' — requires Messy/Hyperactive trait'}
-        </label>
-      ))}
+      <div className="section-title">Getting-ready time</div>
+      {core.gettingIntoCharacter.map(mode => {
+        const locked = mode.requiresTrait && !character.personalityTraits.includes(mode.requiresTrait);
+        return (
+          <label
+            key={mode.id}
+            className={`pill${character.clown.gettingReadyId === mode.id ? ' selected' : ''}`}
+            style={{ display: 'block', marginBottom: 6, opacity: locked ? 0.5 : 1 }}
+          >
+            <input
+              type="radio"
+              name="gettingReady"
+              checked={character.clown.gettingReadyId === mode.id}
+              disabled={locked}
+              onChange={() => setClown('gettingReadyId', mode.id)}
+            />
+            {' '}{mode.name} ({mode.time})
+            {locked && ' — requires Messy/Hyperactive trait'}
+          </label>
+        );
+      })}
     </div>
   );
 }

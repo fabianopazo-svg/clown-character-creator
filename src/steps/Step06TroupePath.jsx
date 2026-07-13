@@ -11,24 +11,19 @@ export default function Step06TroupePath() {
 
   const handlePathChange = (pathId) => {
     set('pathId', pathId);
-    set('subtypeId', ''); // reset subtype when path changes
+    set('subtypeId', '');
   };
 
   return (
     <div>
-      <h2>Step 6 — Troupe & Path</h2>
+      <div className="section-title">Step 6 — Troupe & Path</div>
 
-      <h3>Troupe (primary, full membership)</h3>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+      <p className="helper-text">Troupe (primary, full membership)</p>
+      <div className="two-col">
         {troupes.map(t => (
           <label
             key={t.id}
-            style={{
-              border: '1px solid #999',
-              borderRadius: 6,
-              padding: 8,
-              background: character.troupeId === t.id ? '#eee' : 'transparent',
-            }}
+            className={`gift-card${character.troupeId === t.id ? ' selected' : ''}`}
           >
             <input
               type="radio"
@@ -36,13 +31,13 @@ export default function Step06TroupePath() {
               checked={character.troupeId === t.id}
               onChange={() => set('troupeId', t.id)}
             />
-            {' '}<strong>{t.name}</strong>
-            <div style={{ fontSize: 12 }}>{t.values}</div>
+            {' '}<span className="gift-name">{t.name}</span>
+            <div className="gift-effect">{t.values}</div>
           </label>
         ))}
       </div>
 
-      <h3 style={{ marginTop: 24 }}>Path</h3>
+      <div className="section-title">Path</div>
       <select value={character.pathId} onChange={e => handlePathChange(e.target.value)}>
         <option value="">Select a Path...</option>
         {paths.map(p => (
@@ -51,20 +46,24 @@ export default function Step06TroupePath() {
       </select>
 
       {selectedPath && selectedPath.subtypes && (
-        <div style={{ marginTop: 12 }}>
-          <h4>Subtype</h4>
+        <div style={{ marginTop: 16 }}>
+          <p className="helper-text">Subtype</p>
           {selectedPath.subtypes.map(st => (
-            <label key={st.id} style={{ display: 'block', marginBottom: 4 }}>
+            <label
+              key={st.id}
+              className={`gift-card${character.subtypeId === st.id ? ' selected' : ''}`}
+              style={{ display: 'block' }}
+            >
               <input
                 type="radio"
                 name="subtype"
                 checked={character.subtypeId === st.id}
                 onChange={() => set('subtypeId', st.id)}
               />
-              {' '}<strong>{st.name}</strong>
-              {st.focus && ` — ${st.focus}`}
-              {st.aura && ` (Aura: ${st.aura})`}
-              {st.patron && ` (Patron: ${st.patron})`}
+              {' '}<span className="gift-name">{st.name}</span>
+              {st.focus && <div className="gift-effect">{st.focus}</div>}
+              {st.aura && <div className="gift-effect">Aura: {st.aura}</div>}
+              {st.patron && <div className="gift-effect">Patron: {st.patron}</div>}
             </label>
           ))}
         </div>

@@ -29,44 +29,40 @@ function Wizard() {
   const { Component } = steps[stepIndex];
 
   return (
-    <div style={{ maxWidth: 640, margin: '0 auto', padding: 24, fontFamily: 'sans-serif' }}>
-      <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 24 }}>
+    <>
+      <nav className="sheet-nav">
         {steps.map((s, i) => (
           <button
             key={s.id}
+            className={i === stepIndex ? 'active' : ''}
             onClick={() => setStepIndex(i)}
-            style={{
-              fontSize: 12,
-              padding: '4px 8px',
-              background: i === stepIndex ? '#333' : '#eee',
-              color: i === stepIndex ? '#fff' : '#333',
-              border: 'none',
-              borderRadius: 4,
-              cursor: 'pointer',
-            }}
           >
             {s.id}. {s.label}
           </button>
         ))}
       </nav>
 
-      <Component />
+      <div className="sheet-page">
+        <Component />
+      </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32 }}>
+      <div className="wizard-footer">
         <button
+          className="btn"
           disabled={stepIndex === 0}
           onClick={() => setStepIndex(i => Math.max(0, i - 1))}
         >
           Back
         </button>
         <button
+          className="btn btn-primary"
           disabled={stepIndex === steps.length - 1}
           onClick={() => setStepIndex(i => Math.min(steps.length - 1, i + 1))}
         >
           Next
         </button>
       </div>
-    </div>
+    </>
   );
 }
 

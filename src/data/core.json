@@ -30,7 +30,7 @@
     "costPerNormalDot": 1,
     "maxDotsAtCreation": 5,
     "allowUnspentPoints": true,
-    "note": "Player may spend up to 18 points across the 9 Skills and Performance, and may spend fewer than 18 if they choose. Performance dots cost the same 1 point each within this pool (see performance block for its own separate max)."
+    "note": "Player may spend up to 18 points across the 9 Skills and Performance, and may spend fewer than 18 if they choose. Performance costs 2 points per dot within this same pool (see performance.costPerDot) — the other nine Skills cost 1 point per dot."
   },
   "performance": {
     "id": "performance",
@@ -39,7 +39,8 @@
     "minFreeDotsTentBorn": 2,
     "maxBoughtAtCreation": 3,
     "maxTotalDots": 10,
-    "note": "Rises automatically with Rank regardless of points spent; bought dots render as filled circles, Rank-granted dots render as stars in the sheet design.",
+    "costPerDot": 2,
+    "note": "Rises automatically with Rank regardless of points spent; bought dots render as filled circles, Rank-granted dots render as stars in the sheet design. Each bought dot costs 2 points from the shared 18-point Skill pool, unlike the 1-point cost of the other nine Skills.",
     "rankBonusTable": [
       { "rankId": "first_of_may", "renownRange": [1, 2], "bonus": 0 },
       { "rankId": "tent_veteran", "renownRange": [3, 4], "bonus": 1 },
