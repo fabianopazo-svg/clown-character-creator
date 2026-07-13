@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { CharacterProvider } from './context/CharacterContext';
+import { CharacterProvider, useCharacter, initialCharacter } from './context/CharacterContext';
+import { saveCharacter, exportCharacterFile } from './utils/storage';
+import CharacterList from './steps/CharacterList';
 import Step01Concept from './steps/Step01Concept';
 import Step02AgeBand from './steps/Step02AgeBand';
 import Step03Attributes from './steps/Step03Attributes';
@@ -17,19 +19,36 @@ const steps = [
   { id: 3, label: 'Attributes', Component: Step03Attributes },
   { id: 4, label: 'Skills', Component: Step04Skills },
   { id: 5, label: 'Traits', Component: Step05Traits },
-  { id: 6, label: 'Troupe & Path', Component: Step06TroupePath },
+  { id: 6, label: 'Troupe, Path & Renown', Component: Step06TroupePath },
   { id: 7, label: 'Gifts', Component: Step07Gifts },
   { id: 8, label: 'The Clown', Component: Step08Clown },
   { id: 9, label: 'Resources', Component: Step09Resources },
   { id: 10, label: 'Summary', Component: Summary },
 ];
 
-function Wizard() {
+function Wizard({ onBackToList }) {
   const [stepIndex, setStepIndex] = useState(0);
+  const { character, dispatch } = useCharacter();
   const { Component } = steps[stepIndex];
+
+  const handleSave = () => {
+    const saved = saveCharacter(character);
+    dispatch({ type: 'LOAD_CHARACTER', character: saved });
+    alert('Saved to this browser.');
+  };
+
+  const handleExport = () => exportCharacterFile(character);
 
   return (
     <>
+      <div style={{ maxWidth: 680, margin: '16px auto 0', padding: '0 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <button className="small-btn" onClick={onBackToList}>&larr; Your Clowns</button>
+        <div style={{ display: 'flex', gap: 6 }}>
+          <button className="small-btn" onClick={handleSave}>Save</button>
+          <button className="small-btn" onClick={handleExport}>Export JSON</button>
+        </div>
+      </div>
+
       <nav className="sheet-nav">
         {steps.map((s, i) => (
           <button
@@ -66,10 +85,30 @@ function Wizard() {
   );
 }
 
+function Root() {
+  const [view, setView] = useState('list'); // 'list' | 'wizard'
+  const { dispatch } = useCharacter();
+
+  const openNew = () => {
+    dispatch({ type: 'LOAD_CHARACTER', character: initialCharacter });
+    setView('wizard');
+  };
+
+  const openExisting = (id, character) => {
+    dispatch({ type: 'LOAD_CHARACTER', character: character || initialCharacter });
+    setView('wizard');
+  };
+
+  if (view === 'list') {
+    return <CharacterList onNew={openNew} onOpen={openExisting} />;
+  }
+  return <Wizard onBackToList={() => setView('list')} />;
+}
+
 export default function App() {
   return (
     <CharacterProvider>
-      <Wizard />
+      <Root />
     </CharacterProvider>
   );
 }

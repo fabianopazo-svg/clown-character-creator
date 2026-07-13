@@ -36,3 +36,9 @@ export function calcStartingLaughter(finalAttributes) {
 export function calcHealthBoxes(finalSkills) {
   return 3 + (finalSkills.toughness || 0);
 }
+
+export function giftCountForRenown(renown) {
+  // Renown 1 -> 3 Gifts, +1 per Renown point thereafter, capping at 11 regular Gifts
+  // (Renown 10 also unlocks a separate capstone pick, tracked independently).
+  return Math.min(renown + 2, 11);
+}

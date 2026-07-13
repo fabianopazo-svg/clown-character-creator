@@ -1,6 +1,7 @@
 import { useCharacter } from '../context/CharacterContext';
 import troupes from '../data/troupes.json';
 import paths from '../data/paths.json';
+import { getRankForRenown, giftCountForRenown } from '../utils/calculations';
 
 export default function Step06TroupePath() {
   const { character, dispatch } = useCharacter();
@@ -14,9 +15,32 @@ export default function Step06TroupePath() {
     set('subtypeId', '');
   };
 
+  const rank = getRankForRenown(character.renown);
+  const giftCount = giftCountForRenown(character.renown);
+
   return (
     <div>
-      <div className="section-title">Step 6 — Troupe & Path</div>
+      <div className="section-title">Step 6 — Troupe, Path & Renown</div>
+
+      <p className="helper-text">
+        Starting Renown — most player Clowns begin at 1, but you can build a more experienced
+        character. Higher Renown means more Gifts (and the Grade V capstone at Renown 10), but
+        does not change your Attribute or Skill point pools at creation.
+      </p>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+        <input
+          type="range"
+          min={1}
+          max={10}
+          value={character.renown}
+          onChange={e => set('renown', Number(e.target.value))}
+          style={{ flex: 1 }}
+        />
+        <span className="accent-block" style={{ margin: 0, whiteSpace: 'nowrap' }}>
+          Renown {character.renown} &middot; {rank.name} &middot; {giftCount} Gift{giftCount !== 1 ? 's' : ''}
+          {character.renown >= 10 ? ' + capstone' : ''}
+        </span>
+      </div>
 
       <p className="helper-text">Troupe (primary, full membership)</p>
       <div className="two-col">
@@ -71,3 +95,4 @@ export default function Step06TroupePath() {
     </div>
   );
 }
+

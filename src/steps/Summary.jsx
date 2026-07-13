@@ -81,10 +81,16 @@ export default function Summary() {
           .join(', ') || '—'}
       </p>
 
-      <div className="section-title">Starting Gifts</div>
+      <div className="section-title">Gifts</div>
       {character.gifts.map(g => (
         <div key={g} className="gift-card"><span className="gift-name">{g}</span></div>
       ))}
+      {character.capstoneGift && (
+        <div className="gift-card selected">
+          <span className="gift-name">{character.capstoneGift}</span>
+          <span style={{ fontSize: 11, color: 'var(--accent-text)' }}> (capstone)</span>
+        </div>
+      )}
 
       <div className="section-title">Resources</div>
       <div className="three-col">

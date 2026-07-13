@@ -1,10 +1,13 @@
 import { createContext, useContext, useReducer } from 'react';
 import core from '../data/core.json';
+import { giftCountForRenown } from '../utils/calculations';
 
 const emptyAttributes = Object.fromEntries(core.attributes.map(a => [a.id, 0]));
 const emptySkills = Object.fromEntries(core.skills.map(s => [s.id, 0]));
 
 export const initialCharacter = {
+  id: null,
+  updatedAt: null,
   humanName: '',
   occupation: '',
   age: '',
@@ -23,6 +26,7 @@ export const initialCharacter = {
   insecurities: [],
   personalityTraits: [],
   gifts: [],
+  capstoneGift: '',
   pathResourceNotes: '',
   gear: [],
   purseCurrent: null,
@@ -32,8 +36,17 @@ export const initialCharacter = {
 
 function characterReducer(state, action) {
   switch (action.type) {
-    case 'SET_FIELD':
+    case 'SET_FIELD': {
+      if (action.field === 'renown') {
+        const allowed = giftCountForRenown(action.value);
+        const trimmedGifts = state.gifts.slice(0, allowed);
+        const capstone = action.value >= 10 ? state.capstoneGift : '';
+        return { ...state, renown: action.value, gifts: trimmedGifts, capstoneGift: capstone };
+      }
       return { ...state, [action.field]: action.value };
+    }
+    case 'LOAD_CHARACTER':
+      return { ...initialCharacter, ...action.character };
     case 'SET_NESTED': {
       const { group, field, value } = action;
       return { ...state, [group]: { ...state[group], [field]: value } };
