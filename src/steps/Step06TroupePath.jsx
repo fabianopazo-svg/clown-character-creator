@@ -41,7 +41,7 @@ export default function Step06TroupePath() {
       <select value={character.pathId} onChange={e => handlePathChange(e.target.value)}>
         <option value="">Select a Path...</option>
         {paths.map(p => (
-          <option key={p.id} value={p.id}>{p.name} ({p.archetype})</option>
+          <option key={p.id} value={p.id}>{p.name}</option>
         ))}
       </select>
 

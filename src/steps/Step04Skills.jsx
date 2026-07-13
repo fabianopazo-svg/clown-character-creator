@@ -7,7 +7,7 @@ export default function Step04Skills() {
   const { character, dispatch } = useCharacter();
 
   const skillSpent = sumDots(character.skills);
-  const performanceCost = character.performanceDots * core.performance.costPerDot;
+  const performanceCost = character.performanceDots * core.performance.costPerExtraDot;
   const totalSpent = skillSpent + performanceCost;
   const max = core.skillCreation.maxPoints;
   const remaining = max - totalSpent;
@@ -20,10 +20,10 @@ export default function Step04Skills() {
   };
 
   const setPerformance = (n) => {
-    const delta = (n - character.performanceDots) * core.performance.costPerDot;
+    const clamped = Math.max(0, Math.min(n, core.performance.maxExtraBoughtAtCreation));
+    const delta = (clamped - character.performanceDots) * core.performance.costPerExtraDot;
     if (delta > 0 && delta > remaining) return;
-    if (n > core.performance.maxBoughtAtCreation) return;
-    dispatch({ type: 'SET_FIELD', field: 'performanceDots', value: n });
+    dispatch({ type: 'SET_FIELD', field: 'performanceDots', value: clamped });
   };
 
   const specialtyMax = core.specialtyCreation.max;
@@ -42,7 +42,7 @@ export default function Step04Skills() {
     <div>
       <div className="section-title">Step 4 — Skills, Performance & Specialties</div>
       <p className="helper-text">
-        Spend up to {max} points across the nine Skills and Performance (max {core.skillCreation.maxDotsAtCreation} per Skill). Performance is capped at {core.performance.maxBoughtAtCreation} bought dots at creation — it rises further on its own with Rank.
+        Spend up to {max} points across the nine Skills and Performance (max {core.skillCreation.maxDotsAtCreation} per Skill). Performance starts with {core.performance.baseFreeDots} free dot (never below 1) and can have up to {core.performance.maxExtraBoughtAtCreation} more bought at creation — it also rises further on its own with Rank.
       </p>
       <span className="remaining-badge">Remaining: {remaining} / {max}</span>
 
@@ -59,11 +59,16 @@ export default function Step04Skills() {
         </div>
       ))}
 
-      <div className="accent-block" style={{ display: 'flex', justifyContent: 'space-between', maxWidth: 320 }}>
-        <span style={{ fontSize: 13, fontWeight: 600 }}>Performance <span style={{ fontWeight: 400, fontSize: 11 }}>(2 pts/dot)</span></span>
+      <div className="accent-block" style={{ display: 'flex', justifyContent: 'space-between', maxWidth: 360 }}>
+        <span style={{ fontSize: 13, fontWeight: 600 }}>
+          Performance <span style={{ fontWeight: 400, fontSize: 11 }}>
+            ({character.tentBorn.isTentBorn ? core.performance.baseFreeDotsTentBorn : core.performance.baseFreeDots} free base, {core.performance.costPerExtraDot} pts/extra dot)
+          </span>
+        </span>
         <DotTracker
           value={character.performanceDots}
-          max={core.performance.maxBoughtAtCreation}
+          max={core.performance.maxExtraBoughtAtCreation}
+          lockedCount={character.tentBorn.isTentBorn ? core.performance.baseFreeDotsTentBorn : core.performance.baseFreeDots}
           onChange={setPerformance}
         />
       </div>

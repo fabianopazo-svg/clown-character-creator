@@ -21,7 +21,9 @@ export default function Summary() {
   const finalAttributes = applyAgeModifiers(character.attributes, character.ageBandId);
   const rank = getRankForRenown(character.renown);
   const perfRankBonus = getPerformanceRankBonus(character.renown);
-  const perfTotal = character.performanceDots + perfRankBonus;
+  const perfBase = character.tentBorn.isTentBorn ? core.performance.baseFreeDotsTentBorn : core.performance.baseFreeDots;
+  const perfBought = perfBase + character.performanceDots;
+  const perfTotal = perfBought + perfRankBonus;
 
   return (
     <div>
@@ -66,7 +68,7 @@ export default function Summary() {
       </div>
       <div className="accent-block" style={{ display: 'flex', justifyContent: 'space-between' }}>
         <span>Performance</span>
-        <span>{character.performanceDots} bought + {perfRankBonus} rank = {perfTotal}</span>
+        <span>{perfBought} bought (incl. {perfBase} free) + {perfRankBonus} rank = {perfTotal}</span>
       </div>
 
       <div className="section-title">Specialties</div>

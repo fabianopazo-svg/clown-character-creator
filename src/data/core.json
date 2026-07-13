@@ -35,12 +35,12 @@
   "performance": {
     "id": "performance",
     "name": "Performance",
-    "minFreeDots": 1,
-    "minFreeDotsTentBorn": 2,
-    "maxBoughtAtCreation": 3,
+    "baseFreeDots": 1,
+    "baseFreeDotsTentBorn": 2,
+    "maxExtraBoughtAtCreation": 3,
     "maxTotalDots": 10,
-    "costPerDot": 2,
-    "note": "Rises automatically with Rank regardless of points spent; bought dots render as filled circles, Rank-granted dots render as stars in the sheet design. Each bought dot costs 2 points from the shared 18-point Skill pool, unlike the 1-point cost of the other nine Skills.",
+    "costPerExtraDot": 2,
+    "note": "Every Clown starts with 1 free dot in Performance (2 if Tent-Born), which can never be bought down. Up to 3 additional dots may be bought at creation, each costing 2 points from the shared 18-point Skill pool. Total at creation is therefore 1-4 dots (2-5 if Tent-Born). It also rises automatically with Rank regardless of points spent; bought dots render as filled circles, Rank-granted dots render as stars in the sheet design.",
     "rankBonusTable": [
       { "rankId": "first_of_may", "renownRange": [1, 2], "bonus": 0 },
       { "rankId": "tent_veteran", "renownRange": [3, 4], "bonus": 1 },
