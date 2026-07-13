@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+editor/node_modules
+editor/dist
+src/data/.editor-backups
