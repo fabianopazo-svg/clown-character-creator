@@ -1,9 +1,11 @@
 import { Document, Page, View, Text } from '@react-pdf/renderer';
 import { styles, colors } from './styles';
-import { Dots, Checkbox, FieldBox, ColBox } from './components';
+import { Dots, Boxes, Checkbox, FieldBox, ColBox } from './components';
+import GlossaryPage from './GlossaryPage';
 import core from '../data/core.json';
 import troupes from '../data/troupes.json';
 import paths from '../data/paths.json';
+import { findGearItem } from '../utils/gearLookup';
 import {
   applyAgeModifiers,
   calcStartingLaughter,
@@ -35,16 +37,21 @@ export default function CharacterPdf({ character }) {
     ? troupes.find(t => t.id === character.tentBorn.secondTroupeId)
     : null;
 
+  // Age band adds +1 to one Attribute and -1 to another; mark exactly which dot is the
+  // "bonus" (colored) and which slot the penalty removed (red outline), per Attribute row.
+  const bonusAttrId = band?.bonus;
+  const penaltyAttrId = band?.penalty;
+
   // Collect full Gift data (with effect text) for every chosen Gift + capstone, grouped by grade.
   const chosenGiftDetails = [];
   if (path) {
     path.gifts.forEach(gradeBlock => {
       gradeBlock.list.forEach(gift => {
         if (character.gifts.includes(gift.name)) {
-          chosenGiftDetails.push({ ...gift, grade: gradeBlock.grade, capstone: false });
+          chosenGiftDetails.push({ ...gift, grade: gradeBlock.grade, capstone: false, cost: gift.cost || gradeBlock.costEach });
         }
         if (gradeBlock.capstone && gift.name === character.capstoneGift) {
-          chosenGiftDetails.push({ ...gift, grade: gradeBlock.grade, capstone: true });
+          chosenGiftDetails.push({ ...gift, grade: gradeBlock.grade, capstone: true, cost: gift.cost || gradeBlock.costEach });
         }
       });
     });
@@ -98,13 +105,25 @@ export default function CharacterPdf({ character }) {
 
         <Text style={styles.sectionTitle}>Attributes</Text>
         <View style={styles.statGrid}>
-          {core.attributes.map(a => (
-            <View style={styles.statItem} key={a.id}>
-              <Text>{a.name}</Text>
-              <Dots filled={finalAttributes[a.id]} total={5} />
-            </View>
-          ))}
+          {core.attributes.map(a => {
+            const isBonus = a.id === bonusAttrId;
+            const isPenalty = a.id === penaltyAttrId;
+            return (
+              <View style={styles.statItem} key={a.id}>
+                <Text>{a.name}</Text>
+                <Dots
+                  filled={finalAttributes[a.id]}
+                  total={5}
+                  bonusAt={isBonus ? finalAttributes[a.id] : null}
+                  penaltyAt={isPenalty ? finalAttributes[a.id] + 1 : null}
+                />
+              </View>
+            );
+          })}
         </View>
+        <Text style={{ fontSize: 7, color: colors.muted, marginTop: 2 }}>
+          Green dot = the +1 from your Age Band. Red-outlined dot = the -1 your Age Band cost you.
+        </Text>
 
         <Text style={styles.sectionTitle}>Skills</Text>
         <View style={styles.statGrid}>
@@ -128,26 +147,42 @@ export default function CharacterPdf({ character }) {
           Gray = free base, dark = bought, blue star = granted automatically by Rank {character.renown}
         </Text>
 
-        <View style={styles.threeCol}>
-          <FieldBox label="Specialties" value={character.specialties.filter(Boolean).join(', ')} minHeight={40} />
-        </View>
+        <Text style={styles.sectionTitle}>Specialties</Text>
+        {character.specialties.filter(s => s.text).length === 0 && (
+          <Text style={{ fontSize: 8.5, color: colors.muted }}>None.</Text>
+        )}
+        {character.specialties.filter(s => s.text).map((s, i) => (
+          <View key={i} style={{ flexDirection: 'row', marginBottom: 2 }}>
+            <View style={[styles.checkbox, styles.checkboxChecked, { marginTop: 1.5 }]} />
+            <Text style={{ fontSize: 8.5 }}>{s.text} <Text style={{ color: colors.accentText, fontFamily: 'Helvetica-Bold' }}>(+{s.value})</Text></Text>
+          </View>
+        ))}
+
         <View style={styles.twoCol}>
           <View style={{ flex: 1 }}>
-            <FieldBox
-              label="Insecurities"
-              value={character.insecurities.filter(Boolean).join(', ')}
-              minHeight={30}
-            />
+            <Text style={[styles.sectionTitle, { marginTop: 10 }]}>Insecurities</Text>
+            {character.insecurities.filter(s => s.text).length === 0 && (
+              <Text style={{ fontSize: 8.5, color: colors.muted }}>None.</Text>
+            )}
+            {character.insecurities.filter(s => s.text).map((s, i) => (
+              <View key={i} style={{ flexDirection: 'row', marginBottom: 2 }}>
+                <View style={[styles.checkbox, styles.checkboxChecked, { marginTop: 1.5 }]} />
+                <Text style={{ fontSize: 8.5 }}>{s.text} <Text style={{ color: '#c0392b', fontFamily: 'Helvetica-Bold' }}>({s.value})</Text></Text>
+              </View>
+            ))}
           </View>
           <View style={{ flex: 1 }}>
-            <FieldBox
-              label="Personality traits"
-              value={character.personalityTraits
-                .map(id => core.personalityTraits.find(t => t.id === id)?.name)
-                .filter(Boolean)
-                .join(', ')}
-              minHeight={30}
-            />
+            <Text style={[styles.sectionTitle, { marginTop: 10 }]}>Personality traits</Text>
+            {character.personalityTraits.map(id => {
+              const trait = core.personalityTraits.find(t => t.id === id);
+              if (!trait) return null;
+              return (
+                <View key={id} style={{ marginBottom: 4 }}>
+                  <Text style={{ fontSize: 8.5, fontFamily: 'Helvetica-Bold' }}>{trait.name}</Text>
+                  <Text style={{ fontSize: 8, lineHeight: 1.3 }}>{trait.effect}</Text>
+                </View>
+              );
+            })}
           </View>
         </View>
 
@@ -157,10 +192,19 @@ export default function CharacterPdf({ character }) {
       {/* PAGE 2 — Resources & Troupe */}
       <Page size="LETTER" style={styles.page}>
         <Text style={styles.sectionTitle}>Universal resources</Text>
-        <View style={styles.threeCol}>
-          <ColBox label="Laughter (0-10)" value={laughter} />
-          <ColBox label="Face (1-10)" value="7" />
-          <ColBox label="Health boxes" value={health} />
+        <View style={{ marginBottom: 10 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+            <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', width: 130 }}>Laughter</Text>
+            <Boxes filled={laughter} total={10} />
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+            <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', width: 130 }}>Face</Text>
+            <Boxes filled={7} total={10} />
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', width: 130 }}>Health = 3 + Toughness</Text>
+            <Boxes filled={health} total={15} />
+          </View>
         </View>
 
         {path && (
@@ -178,6 +222,9 @@ export default function CharacterPdf({ character }) {
         {troupe && (
           <>
             <Text style={styles.sectionTitle}>Troupe passives — {troupe.name}</Text>
+            <Text style={{ fontSize: 8, color: colors.muted, marginBottom: 6, lineHeight: 1.35 }}>
+              {troupe.values} {troupe.look}
+            </Text>
             {passiveOrder.map(key => {
               const p = troupe.passives[key];
               const unlocked = character.renown >= passiveRenownReq[key];
@@ -202,6 +249,44 @@ export default function CharacterPdf({ character }) {
       {/* PAGE 3 — Gifts */}
       <Page size="LETTER" style={styles.page}>
         <Text style={styles.sectionTitle}>Gifts — {path?.name}</Text>
+
+        <View style={{ backgroundColor: colors.surface1, borderRadius: 4, padding: 8, marginBottom: 10 }}>
+          {path?.flavor && (
+            <Text style={{ fontSize: 9, fontStyle: 'italic', lineHeight: 1.4, marginBottom: 5 }}>
+              {path.flavor}
+            </Text>
+          )}
+          {path?.primaryAttributes && (
+            <Text style={{ fontSize: 8, color: colors.muted, marginBottom: 5 }}>
+              Primary Attributes: <Text style={{ fontFamily: 'Helvetica-Bold', color: colors.ink }}>
+                {path.primaryAttributes.map(a => a.replace(/_/g, ' ')).join(', ')}
+              </Text>
+            </Text>
+          )}
+          {path?.pathResource && (
+            <View style={{ marginBottom: subtype ? 5 : 0 }}>
+              <Text style={{ fontSize: 8.5, fontFamily: 'Helvetica-Bold' }}>
+                Path resource — {path.pathResource.name}
+              </Text>
+              <Text style={{ fontSize: 8, lineHeight: 1.35, marginTop: 1 }}>
+                {path.pathResource.description}
+              </Text>
+            </View>
+          )}
+          {subtype && (
+            <View>
+              <Text style={{ fontSize: 8.5, fontFamily: 'Helvetica-Bold' }}>
+                Subtype — {subtype.name}
+              </Text>
+              <Text style={{ fontSize: 8, lineHeight: 1.35, marginTop: 1 }}>
+                {subtype.focus || ''}
+                {subtype.aura ? ` Aura: ${subtype.aura}` : ''}
+                {subtype.patron ? ` Patron: ${subtype.patron}` : ''}
+              </Text>
+            </View>
+          )}
+        </View>
+
         {chosenGiftDetails.length === 0 && (
           <Text style={{ fontSize: 9, color: colors.muted }}>No Gifts selected.</Text>
         )}
@@ -235,7 +320,10 @@ export default function CharacterPdf({ character }) {
           <Text style={[styles.tableHeaderCell, { flex: 1 }]}>Rarity</Text>
           <Text style={[styles.tableHeaderCell, { flex: 3 }]}>Effect</Text>
         </View>
-        {(character.gear && character.gear.length > 0 ? character.gear : [{}, {}, {}]).map((item, i) => (
+        {(character.gear && character.gear.length > 0
+          ? character.gear.map(findGearItem).filter(Boolean)
+          : [{}, {}, {}]
+        ).map((item, i) => (
           <View key={i} style={styles.tableRow}>
             <Text style={[styles.tableCell, { flex: 2 }]}>{item.name || ' '}</Text>
             <Text style={[styles.tableCell, { flex: 1 }]}>{item.type || ' '}</Text>
@@ -276,6 +364,8 @@ export default function CharacterPdf({ character }) {
 
         <Text style={styles.footerNote}>CLOWN: Lights in the Backstage — character sheet</Text>
       </Page>
+
+      <GlossaryPage />
     </Document>
   );
 }

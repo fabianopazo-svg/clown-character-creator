@@ -75,7 +75,14 @@ function characterReducer(state, action) {
       return { ...state, [action.field]: list };
     }
     case 'ADD_LIST_TEXT': {
-      const list = [...state[action.field], ''];
+      const list = [...state[action.field], { text: '', value: action.defaultValue ?? 1 }];
+      return { ...state, [action.field]: list };
+    }
+    case 'SET_LIST_ITEM_FIELD': {
+      // action: { field, index, key, value } — updates one key on an object-shaped list item
+      const list = state[action.field].map((item, i) =>
+        i === action.index ? { ...item, [action.key]: action.value } : item
+      );
       return { ...state, [action.field]: list };
     }
     case 'REMOVE_LIST_INDEX': {

@@ -31,10 +31,12 @@ export default function Step04Skills() {
 
   const addSpecialty = () => {
     if (specialties.length >= specialtyMax) return;
-    dispatch({ type: 'ADD_LIST_TEXT', field: 'specialties' });
+    dispatch({ type: 'ADD_LIST_TEXT', field: 'specialties', defaultValue: 1 });
   };
-  const setSpecialty = (i, value) =>
-    dispatch({ type: 'SET_LIST_TEXT', field: 'specialties', index: i, value });
+  const setSpecialtyText = (i, value) =>
+    dispatch({ type: 'SET_LIST_ITEM_FIELD', field: 'specialties', index: i, key: 'text', value });
+  const setSpecialtyValue = (i, value) =>
+    dispatch({ type: 'SET_LIST_ITEM_FIELD', field: 'specialties', index: i, key: 'value', value });
   const removeSpecialty = (i) =>
     dispatch({ type: 'REMOVE_LIST_INDEX', field: 'specialties', index: i });
 
@@ -74,14 +76,24 @@ export default function Step04Skills() {
       </div>
 
       <div className="section-title">Specialties ({core.specialtyCreation.min}–{specialtyMax})</div>
+      <p className="helper-text">
+        Each grants +1 die when it genuinely applies — or +2 if it's exceptionally deep (but that counts double against your limit of {specialtyMax}).
+      </p>
       {specialties.map((s, i) => (
-        <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+        <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'center' }}>
           <input
             type="text"
-            value={s}
+            value={s.text}
             placeholder='e.g. "Pediatric ICU nurse"'
-            onChange={e => setSpecialty(i, e.target.value)}
+            onChange={e => setSpecialtyText(i, e.target.value)}
+            style={{ flex: 1 }}
           />
+          <label style={{ fontSize: 11, display: 'flex', alignItems: 'center', gap: 3 }}>
+            <input type="radio" name={`spec-val-${i}`} checked={s.value === 1} onChange={() => setSpecialtyValue(i, 1)} /> +1
+          </label>
+          <label style={{ fontSize: 11, display: 'flex', alignItems: 'center', gap: 3 }}>
+            <input type="radio" name={`spec-val-${i}`} checked={s.value === 2} onChange={() => setSpecialtyValue(i, 2)} /> +2
+          </label>
           <button type="button" className="small-btn" onClick={() => removeSpecialty(i)}>Remove</button>
         </div>
       ))}

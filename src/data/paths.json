@@ -2,6 +2,7 @@
   {
     "id": "host",
     "name": "The Host",
+    "flavor": "The pure performer — the one who makes everyone else shine. Not the Path that lands the final blow; the Path that makes the final blow possible.",
     "primaryAttributes": [
       "charisma",
       "wit"
@@ -233,6 +234,7 @@
   {
     "id": "illusionist",
     "name": "The Illusionist",
+    "flavor": "The scholar of the craft — magic tricks treated like grimoires.",
     "primaryAttributes": [
       "wit",
       "knowledge"
@@ -452,6 +454,7 @@
   {
     "id": "shackled",
     "name": "The Shackled",
+    "flavor": "Power that isn't yours — borrowed from something larger in the Backstage, with a debt always attached. The mechanical opposite of the Illusionist: fixed, rigid, potent effects instead of free creativity.",
     "primaryAttributes": [
       "poise",
       "charisma_or_wit"
@@ -680,6 +683,7 @@
   {
     "id": "physician",
     "name": "The Physician",
+    "flavor": "Laughter channeled as literal care. The only Path that repairs another character's Face.",
     "primaryAttributes": [
       "poise",
       "knowledge"
@@ -881,6 +885,7 @@
   {
     "id": "pickpocket",
     "name": "The Pickpocket",
+    "flavor": "Setup and payoff. Not a spending pool — a hand of prepared advantages, cashed in all at once.",
     "primaryAttributes": [
       "wit",
       "grace"
@@ -1076,6 +1081,7 @@
   {
     "id": "strongman",
     "name": "The Strongman",
+    "flavor": "The game's simplest, most direct Path — deliberately so, and the best entry point for a new player. No spending pool to track beyond Laughter: just a chosen Stance and rising Grit.",
     "primaryAttributes": [
       "strength",
       "toughness"
@@ -1271,6 +1277,7 @@
   {
     "id": "sworn",
     "name": "The Sworn",
+    "flavor": "The one who made a vow, and draws real power from keeping it.",
     "primaryAttributes": [
       "charisma",
       "poise"

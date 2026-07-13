@@ -13,10 +13,12 @@ export default function Step05Traits() {
   const insecurities = character.insecurities;
   const addInsecurity = () => {
     if (insecurities.length >= insecurityMax) return;
-    dispatch({ type: 'ADD_LIST_TEXT', field: 'insecurities' });
+    dispatch({ type: 'ADD_LIST_TEXT', field: 'insecurities', defaultValue: -1 });
   };
-  const setInsecurity = (i, value) =>
-    dispatch({ type: 'SET_LIST_TEXT', field: 'insecurities', index: i, value });
+  const setInsecurityText = (i, value) =>
+    dispatch({ type: 'SET_LIST_ITEM_FIELD', field: 'insecurities', index: i, key: 'text', value });
+  const setInsecurityValue = (i, value) =>
+    dispatch({ type: 'SET_LIST_ITEM_FIELD', field: 'insecurities', index: i, key: 'value', value });
   const removeInsecurity = (i) =>
     dispatch({ type: 'REMOVE_LIST_INDEX', field: 'insecurities', index: i });
 
@@ -44,13 +46,20 @@ export default function Step05Traits() {
 
       <div className="section-title">Insecurities (0–{insecurityMax}, optional at creation)</div>
       {insecurities.map((s, i) => (
-        <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+        <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'center' }}>
           <input
             type="text"
-            value={s}
+            value={s.text}
             placeholder="Describe the insecurity and its small mechanical hook"
-            onChange={e => setInsecurity(i, e.target.value)}
+            onChange={e => setInsecurityText(i, e.target.value)}
+            style={{ flex: 1 }}
           />
+          <label style={{ fontSize: 11, display: 'flex', alignItems: 'center', gap: 3 }}>
+            <input type="radio" name={`insec-val-${i}`} checked={s.value === -1} onChange={() => setInsecurityValue(i, -1)} /> -1
+          </label>
+          <label style={{ fontSize: 11, display: 'flex', alignItems: 'center', gap: 3 }}>
+            <input type="radio" name={`insec-val-${i}`} checked={s.value === -2} onChange={() => setInsecurityValue(i, -2)} /> -2
+          </label>
           <button type="button" className="small-btn" onClick={() => removeInsecurity(i)}>Remove</button>
         </div>
       ))}

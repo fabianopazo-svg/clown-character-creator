@@ -2,6 +2,7 @@ import { useCharacter } from '../context/CharacterContext';
 import core from '../data/core.json';
 import troupes from '../data/troupes.json';
 import paths from '../data/paths.json';
+import { findGearItem } from '../utils/gearLookup';
 import {
   applyAgeModifiers,
   calcStartingLaughter,
@@ -72,14 +73,32 @@ export default function Summary() {
       </div>
 
       <div className="section-title">Specialties</div>
-      <p>{character.specialties.filter(Boolean).join(', ') || '—'}</p>
+      {character.specialties.filter(s => s.text).map((s, i) => (
+        <div key={i} className="gift-card">
+          <span className="gift-name">{s.text}</span>
+          <span style={{ fontSize: 11, color: 'var(--accent-text)' }}> (+{s.value})</span>
+        </div>
+      ))}
+
+      <div className="section-title">Insecurities</div>
+      {character.insecurities.filter(s => s.text).map((s, i) => (
+        <div key={i} className="gift-card">
+          <span className="gift-name">{s.text}</span>
+          <span style={{ fontSize: 11, color: 'var(--muted)' }}> ({s.value})</span>
+        </div>
+      ))}
 
       <div className="section-title">Personality traits</div>
-      <p>
-        {character.personalityTraits
-          .map(id => core.personalityTraits.find(t => t.id === id)?.name)
-          .join(', ') || '—'}
-      </p>
+      {character.personalityTraits.map(id => {
+        const trait = core.personalityTraits.find(t => t.id === id);
+        if (!trait) return null;
+        return (
+          <div key={id} className="gift-card">
+            <span className="gift-name">{trait.name}</span>
+            <div className="gift-effect">{trait.effect}</div>
+          </div>
+        );
+      })}
 
       <div className="section-title">Gifts</div>
       {character.gifts.map(g => (
@@ -99,13 +118,27 @@ export default function Summary() {
         <div className="accent-block"><strong>Purse</strong><div>{character.purseCurrent ?? band?.startingPurse ?? '—'} Coin</div></div>
       </div>
 
+      <div className="section-title">Gear</div>
+      {character.gear.length === 0 && <p className="helper-text">None selected.</p>}
+      {character.gear.map(name => {
+        const item = findGearItem(name);
+        if (!item) return null;
+        return (
+          <div key={name} className="gift-card">
+            <span className="gift-name">{item.name}</span>
+            <span style={{ fontSize: 11, color: 'var(--hint)' }}> [{item.type} · {item.rarity} · {item.cost} Coin]</span>
+            <div className="gift-effect">{item.effect}</div>
+          </div>
+        );
+      })}
+
       <div className="section-title">Backstory</div>
       <p><strong>Cryptic sign:</strong> {character.backstory.crypticSign || '—'}</p>
       <p><strong>Keeping the truth from:</strong> {character.backstory.keepingTruthFrom || '—'}</p>
       <p><strong>Motley worn:</strong> {character.backstory.motleyWorn || '—'}</p>
 
-      <p style={{ marginTop: 24, fontStyle: 'italic', color: 'var(--muted)' }}>
-        PDF export button goes here — next build step.
+      <p className="helper-text" style={{ marginTop: 24 }}>
+        Use the <strong>Export PDF</strong> button at the top of the page to download this character sheet.
       </p>
     </div>
   );

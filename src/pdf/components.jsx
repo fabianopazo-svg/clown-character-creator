@@ -1,11 +1,14 @@
-import { View, Text, Svg, Circle, Polygon, G } from '@react-pdf/renderer';
+import { View, Text, Svg, Circle, Rect, Polygon, G } from '@react-pdf/renderer';
 import { styles, colors } from './styles';
 
 // 5-point star polygon, centered at (0,0), sized to match the ~7pt-diameter circles below.
 const STAR_POINTS = '0,-4 0.94,-1.29 3.8,-1.24 1.52,0.49 2.35,3.24 0,1.6 -2.35,3.24 -1.52,0.49 -3.8,-1.24 -0.94,-1.29';
 
-export function Dots({ filled = 0, total = 5, lockedCount = 0, starCount = 0 }) {
-  const slotCount = Math.max(total, lockedCount + filled + starCount);
+// bonusAt / penaltyAt are 1-based dot positions used only for the Attributes row affected by
+// the character's Age Band: bonusAt highlights the dot gained (green), penaltyAt outlines in red
+// the dot slot that age took away.
+export function Dots({ filled = 0, total = 5, lockedCount = 0, starCount = 0, bonusAt = null, penaltyAt = null }) {
+  const slotCount = Math.max(total, lockedCount + filled + starCount, penaltyAt || 0);
   const spacing = 10;
   const width = slotCount * spacing;
 
@@ -15,12 +18,15 @@ export function Dots({ filled = 0, total = 5, lockedCount = 0, starCount = 0 }) 
         const n = i + 1;
         const cx = i * spacing + 5;
 
+        if (n === penaltyAt) {
+          return <Circle key={n} cx={cx} cy={5} r={3.5} fill="white" stroke="#c0392b" strokeWidth={1.4} />;
+        }
         if (n <= lockedCount) {
-          // Base/free dot: always filled, slightly muted to distinguish from bought dots.
           return <Circle key={n} cx={cx} cy={5} r={3.5} fill="#999999" />;
         }
         if (n <= lockedCount + filled) {
-          return <Circle key={n} cx={cx} cy={5} r={3.5} fill={colors.ink} />;
+          const fill = n === bonusAt ? '#2e7d32' : colors.ink;
+          return <Circle key={n} cx={cx} cy={5} r={3.5} fill={fill} />;
         }
         if (n <= lockedCount + filled + starCount) {
           return (
@@ -32,6 +38,24 @@ export function Dots({ filled = 0, total = 5, lockedCount = 0, starCount = 0 }) 
         return (
           <Circle key={n} cx={cx} cy={5} r={3.5} fill="white" stroke={colors.borderStrong} strokeWidth={1} />
         );
+      })}
+    </Svg>
+  );
+}
+
+// Square checkbox-style track, used for resources that are already computed at creation
+// (Laughter, Face, Health) so the sheet shows them pre-filled rather than as a bare number.
+export function Boxes({ filled = 0, total = 10 }) {
+  const spacing = 11;
+  const width = total * spacing;
+  return (
+    <Svg width={width} height={10}>
+      {Array.from({ length: total }, (_, i) => {
+        const n = i + 1;
+        const x = i * spacing;
+        return n <= filled
+          ? <Rect key={n} x={x} y={0.5} width={9} height={9} rx={1.5} fill={colors.ink} />
+          : <Rect key={n} x={x} y={0.5} width={9} height={9} rx={1.5} fill="white" stroke={colors.borderStrong} strokeWidth={1} />;
       })}
     </Svg>
   );

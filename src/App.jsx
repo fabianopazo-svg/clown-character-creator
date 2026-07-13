@@ -13,6 +13,7 @@ import Step06TroupePath from './steps/Step06TroupePath';
 import Step07Gifts from './steps/Step07Gifts';
 import Step08Clown from './steps/Step08Clown';
 import Step09Resources from './steps/Step09Resources';
+import Step10Gear from './steps/Step10Gear';
 import Summary from './steps/Summary';
 
 const steps = [
@@ -25,7 +26,8 @@ const steps = [
   { id: 7, label: 'Gifts', Component: Step07Gifts },
   { id: 8, label: 'The Clown', Component: Step08Clown },
   { id: 9, label: 'Resources', Component: Step09Resources },
-  { id: 10, label: 'Summary', Component: Summary },
+  { id: 10, label: 'Gear', Component: Step10Gear },
+  { id: 11, label: 'Summary', Component: Summary },
 ];
 
 function Wizard({ onBackToList }) {
