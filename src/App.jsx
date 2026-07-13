@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { pdf } from '@react-pdf/renderer';
 import { CharacterProvider, useCharacter, initialCharacter } from './context/CharacterContext';
 import { saveCharacter, exportCharacterFile } from './utils/storage';
+import CharacterPdf from './pdf/CharacterPdf';
 import CharacterList from './steps/CharacterList';
 import Step01Concept from './steps/Step01Concept';
 import Step02AgeBand from './steps/Step02AgeBand';
@@ -39,6 +41,28 @@ function Wizard({ onBackToList }) {
 
   const handleExport = () => exportCharacterFile(character);
 
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const handlePdfExport = async () => {
+    setPdfBusy(true);
+    try {
+      const blob = await pdf(<CharacterPdf character={character} />).toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const filename = (character.ringName || character.humanName || 'clown-character')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+      a.href = url;
+      a.download = `${filename || 'clown-character'}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } finally {
+      setPdfBusy(false);
+    }
+  };
+
   return (
     <>
       <div style={{ maxWidth: 680, margin: '16px auto 0', padding: '0 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -46,6 +70,9 @@ function Wizard({ onBackToList }) {
         <div style={{ display: 'flex', gap: 6 }}>
           <button className="small-btn" onClick={handleSave}>Save</button>
           <button className="small-btn" onClick={handleExport}>Export JSON</button>
+          <button className="small-btn" onClick={handlePdfExport} disabled={pdfBusy}>
+            {pdfBusy ? 'Building PDF...' : 'Export PDF'}
+          </button>
         </div>
       </div>
 
