@@ -376,25 +376,25 @@
   "glossary": {
     "roll": {
       "title": "The Roll",
-      "text": "Whenever a Clown attempts something with real risk, roll a pool of d10s equal to an Attribute plus a Skill, plus one die for each applicable Specialty. Each die showing 8, 9, or 10 is a success. The number of successes tells you whether the action works and how well."
+      "text": "Roll d10s equal to Attribute + Skill, +1 die per applicable Specialty. Each 8, 9, or 10 is a success."
     },
     "houseDie": {
       "title": "The House Die",
-      "text": "Alongside your pool, roll one House Die - a single d12 of a different color. It does not add to your pool. It answers a different question: not did it work, but how does the world take it. The MC sets a House Difficulty modifier before the roll based on how easy the audience is to win over. 7-12 (after modifiers) = Cheers, the room is with you. 1-6 = Jeers, the room turns cold."
+      "text": "Roll one d12 alongside your pool - it doesn't add to your total. MC sets a House Difficulty first. 7-12 (after modifiers) = Cheers. 1-6 = Jeers."
     },
     "resultMatrix": {
       "title": "The Result Matrix",
-      "text": "Cross your pool result against your House Die result. Failure is never neutral - it's either the best moment of the scene or the most dangerous one.",
+      "text": "Cross your pool result against the House Die result:",
       "rows": [
         {
-          "poolResult": "Success (1+ successes)",
-          "cheers": "Clean success. Gain 1 Laughter; a Critical Success (3+ successes) also grants the party Momentum.",
-          "jeers": "It works, but the MC gains 1 Suspicion - a witness, a cost, an uncomfortable complication."
+          "poolResult": "Success",
+          "cheers": "Clean success. +1 Laughter (Critical: 3+ successes also grants Momentum).",
+          "jeers": "Works, but MC gains 1 Suspicion."
         },
         {
-          "poolResult": "Failure (0 successes)",
-          "cheers": "The Flop. It didn't work - but it was glorious. Narrate the disaster; if the table genuinely laughs, gain 1-2 Laughter anyway.",
-          "jeers": "Corpsing. It didn't work and it landed badly. The MC gains 2 Suspicion. The only fully bad result on the table."
+          "poolResult": "Failure",
+          "cheers": "The Flop - glorious disaster. Table laughs = +1-2 Laughter anyway.",
+          "jeers": "Corpsing. MC gains 2 Suspicion. The only fully bad result."
         }
       ]
     },
@@ -402,11 +402,11 @@
       "title": "Two Ways to Push a Roll",
       "creativeGambit": {
         "name": "The Creative Gambit (before you roll)",
-        "text": "Before rolling, describe an unusually bold or clever approach. If the table agrees it genuinely earns it, add +2 dice to your pool. The cost: if the result is any kind of Failure, you lose 1 additional Face, on top of anything else."
+        "text": "Before rolling: describe a bold approach. Table agrees it earns it = +2 dice. Any Failure costs 1 extra Face."
       },
       "encore": {
         "name": "The Encore (after you roll)",
-        "text": "After seeing your results, spend 1 Laughter per die to reroll up to 3 dice from your pool that didn't score a success. New results replace the old ones on those dice only. The House Die is never rerolled this way."
+        "text": "After rolling: 1 Laughter per die to reroll up to 3 non-success dice. House Die is never rerolled."
       }
     },
     "turnAndBit": {
@@ -416,37 +416,37 @@
     "resourceGlossary": [
       {
         "name": "Laughter (0-10)",
-        "text": "Your fuel. Every active Gift costs Laughter to use. Earned by making someone laugh for real, landing a good Flop, and performing for an audience. Does not refill on its own."
+        "text": "Fuel for Gifts. Earned from real laughs, good Flops, performing. Doesn't refill on its own."
       },
       {
         "name": "Face (1-10)",
-        "text": "Your soul. Erodes when you use your Gifts cruelly or selfishly, and when you fail badly with no one there to catch it. Restored through genuine generosity, resolved emotional arcs, and (for the Physician) real care given to someone in need. At 0 Face, a character doesn't die - they get stuck in the mask permanently, the only true death condition in this game."
+        "text": "Your soul. Erodes from cruelty/selfish Gift use or bad unsupported failures. At 0, stuck in the mask permanently."
       },
       {
         "name": "Renown (1-10)",
-        "text": "Your legend. Character level and a measure of how deeply your name is carved into the Backstage's memory. Never spent, only rises. Determines your Rank and how much of a target you've become - a high-Renown Clown who falls leaves a far more valuable, and more dangerous, Motley behind."
+        "text": "Your legend/level. Never spent. Sets Rank and target value."
       },
       {
         "name": "Suspicion",
-        "text": "The MC's pressure gauge. A shared, table-visible counter the MC gains from Jeers and Corpsing, and spends to activate boss abilities, introduce complications, or summon the Ushers."
+        "text": "MC's pressure gauge. Rises from Jeers/Corpsing; spent on boss abilities, complications, the Ushers."
       },
       {
         "name": "Momentum",
-        "text": "The party's shared spark. Gained from Critical Successes with Cheers, and from certain Gifts (especially the Host's). Spent collectively - to boost another player's roll, trigger a joint Turn, or power a coordinated finishing move."
+        "text": "Shared party resource. Gained from Critical Successes; spent to boost rolls or power joint moves."
       }
     ],
     "playStructure": [
       {
         "name": "The Spotlight",
-        "text": "No numeric initiative. Whoever has the natural reaction to what just happened, acts next. A player's Jeer-Failure (Corpsing) passes the Spotlight to the MC, who may spend Suspicion to let an enemy act."
+        "text": "No numeric initiative - natural reaction acts next. Corpsing passes the Spotlight to the MC."
       },
       {
-        "name": "Main Action & Minor Actions",
-        "text": "While holding the Spotlight, take one Main Action (a Turn, an attack, a significant move, a complex skill use) plus as many reasonable Minor Actions as fit the moment (a line, a gesture, maintaining a Bit, switching a Stance)."
+        "name": "Main + Minor Actions",
+        "text": "One Main Action (Turn, attack, major move) plus reasonable Minor Actions per turn."
       },
       {
-        "name": "Scene, Act, Show, Intermission",
-        "text": "A Scene is a unit of focused action. An Act is several Scenes forming its own arc. A Show is a full session. Intermission is everything between sessions - Face recovers slowly, Renown gains are formalized, Debts are paid down."
+        "name": "Scene / Act / Show / Intermission",
+        "text": "Scene = a unit of action. Act = several Scenes. Show = a session. Intermission = between sessions (Face recovers, Renown formalizes, Debts pay down)."
       }
     ]
   }

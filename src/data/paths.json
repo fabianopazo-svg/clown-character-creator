@@ -2,7 +2,7 @@
   {
     "id": "host",
     "name": "The Host",
-    "flavor": "The pure performer — the one who makes everyone else shine. Not the Path that lands the final blow; the Path that makes the final blow possible.",
+    "flavor": "The pure performer \u2014 the one who makes everyone else shine. Not the Path that lands the final blow; the Path that makes the final blow possible.",
     "primaryAttributes": [
       "charisma",
       "wit"
@@ -234,7 +234,7 @@
   {
     "id": "illusionist",
     "name": "The Illusionist",
-    "flavor": "The scholar of the craft — magic tricks treated like grimoires.",
+    "flavor": "The scholar of the craft \u2014 magic tricks treated like grimoires.",
     "primaryAttributes": [
       "wit",
       "knowledge"
@@ -454,7 +454,7 @@
   {
     "id": "shackled",
     "name": "The Shackled",
-    "flavor": "Power that isn't yours — borrowed from something larger in the Backstage, with a debt always attached. The mechanical opposite of the Illusionist: fixed, rigid, potent effects instead of free creativity.",
+    "flavor": "Power that isn't yours \u2014 borrowed from something larger in the Backstage, with a debt always attached. The mechanical opposite of the Illusionist: fixed, rigid, potent effects instead of free creativity.",
     "primaryAttributes": [
       "poise",
       "charisma_or_wit"
@@ -691,7 +691,8 @@
     "resourceType": "comfort",
     "pathResource": {
       "name": "Comfort",
-      "description": "Generated backwards from other Paths: earned by genuinely caring for someone (a scene of real attention, resolved with Poise + Persuasion or Awareness). Fuels every Gift. Escalating scale of sacrifice: Comfort (sustainable) -> Carry the Pain (overflow as Suspicion/strain) -> Transfusion (own Face directly)."
+      "description": "Generated backwards from other Paths: earned by genuinely caring for someone (a scene of real attention, resolved with Poise + Persuasion or Awareness). Fuels every Gift. Escalating scale of sacrifice: Comfort (sustainable) -> Carry the Pain (overflow as Suspicion/strain) -> Transfusion (own Face directly).",
+      "abbrev": "Com"
     },
     "subtypes": [
       {
@@ -726,7 +727,7 @@
           {
             "name": "Bedside Manner",
             "subtype": "open",
-            "cost": "\u2014 (generates)",
+            "cost": "",
             "effect": "The base action: a scene of real care generates Comfort"
           },
           {
@@ -738,7 +739,7 @@
           {
             "name": "Diagnosis",
             "subtype": "open",
-            "cost": "\u2014 (free)",
+            "cost": "Free",
             "effect": "Reveal a target's true resource state and hidden conditions"
           },
           {
@@ -814,7 +815,7 @@
           {
             "name": "Transfusion",
             "subtype": "open",
-            "cost": "Your own Face (real sacrifice, no Comfort)",
+            "cost": "Face",
             "effect": "Give your own Face directly to another character"
           },
           {
@@ -885,7 +886,7 @@
   {
     "id": "pickpocket",
     "name": "The Pickpocket",
-    "flavor": "Setup and payoff. Not a spending pool — a hand of prepared advantages, cashed in all at once.",
+    "flavor": "Setup and payoff. Not a spending pool \u2014 a hand of prepared advantages, cashed in all at once.",
     "primaryAttributes": [
       "wit",
       "grace"
@@ -1081,7 +1082,7 @@
   {
     "id": "strongman",
     "name": "The Strongman",
-    "flavor": "The game's simplest, most direct Path — deliberately so, and the best entry point for a new player. No spending pool to track beyond Laughter: just a chosen Stance and rising Grit.",
+    "flavor": "The game's simplest, most direct Path \u2014 deliberately so, and the best entry point for a new player. No spending pool to track beyond Laughter: just a chosen Stance and rising Grit.",
     "primaryAttributes": [
       "strength",
       "toughness"
@@ -1285,7 +1286,8 @@
     "resourceType": "conviction",
     "pathResource": {
       "name": "Conviction",
-      "description": "Only resource generated purely by roleplay: award 1 Conviction for a small genuine act in service of the Oath, 2-3 for a costly or campaign-defining act. Oathbreaking (acting against your own vow) drops all Conviction to zero, disables the Aura, and locks out Conviction-fueled Gifts until an act of atonement."
+      "description": "Only resource generated purely by roleplay: award 1 Conviction for a small genuine act in service of the Oath, 2-3 for a costly or campaign-defining act. Oathbreaking (acting against your own vow) drops all Conviction to zero, disables the Aura, and locks out Conviction-fueled Gifts until an act of atonement.",
+      "abbrev": "Conv"
     },
     "subtypes": [
       {

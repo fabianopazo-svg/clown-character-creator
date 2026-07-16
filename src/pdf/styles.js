@@ -1,6 +1,15 @@
-import { StyleSheet, Font } from '@react-pdf/renderer';
+import { StyleSheet } from '@react-pdf/renderer';
 
-// Using react-pdf's built-in Helvetica family keeps this dependency-free (no font file hosting needed).
+// Base palette as given, plus WCAG-AA-safe darkened "text" variants (>=4.6:1 against white)
+// and light background tints, computed from the base hues.
+export const palette = {
+  red:    { base: '#D21608', text: '#D21608', tint: '#FAE3E1' },
+  orange: { base: '#FF8427', text: '#B25C1B', tint: '#FFF0E5' },
+  gold:   { base: '#FFC800', text: '#8F7000', tint: '#FFF8E0' },
+  green:  { base: '#4D8B31', text: '#48832E', tint: '#EAF1E6' },
+  purple: { base: '#591AD7', text: '#591AD7', tint: '#EBE4FA' },
+};
+
 export const colors = {
   ink: '#1a1a1a',
   muted: '#6b6b66',
@@ -8,134 +17,74 @@ export const colors = {
   border: '#dddddd',
   borderStrong: '#bbbbbb',
   surface: '#ffffff',
-  surface1: '#f4f3ee',
-  accentBg: '#e6f1fb',
-  accentText: '#0c447c',
-  accentBorder: '#85b7eb',
+  surface1: '#f7f6f2',
+
+  // Section color-coding, so categories are visually distinct rather than uniform gray/blue:
+  attributes: palette.red,     // higher-order category — boldest, most saturated
+  skills: palette.orange,      // subordinate to Attributes — same warm family, one step down
+  resources: palette.gold,     // frequently touched during play
+  troupe: palette.green,
+  path: palette.purple,
+  specialties: palette.red,
+  insecurities: palette.purple,
+  personality: { base: '#9a9a94', text: '#6b6b66', tint: '#f2f1ee' }, // deliberately demoted/muted
+};
+
+export const fonts = {
+  display: 'Alfa Slab One',
+  stageName: 'Fredericka the Great',
+  body: 'PT Sans',
 };
 
 export const styles = StyleSheet.create({
   page: {
-    padding: 28,
-    fontSize: 9,
-    fontFamily: 'Helvetica',
+    padding: 26,
+    fontSize: 8.5,
+    fontFamily: fonts.body,
     color: colors.ink,
   },
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    borderBottomWidth: 2.5,
-    borderBottomColor: colors.ink,
-    paddingBottom: 8,
-    marginBottom: 12,
+
+  // Section headers now use the display face + a per-section accent color, passed in per use.
+  sectionTitle: {
+    fontFamily: fonts.display,
+    fontSize: 11,
+    letterSpacing: 0.3,
+    marginTop: 12,
+    marginBottom: 5,
+    paddingBottom: 3,
+    borderBottomWidth: 1.5,
   },
-  ringName: {
-    fontSize: 20,
-    fontFamily: 'Helvetica-Bold',
+  subSectionTitle: {
+    fontFamily: fonts.display,
+    fontSize: 8.5,
+    letterSpacing: 0.2,
+    marginBottom: 3,
   },
-  subLabel: {
-    fontSize: 8,
+
+  fieldLabel: {
+    fontSize: 7,
     color: colors.muted,
     textTransform: 'uppercase',
-    letterSpacing: 0.5,
-  },
-  subText: {
-    fontSize: 9,
-    color: colors.muted,
-    marginTop: 2,
-  },
-  accentBadge: {
-    backgroundColor: colors.accentBg,
-    color: colors.accentText,
-    fontSize: 9,
-    fontFamily: 'Helvetica-Bold',
-    borderRadius: 4,
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-  },
-  threeCol: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 10,
-  },
-  twoCol: {
-    flexDirection: 'row',
-    gap: 10,
-    marginBottom: 10,
-  },
-  colBox: {
-    flex: 1,
-    backgroundColor: colors.surface1,
-    borderRadius: 4,
-    padding: 6,
-  },
-  colBoxLabel: {
-    fontSize: 7.5,
-    color: colors.muted,
-    textTransform: 'uppercase',
+    letterSpacing: 0.3,
     marginBottom: 2,
   },
-  colBoxValue: {
-    fontSize: 10,
-    fontFamily: 'Helvetica-Bold',
-  },
-  sectionTitle: {
-    fontSize: 9,
-    fontFamily: 'Helvetica-Bold',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
+  helperText: {
+    fontSize: 7.5,
     color: colors.muted,
-    borderBottomWidth: 1.5,
-    borderBottomColor: colors.ink,
-    paddingBottom: 3,
-    marginTop: 14,
-    marginBottom: 6,
+    lineHeight: 1.3,
   },
-  statGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  statItem: {
-    width: '33.3%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 2,
-    paddingRight: 8,
-  },
-  statItemHalf: {
-    width: '50%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 2,
-    paddingRight: 8,
-  },
-  dots: {
-    fontSize: 9,
-    letterSpacing: 1,
-  },
-  star: {
-    color: colors.accentText,
-  },
+
+  twoCol: { flexDirection: 'row', gap: 10 },
+  threeCol: { flexDirection: 'row', gap: 8 },
+
   fieldBox: {
     borderWidth: 0.75,
     borderColor: colors.border,
     borderRadius: 4,
     padding: 5,
-    minHeight: 28,
-    fontSize: 8.5,
+    fontSize: 8,
   },
-  fieldLabel: {
-    fontSize: 7.5,
-    color: colors.muted,
-    textTransform: 'uppercase',
-    marginBottom: 2,
-  },
-  checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 3,
-  },
+
   checkbox: {
     width: 8,
     height: 8,
@@ -148,42 +97,8 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.ink,
     borderColor: colors.ink,
   },
-  giftCard: {
-    borderWidth: 0.75,
-    borderColor: colors.border,
-    borderRadius: 4,
-    padding: 6,
-    marginBottom: 5,
-  },
-  giftName: {
-    fontSize: 9,
-    fontFamily: 'Helvetica-Bold',
-  },
-  giftMeta: {
-    fontSize: 7.5,
-    color: colors.muted,
-    marginTop: 1,
-  },
-  giftEffect: {
-    fontSize: 8.5,
-    marginTop: 2,
-    lineHeight: 1.3,
-  },
-  gradeLabel: {
-    fontSize: 7.5,
-    fontFamily: 'Helvetica-Bold',
-    color: colors.accentText,
-    backgroundColor: colors.accentBg,
-    alignSelf: 'flex-start',
-    borderRadius: 3,
-    paddingVertical: 2,
-    paddingHorizontal: 6,
-    marginTop: 8,
-    marginBottom: 4,
-  },
-  table: {
-    width: '100%',
-  },
+
+  table: { width: '100%' },
   tableHeaderRow: {
     flexDirection: 'row',
     borderBottomWidth: 1,
@@ -192,26 +107,48 @@ export const styles = StyleSheet.create({
     marginBottom: 3,
   },
   tableHeaderCell: {
-    fontSize: 7.5,
+    fontSize: 7,
     color: colors.muted,
     textTransform: 'uppercase',
+    fontFamily: fonts.body,
   },
   tableRow: {
     flexDirection: 'row',
     borderBottomWidth: 0.5,
     borderBottomColor: colors.border,
-    paddingVertical: 3,
+    paddingVertical: 2.5,
   },
-  tableCell: {
-    fontSize: 8.5,
-  },
+  tableCell: { fontSize: 7.8 },
+
   footerNote: {
     position: 'absolute',
-    bottom: 16,
-    left: 28,
-    right: 28,
-    fontSize: 7,
+    bottom: 14,
+    left: 26,
+    right: 26,
+    fontSize: 6.5,
     color: colors.hint,
     textAlign: 'center',
   },
 });
+
+// Helper: a full accent block (colored background tint, colored left rule, colored title text)
+// built from one of the palette/section entries above — used to color-code sections consistently.
+export function accentBlockStyle(section, extra = {}) {
+  return {
+    backgroundColor: section.tint,
+    borderLeftWidth: 2.5,
+    borderLeftColor: section.text,
+    borderRadius: 3,
+    padding: 6,
+    ...extra,
+  };
+}
+
+export function accentTitleStyle(section, extra = {}) {
+  return {
+    ...styles.sectionTitle,
+    color: section.text,
+    borderBottomColor: section.text,
+    ...extra,
+  };
+}

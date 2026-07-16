@@ -1,257 +1,40 @@
 {
-  "types": [
-    "Passive",
-    "Active",
-    "Consumable"
-  ],
-  "rarities": [
-    "Common",
-    "Uncommon",
-    "Rare",
-    "Legendary"
-  ],
-  "sizes": [
-    "Tiny",
-    "Small",
-    "Bulky",
-    "Large"
-  ],
+  "types": ["Passive", "Active", "Consumable"],
+  "rarities": ["Common", "Uncommon", "Rare", "Legendary"],
+  "sizes": ["Tiny", "Small", "Bulky", "Large"],
   "mundaneGear": [
-    {
-      "name": "Flashlight",
-      "type": "Passive",
-      "size": "Tiny",
-      "rarity": "Common",
-      "cost": 5,
-      "effect": "Standard illumination"
-    },
-    {
-      "name": "Rope (50 ft)",
-      "type": "Active",
-      "size": "Small",
-      "rarity": "Common",
-      "cost": 8,
-      "effect": "Climbing, binding, rescue"
-    },
-    {
-      "name": "Lockpick Set",
-      "type": "Active",
-      "size": "Tiny",
-      "rarity": "Uncommon",
-      "cost": 15,
-      "effect": "+2 dice to Subterfuge against locks. Breaks on a fail with jeer.\n"
-    },
-    {
-      "name": "First-Aid Kit",
-      "type": "Active",
-      "size": "Small",
-      "rarity": "Common",
-      "cost": 12,
-      "effect": "+2 dice to mundane injury care (not a Physician's Gifts)"
-    },
-    {
-      "name": "Burner Phone",
-      "type": "Passive",
-      "size": "Tiny",
-      "rarity": "Common",
-      "cost": 10,
-      "effect": "Untraceable calls and texts"
-    },
-    {
-      "name": "Crowbar",
-      "type": "Active",
-      "size": "Small",
-      "rarity": "Common",
-      "cost": 10,
-      "effect": "+2 dice forcing something open; usable as an improvised weapon"
-    },
-    {
-      "name": "Backpack",
-      "type": "Passive",
-      "size": "Small",
-      "rarity": "Common",
-      "cost": 15,
-      "effect": "A container for other Small/Tiny gear"
-    },
-    {
-      "name": "Mundane Disguise Kit",
-      "type": "Active",
-      "size": "Small",
-      "rarity": "Uncommon",
-      "cost": 20,
-      "effect": "+2 dice to Subterfuge passing as someone else, no Gift involved"
-    },
-    {
-      "name": "Binoculars",
-      "type": "Passive",
-      "size": "Small",
-      "rarity": "Common",
-      "cost": 15,
-      "effect": "Clear observation at range"
-    },
-    {
-      "name": "Duct Tape",
-      "type": "Active",
-      "size": "Tiny",
-      "rarity": "Common",
-      "cost": 3,
-      "effect": "Fixes almost anything, briefly"
-    }
+    { "name": "Flashlight", "type": "Passive", "size": "Tiny", "rarity": "Common", "cost": 5, "effect": "Standard illumination" },
+    { "name": "Rope (50 ft)", "type": "Active", "size": "Small", "rarity": "Common", "cost": 8, "effect": "Climbing, binding, rescue" },
+    { "name": "Lockpick Set", "type": "Active", "size": "Tiny", "rarity": "Uncommon", "cost": 15, "effect": "+2 dice to Subterfuge against locks" },
+    { "name": "First-Aid Kit", "type": "Active", "size": "Small", "rarity": "Common", "cost": 12, "effect": "+2 dice to mundane injury care (not a Physician's Gifts)" },
+    { "name": "Burner Phone", "type": "Passive", "size": "Tiny", "rarity": "Common", "cost": 10, "effect": "Untraceable calls and texts" },
+    { "name": "Crowbar", "type": "Active", "size": "Small", "rarity": "Common", "cost": 10, "effect": "+2 dice forcing something open; usable as an improvised weapon" },
+    { "name": "Backpack", "type": "Passive", "size": "Small", "rarity": "Common", "cost": 15, "effect": "A container for other Small/Tiny gear" },
+    { "name": "Mundane Disguise Kit", "type": "Active", "size": "Small", "rarity": "Uncommon", "cost": 20, "effect": "+2 dice to Subterfuge passing as someone else, no Gift involved" },
+    { "name": "Binoculars", "type": "Passive", "size": "Small", "rarity": "Common", "cost": 15, "effect": "Clear observation at range" },
+    { "name": "Duct Tape", "type": "Active", "size": "Tiny", "rarity": "Common", "cost": 3, "effect": "Fixes almost anything, briefly" }
   ],
   "classicClownProps": [
-    {
-      "name": "Inherited Red Nose",
-      "type": "Passive",
-      "size": "Tiny",
-      "rarity": "Uncommon",
-      "cost": 25,
-      "effect": "+1 die to Performance while worn"
-    },
-    {
-      "name": "Clown Shoes",
-      "type": "Passive",
-      "size": "Bulky",
-      "rarity": "Common",
-      "cost": 12,
-      "effect": "+1 die to Acrobatics for falls/dodges; -1 die to Stealth"
-    },
-    {
-      "name": "Bottomless Case",
-      "type": "Active",
-      "size": "Small",
-      "rarity": "Uncommon",
-      "cost": 30,
-      "effect": "Wit + Scholarship to \"produce\" a small needed item, once per Act"
-    },
-    {
-      "name": "Squirting Flower",
-      "type": "Consumable",
-      "size": "Tiny",
-      "rarity": "Common",
-      "cost": 8,
-      "effect": "Turn: pressurized jet, minor damage + brief stun. Bit: a silly soaking. Recharges in the Backstage"
-    },
-    {
-      "name": "Cream Pie",
-      "type": "Consumable",
-      "size": "Small",
-      "rarity": "Common",
-      "cost": 5,
-      "effect": "Turn: strips 1 Laughter from the target. Bit: the classic pie in the face"
-    },
-    {
-      "name": "Juggling Balls",
-      "type": "Passive",
-      "size": "Tiny",
-      "rarity": "Common",
-      "cost": 10,
-      "effect": "+1 die to Acrobatics displays"
-    },
-    {
-      "name": "Rubber Chicken",
-      "type": "Consumable",
-      "size": "Small",
-      "rarity": "Common",
-      "cost": 5,
-      "effect": "Turn: a startling smack, brief stun. Bit: the oldest prop in the book"
-    },
-    {
-      "name": "Confetti Cannon",
-      "type": "Consumable",
-      "size": "Small",
-      "rarity": "Common",
-      "cost": 15,
-      "effect": "Turn: blinds/distracts a small area. Bit: a party popper"
-    },
-    {
-      "name": "Unicycle",
-      "type": "Passive",
-      "size": "Bulky",
-      "rarity": "Uncommon",
-      "cost": 40,
-      "effect": "+1 die to Acrobatics while riding; faster than walking"
-    },
-    {
-      "name": "Whoopee Cushion",
-      "type": "Consumable",
-      "size": "Tiny",
-      "rarity": "Common",
-      "cost": 3,
-      "effect": "Turn: a burst of noise breaks a target's concentration. Bit: exactly what it looks like"
-    },
-    {
-      "name": "Squeaky Mallet",
-      "type": "Active",
-      "size": "Small",
-      "rarity": "Uncommon",
-      "cost": 20,
-      "effect": "Turn: a solid hit that ignores soak. Bit: a squeak-toy mallet"
-    }
+    { "name": "Inherited Red Nose", "type": "Passive", "size": "Tiny", "rarity": "Uncommon", "cost": 25, "effect": "+1 die to Performance while worn" },
+    { "name": "Clown Shoes", "type": "Passive", "size": "Bulky", "rarity": "Common", "cost": 12, "effect": "+1 die to Acrobatics for falls/dodges; -1 die to Stealth" },
+    { "name": "Bottomless Case", "type": "Active", "size": "Small", "rarity": "Uncommon", "cost": 30, "effect": "Wit + Scholarship to \"produce\" a small needed item, once per Act" },
+    { "name": "Squirting Flower", "type": "Consumable", "size": "Tiny", "rarity": "Common", "cost": 8, "effect": "Turn: pressurized jet, minor damage + brief stun. Bit: a silly soaking. Recharges in the Backstage" },
+    { "name": "Cream Pie", "type": "Consumable", "size": "Small", "rarity": "Common", "cost": 5, "effect": "Turn: strips 1 Laughter from the target. Bit: the classic pie in the face" },
+    { "name": "Juggling Balls", "type": "Passive", "size": "Tiny", "rarity": "Common", "cost": 10, "effect": "+1 die to Acrobatics displays" },
+    { "name": "Rubber Chicken", "type": "Consumable", "size": "Small", "rarity": "Common", "cost": 5, "effect": "Turn: a startling smack, brief stun. Bit: the oldest prop in the book" },
+    { "name": "Confetti Cannon", "type": "Consumable", "size": "Small", "rarity": "Common", "cost": 15, "effect": "Turn: blinds/distracts a small area. Bit: a party popper" },
+    { "name": "Unicycle", "type": "Passive", "size": "Bulky", "rarity": "Uncommon", "cost": 40, "effect": "+1 die to Acrobatics while riding; faster than walking" },
+    { "name": "Whoopee Cushion", "type": "Consumable", "size": "Tiny", "rarity": "Common", "cost": 3, "effect": "Turn: a burst of noise breaks a target's concentration. Bit: exactly what it looks like" },
+    { "name": "Squeaky Mallet", "type": "Active", "size": "Small", "rarity": "Uncommon", "cost": 20, "effect": "Turn: a solid hit that ignores soak. Bit: a squeak-toy mallet" }
   ],
   "troupeGear": [
-    {
-      "name": "Signet Ring of the Ring",
-      "troupe": "whiteface",
-      "type": "Passive",
-      "size": "Tiny",
-      "rarity": "Rare",
-      "cost": 60,
-      "effect": "+1 die to Persuasion when giving a direct order"
-    },
-    {
-      "name": "Lucky Horseshoe",
-      "troupe": "augustes",
-      "type": "Passive",
-      "size": "Tiny",
-      "rarity": "Uncommon",
-      "cost": 25,
-      "effect": "Once per session, reroll a single die on a Flop result"
-    },
-    {
-      "name": "Battered Practice Nose",
-      "troupe": "school_of_failure",
-      "type": "Passive",
-      "size": "Tiny",
-      "rarity": "Rare",
-      "cost": 50,
-      "effect": "+1 die on any Creative Gambit"
-    },
-    {
-      "name": "Duck-Call Stethoscope",
-      "troupe": "laughter_doctors",
-      "type": "Passive",
-      "size": "Small",
-      "rarity": "Uncommon",
-      "cost": 20,
-      "effect": "+1 die to Diagnosis"
-    },
-    {
-      "name": "Smoke Mask",
-      "troupe": "rebel_clown_army",
-      "type": "Active",
-      "size": "Small",
-      "rarity": "Uncommon",
-      "cost": 18,
-      "effect": "+2 dice to Subterfuge or Acrobatics fleeing an authority figure"
-    },
-    {
-      "name": "The Bindle",
-      "troupe": "tramp",
-      "type": "Passive",
-      "size": "Small",
-      "rarity": "Rare",
-      "cost": 15,
-      "effect": "Once per session, produce a plausible small mundane item for free"
-    },
-    {
-      "name": "Contract Badge",
-      "troupe": "new_circus",
-      "type": "Passive",
-      "size": "Tiny",
-      "rarity": "Rare",
-      "cost": 80,
-      "effect": "+1 die to Persuasion in professional or mortal business contexts"
-    }
+    { "name": "Signet Ring of the Ring", "troupe": "whiteface", "type": "Passive", "size": "Tiny", "rarity": "Rare", "cost": 60, "effect": "+1 die to Persuasion when giving a direct order" },
+    { "name": "Lucky Horseshoe", "troupe": "augustes", "type": "Passive", "size": "Tiny", "rarity": "Uncommon", "cost": 25, "effect": "Once per session, reroll a single die on a Flop result" },
+    { "name": "Battered Practice Nose", "troupe": "school_of_failure", "type": "Passive", "size": "Tiny", "rarity": "Rare", "cost": 50, "effect": "+1 die on any Creative Gambit" },
+    { "name": "Duck-Call Stethoscope", "troupe": "laughter_doctors", "type": "Passive", "size": "Small", "rarity": "Uncommon", "cost": 20, "effect": "+1 die to Diagnosis" },
+    { "name": "Smoke Mask", "troupe": "rebel_clown_army", "type": "Active", "size": "Small", "rarity": "Uncommon", "cost": 18, "effect": "+2 dice to Subterfuge or Acrobatics fleeing an authority figure" },
+    { "name": "The Bindle", "troupe": "tramp", "type": "Passive", "size": "Small", "rarity": "Rare", "cost": 15, "effect": "Once per session, produce a plausible small mundane item for free" },
+    { "name": "Contract Badge", "troupe": "new_circus", "type": "Passive", "size": "Tiny", "rarity": "Rare", "cost": 80, "effect": "+1 die to Persuasion in professional or mortal business contexts" }
   ],
   "legendaryGear": {
     "note": "Not bought at any price — a fragment of a historic Motley, a prop that belonged to a Ring Legend. These enter play only through story: found, earned, or handed down.",

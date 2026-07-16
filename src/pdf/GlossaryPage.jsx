@@ -1,70 +1,84 @@
 import { Page, View, Text } from '@react-pdf/renderer';
-import { styles, colors } from './styles';
+import { styles, colors, fonts } from './styles';
 import core from '../data/core.json';
 
 const g = core.glossary;
 
+function Section({ title, children }) {
+  return (
+    <View style={{ marginBottom: 5 }} wrap={false}>
+      <Text style={{ fontFamily: fonts.display, fontSize: 7.5, color: colors.ink, borderBottomWidth: 1, borderBottomColor: colors.borderStrong, paddingBottom: 1.5, marginBottom: 2 }}>
+        {title}
+      </Text>
+      {children}
+    </View>
+  );
+}
+
+const bodyStyle = { fontSize: 6.6, lineHeight: 1.2 };
+const labelStyle = { fontFamily: fonts.body, fontWeight: 'bold', fontSize: 6.6 };
+
 export default function GlossaryPage() {
   return (
-    <Page size="LETTER" style={styles.page}>
-      <Text style={{ fontSize: 14, fontFamily: 'Helvetica-Bold', marginBottom: 4 }}>
-        Reference & Glossary
-      </Text>
-      <Text style={{ fontSize: 8, color: colors.muted, marginBottom: 10 }}>
-        Core mechanics, common to every Clown at the table. This page is identical across all character sheets.
-      </Text>
-
-      <Text style={styles.sectionTitle}>{g.roll.title}</Text>
-      <Text style={{ fontSize: 8.5, lineHeight: 1.4 }}>{g.roll.text}</Text>
-
-      <Text style={styles.sectionTitle}>{g.houseDie.title}</Text>
-      <Text style={{ fontSize: 8.5, lineHeight: 1.4 }}>{g.houseDie.text}</Text>
-
-      <Text style={styles.sectionTitle}>{g.resultMatrix.title}</Text>
-      <Text style={{ fontSize: 8.5, lineHeight: 1.4, marginBottom: 6 }}>{g.resultMatrix.text}</Text>
-      <View style={styles.table}>
-        <View style={styles.tableHeaderRow}>
-          <Text style={[styles.tableHeaderCell, { flex: 1.4 }]}> </Text>
-          <Text style={[styles.tableHeaderCell, { flex: 3 }]}>Cheers</Text>
-          <Text style={[styles.tableHeaderCell, { flex: 3 }]}>Jeers</Text>
-        </View>
-        {g.resultMatrix.rows.map((row, i) => (
-          <View key={i} style={styles.tableRow}>
-            <Text style={[styles.tableCell, { flex: 1.4, fontFamily: 'Helvetica-Bold' }]}>{row.poolResult}</Text>
-            <Text style={[styles.tableCell, { flex: 3, lineHeight: 1.3 }]}>{row.cheers}</Text>
-            <Text style={[styles.tableCell, { flex: 3, lineHeight: 1.3 }]}>{row.jeers}</Text>
-          </View>
-        ))}
+    <Page size="LETTER" style={[styles.page, { fontSize: 6.6, padding: 22 }]}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
+        <Text style={{ fontFamily: fonts.display, fontSize: 12 }}>Reference</Text>
+        <Text style={{ fontSize: 6, color: colors.muted }}>Core mechanics — identical on every character's sheet.</Text>
       </View>
 
-      <Text style={styles.sectionTitle}>{g.pushingRolls.title}</Text>
-      <View style={styles.giftCard}>
-        <Text style={styles.giftName}>{g.pushingRolls.creativeGambit.name}</Text>
-        <Text style={styles.giftEffect}>{g.pushingRolls.creativeGambit.text}</Text>
-      </View>
-      <View style={styles.giftCard}>
-        <Text style={styles.giftName}>{g.pushingRolls.encore.name}</Text>
-        <Text style={styles.giftEffect}>{g.pushingRolls.encore.text}</Text>
-      </View>
+      <View style={{ flexDirection: 'row', gap: 12 }}>
+        <View style={{ flex: 1 }}>
+          <Section title="Play Structure">
+            {g.playStructure.map((p, i) => (
+              <Text key={i} style={{ ...bodyStyle, marginBottom: 2 }}>
+                <Text style={labelStyle}>{p.name}: </Text>{p.text}
+              </Text>
+            ))}
+          </Section>
 
-      <Text style={styles.sectionTitle}>{g.turnAndBit.title}</Text>
-      <Text style={{ fontSize: 8.5, lineHeight: 1.4 }}>{g.turnAndBit.text}</Text>
+          <Section title={g.roll.title}>
+            <Text style={bodyStyle}>{g.roll.text}</Text>
+          </Section>
 
-      <Text style={styles.sectionTitle}>Resources</Text>
-      {g.resourceGlossary.map((r, i) => (
-        <View key={i} style={{ marginBottom: 5 }}>
-          <Text style={{ fontSize: 8.5, fontFamily: 'Helvetica-Bold' }}>{r.name}</Text>
-          <Text style={{ fontSize: 8.5, lineHeight: 1.35 }}>{r.text}</Text>
+          <Section title={g.pushingRolls.title}>
+            <Text style={{ ...bodyStyle, marginBottom: 2 }}>
+              <Text style={labelStyle}>{g.pushingRolls.creativeGambit.name}: </Text>{g.pushingRolls.creativeGambit.text}
+            </Text>
+            <Text style={bodyStyle}>
+              <Text style={labelStyle}>{g.pushingRolls.encore.name}: </Text>{g.pushingRolls.encore.text}
+            </Text>
+          </Section>
         </View>
-      ))}
 
-      <Text style={styles.sectionTitle}>Play structure</Text>
-      {g.playStructure.map((p, i) => (
-        <View key={i} style={{ marginBottom: 5 }}>
-          <Text style={{ fontSize: 8.5, fontFamily: 'Helvetica-Bold' }}>{p.name}</Text>
-          <Text style={{ fontSize: 8.5, lineHeight: 1.35 }}>{p.text}</Text>
+        <View style={{ flex: 1 }}>
+          <Section title={g.houseDie.title}>
+            <Text style={bodyStyle}>{g.houseDie.text}</Text>
+          </Section>
+
+          <Section title={g.resultMatrix.title}>
+            <View style={{ flexDirection: 'row', borderBottomWidth: 0.5, borderBottomColor: colors.borderStrong, paddingBottom: 1, marginBottom: 2 }}>
+              <Text style={{ flex: 1, fontSize: 6, color: colors.muted }}></Text>
+              <Text style={{ flex: 2.2, fontSize: 6, color: colors.muted }}>Cheers</Text>
+              <Text style={{ flex: 2.2, fontSize: 6, color: colors.muted }}>Jeers</Text>
+            </View>
+            {g.resultMatrix.rows.map((row, i) => (
+              <View key={i} style={{ flexDirection: 'row', marginBottom: 2 }}>
+                <Text style={{ flex: 1, ...labelStyle, fontSize: 6.4 }}>{row.poolResult}</Text>
+                <Text style={{ flex: 2.2, fontSize: 6.2, lineHeight: 1.15 }}>{row.cheers}</Text>
+                <Text style={{ flex: 2.2, fontSize: 6.2, lineHeight: 1.15 }}>{row.jeers}</Text>
+              </View>
+            ))}
+          </Section>
+
+          <Section title="Resources">
+            {g.resourceGlossary.map((r, i) => (
+              <Text key={i} style={{ ...bodyStyle, marginBottom: 2 }}>
+                <Text style={labelStyle}>{r.name}: </Text>{r.text}
+              </Text>
+            ))}
+          </Section>
         </View>
-      ))}
+      </View>
 
       <Text style={styles.footerNote}>CLOWN: Lights in the Backstage — reference sheet</Text>
     </Page>
