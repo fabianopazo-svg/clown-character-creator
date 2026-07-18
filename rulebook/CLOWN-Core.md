@@ -5,18 +5,18 @@
 
 ## TABLE OF CONTENTS
 
-**Chapter 1 — The World**
-**Chapter 2 — Core Mechanics**
-**Chapter 3 — Structure of Play**
-**Chapter 4 — The Four Modes of Play**
-**Chapter 5 — Attributes, Skills, and Personal Detail**
-**Chapter 6 — Building a Clown**
-**Chapter 7 — The Seven Paths**
-**Chapter 8 — The Seven Troupes**
-**Chapter 9 — The Ushers**
-**Chapter 10 — Bestiary**
-**Chapter 11 — History of the Craft**
-**Appendix — Glossary**
+- **Chapter 1 — The World**
+- **Chapter 2 — Core Mechanics**
+- **Chapter 3 — Structure of Play**
+- **Chapter 4 — The Four Modes of Play**
+- **Chapter 5 — Attributes, Skills, and Personal Detail**
+- **Chapter 6 — Building a Clown**
+- **Chapter 7 — The Seven Paths**
+- **Chapter 8 — The Seven Troupes**
+- **Chapter 9 — The Ushers**
+- **Chapter 10 — Bestiary**
+- **Chapter 11 — History of the Craft**
+- **Appendix — Glossary**
 
 ---
 
