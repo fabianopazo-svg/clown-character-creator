@@ -2,7 +2,7 @@
   {
     "id": "host",
     "name": "The Host",
-    "flavor": "The pure performer \u2014 the one who makes everyone else shine. Not the Path that lands the final blow; the Path that makes the final blow possible.",
+    "flavor": "The pure performer — the one who makes everyone else shine. Not the Path that lands the final blow; the Path that makes the final blow possible.",
     "primaryAttributes": [
       "charisma",
       "wit"
@@ -39,49 +39,129 @@
           {
             "name": "Warm Up the Room",
             "subtype": "open",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Lower House Difficulty by 1 for the rest of the scene"
           },
           {
             "name": "Directed Applause",
             "subtype": "open",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "+2 dice to an ally's next roll"
           },
           {
             "name": "Drumroll",
             "subtype": "open",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Generate 1 Momentum"
           },
           {
             "name": "Take the Mic",
             "subtype": "presenter",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A small group's attention snaps to you for a round"
           },
           {
             "name": "Good Setup",
             "subtype": "scene_partner",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "An ally's next Gift costs 1 less Laughter"
           },
           {
             "name": "Yes, And...",
             "subtype": "improviser",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Turn an ally's Failure into a minor immediate advantage"
           },
           {
             "name": "Patter",
             "subtype": "open",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Reduce Suspicion by 1, once per scene"
           },
           {
             "name": "Stage Presence",
             "subtype": "open",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Become the enemy's focus for a round"
           }
         ]
@@ -95,44 +175,114 @@
           {
             "name": "Standing Ovation",
             "subtype": "open",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Generate 2 Momentum and give an ally +2 dice, together"
           },
           {
             "name": "Joint Number",
             "subtype": "scene_partner",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "You and an ally combine actions: roll once, take the better result, both gain any Laughter earned"
           },
           {
             "name": "Quiet, Please",
             "subtype": "presenter",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Calm an agitated or hostile crowd, lowering scene tension"
           },
           {
             "name": "Change of Act",
             "subtype": "improviser",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Swap one prepared Gift for another known Gift, mid-scene"
           },
           {
             "name": "Party Pooper",
             "subtype": "open",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Interrupt and cancel another performer's attempt to work a crowd"
           },
           {
             "name": "Comic Rhythm",
             "subtype": "open",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "This scene, allies gain +1 Laughter whenever they score Cheers"
           },
           {
             "name": "Double or Nothing",
             "subtype": "improviser",
-            "cost": "2 Laughter",
-            "effect": "Treat your next House Die as the better of two rolls \u2014 a Jeers result still counts as Jeers with an extra point of Suspicion"
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "Treat your next House Die as the better of two rolls — a Jeers result still counts as Jeers with an extra point of Suspicion"
           }
         ]
       },
@@ -145,37 +295,97 @@
           {
             "name": "Star Turn",
             "subtype": "open",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "All allies in the scene gain +1 die and 1 Laughter"
           },
           {
             "name": "The Show Is Ours",
             "subtype": "scene_partner",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Redistribute up to 3 of your Laughter to allies as you choose, plus 1 free Momentum"
           },
           {
             "name": "Tame the Room",
             "subtype": "presenter",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Lower House Difficulty by 2 for the rest of the scene, ignoring further Suspicion-driven hardening"
           },
           {
             "name": "From Disaster, Gold",
             "subtype": "improviser",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Turn an ally's Corpsing result into a Flop instead"
           },
           {
             "name": "Curtain Call",
             "subtype": "open",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Summon a small crowd of distracting \"extras\" for several rounds"
           },
           {
             "name": "Off Beat",
             "subtype": "open",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Deny an enemy's next activation of the Spotlight"
           }
         ]
@@ -189,25 +399,65 @@
           {
             "name": "Grand Finale",
             "subtype": "open",
-            "cost": "5 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "The whole party may act out of turn, in sequence, once"
           },
           {
             "name": "Master of Ceremonies",
             "subtype": "presenter",
-            "cost": "5 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Command a large mortal crowd for a scene, as an extension of your act"
           },
           {
             "name": "Never Work Alone",
             "subtype": "scene_partner",
-            "cost": "5 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Until the scene ends, every point of Laughter you spend on an ally is doubled in effect"
           },
           {
             "name": "Everything's Material",
             "subtype": "improviser",
-            "cost": "5 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "This scene, every ally's Jeers result gives you 1 Laughter instead of giving the MC Suspicion"
           }
         ]
@@ -221,11 +471,23 @@
         "list": [
           {
             "name": "The Show of Their Lives",
-            "effect": "Once per campaign, free: for a whole scene, the party ignores House Difficulty entirely, shares a doubled Momentum pool, and anyone can spend anyone's Laughter."
+            "effect": "For a whole scene, the party ignores House Difficulty entirely, shares a doubled Momentum pool, and anyone can spend anyone's Laughter.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "once_per_campaign",
+              "note": null
+            }
           },
           {
             "name": "The Voice That Fills the Theatre",
-            "effect": "Permanent, no cost: Stage Presence becomes passive and always on, and your presence alone permanently lowers House Difficulty by 1 for the whole party."
+            "effect": "Stage Presence becomes passive and always on, and your presence alone permanently lowers House Difficulty by 1 for the whole party.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "permanent",
+              "note": null
+            }
           }
         ]
       }
@@ -234,7 +496,7 @@
   {
     "id": "illusionist",
     "name": "The Illusionist",
-    "flavor": "The scholar of the craft \u2014 magic tricks treated like grimoires.",
+    "flavor": "The scholar of the craft — magic tricks treated like grimoires.",
     "primaryAttributes": [
       "wit",
       "knowledge"
@@ -267,31 +529,78 @@
         "renownReq": 1,
         "chooseCount": 3,
         "poolSize": 4,
-        "costEach": "1 Laughter",
         "list": [
           {
             "name": "Prestidigitation",
             "subtype": "open",
             "domain": "Create, alter, or vanish small inanimate objects",
-            "limit": "Hand-sized only; lasts one scene; nothing mechanically complex"
+            "limit": "Hand-sized only; lasts one scene; nothing mechanically complex",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 1
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "Smoke and Mirrors",
             "subtype": "open",
             "domain": "Purely visual/audio illusions, including duplicates of yourself",
-            "limit": "No substance \u2014 breaks if touched with conviction"
+            "limit": "No substance — breaks if touched with conviction",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 1
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "The Great Escape",
             "subtype": "escape_artist",
             "domain": "Free yourself from bonds or a grip",
-            "limit": "Must first be seen struggling \u2014 not an instant effect"
+            "limit": "Must first be seen struggling — not an instant effect",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 1
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "The Hat Trick",
             "subtype": "conjurer",
             "domain": "Produce a plausible small item; summon a Minor construct",
-            "limit": "Whatever's produced must be plausibly \"producible\" from a hat or case"
+            "limit": "Whatever's produced must be plausibly \"producible\" from a hat or case",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 1
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           }
         ]
       },
@@ -300,31 +609,78 @@
         "renownReq": 3,
         "chooseCount": 1,
         "poolSize": 4,
-        "costEach": "2 Laughter",
         "list": [
           {
             "name": "Transformation",
             "subtype": "open",
             "domain": "Change your appearance or another's (face, clothes, voice)",
-            "limit": "Doesn't change mass or real ability; close physical contact can notice the seam"
+            "limit": "Doesn't change mass or real ability; close physical contact can notice the seam",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 2
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "The Vanishing Act",
             "subtype": "escape_artist",
             "domain": "Teleport a short distance to somewhere you can see or know well",
-            "limit": "Needs a plausible cover; fails under constant direct observation by an alert enemy"
+            "limit": "Needs a plausible cover; fails under constant direct observation by an alert enemy",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 2
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "Carnival Fortune-Telling",
             "subtype": "open",
             "domain": "Learn hidden information",
-            "limit": "The answer always arrives as a riddle or tarot-style image, never as plain data"
+            "limit": "The answer always arrives as a riddle or tarot-style image, never as plain data",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 2
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "Illusionist's Hands",
             "subtype": "sleight_of_hand",
             "domain": "Fine manipulation at a distance, as if by invisible hands",
-            "limit": "Minimal force only \u2014 nothing requiring real strength"
+            "limit": "Minimal force only — nothing requiring real strength",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 2
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           }
         ]
       },
@@ -333,31 +689,78 @@
         "renownReq": 5,
         "chooseCount": 1,
         "poolSize": 4,
-        "costEach": "3 Laughter",
         "list": [
           {
             "name": "The Impossible Cage",
             "subtype": "open",
             "domain": "Trap or restrain a target inside a rule-bound illusion",
-            "limit": "Target escapes by solving the trick (opposed roll) or with an ally's help \u2014 never a permanent prison"
+            "limit": "Target escapes by solving the trick (opposed roll) or with an ally's help — never a permanent prison",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 3
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "Levitation",
             "subtype": "open",
             "domain": "Slow flight for objects or people, including yourself",
-            "limit": "Breaks if the floating weight takes a hard hit; requires ongoing concentration"
+            "limit": "Breaks if the floating weight takes a hard hit; requires ongoing concentration",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 3
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "The Great Trick",
             "subtype": "conjurer",
             "domain": "Summon a Major construct, or several Minor ones at once",
-            "limit": "One Major construct active at a time"
+            "limit": "One Major construct active at a time",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 3
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "False Mirror",
             "subtype": "sleight_of_hand",
-            "domain": "Deceive senses beyond sight \u2014 touch, smell, temperature",
-            "limit": "Still can't cause real damage; breaks under a deliberate, skeptical test"
+            "domain": "Deceive senses beyond sight — touch, smell, temperature",
+            "limit": "Still can't cause real damage; breaks under a deliberate, skeptical test",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 3
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           }
         ]
       },
@@ -366,25 +769,60 @@
         "renownReq": 8,
         "chooseCount": 1,
         "poolSize": 3,
-        "costEach": "5 Laughter",
         "list": [
           {
             "name": "The Shared Illusion",
             "subtype": "open",
             "domain": "Deceive an entire group at once with one large-scale illusion",
-            "limit": "Needs the group to lack a strong reason to doubt; one determined skeptic can start unraveling it"
+            "limit": "Needs the group to lack a strong reason to doubt; one determined skeptic can start unraveling it",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 5
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "Escape from Death",
             "subtype": "escape_artist",
             "domain": "A prepared escape that pulls you and nearby allies to safety from certain death",
-            "limit": "Must be prepared in advance (uses a Repertoire slot); one use per preparation"
+            "limit": "Must be prepared in advance (uses a Repertoire slot); one use per preparation",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 5
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           },
           {
             "name": "The Menagerie",
             "subtype": "conjurer",
             "domain": "Summon several Major constructs, or a coordinated swarm",
-            "limit": "Actively directing them takes your full concentration \u2014 no other Gifts while you do"
+            "limit": "Actively directing them takes your full concentration — no other Gifts while you do",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": null,
+                  "default": 5
+                }
+              ],
+              "frequency": null,
+              "note": "MC sets cost based on the described effect; default is a starting point, not a fixed price"
+            }
           }
         ]
       },
@@ -397,11 +835,28 @@
         "list": [
           {
             "name": "The Ultimate Escape",
-            "effect": "Permanent, no cost: The Great Escape and The Vanishing Act lose their Limits entirely \u2014 escape and teleport at will, even under direct observation."
+            "effect": "The Great Escape and The Vanishing Act lose their Limits entirely — escape and teleport at will, even under direct observation.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "permanent",
+              "note": null
+            }
           },
           {
             "name": "Reality Is My Stage",
-            "effect": "Once per campaign, 10 Laughter: combine every School you know into a single act that rewrites how an entire scene is perceived and remembered."
+            "effect": "Combine every School you know into a single act that rewrites how an entire scene is perceived and remembered.",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 10
+                }
+              ],
+              "frequency": "once_per_campaign",
+              "note": null
+            }
           }
         ]
       }
@@ -454,7 +909,7 @@
   {
     "id": "shackled",
     "name": "The Shackled",
-    "flavor": "Power that isn't yours \u2014 borrowed from something larger in the Backstage, with a debt always attached. The mechanical opposite of the Illusionist: fixed, rigid, potent effects instead of free creativity.",
+    "flavor": "Power that isn't yours — borrowed from something larger in the Backstage, with a debt always attached. The mechanical opposite of the Illusionist: fixed, rigid, potent effects instead of free creativity.",
     "primaryAttributes": [
       "poise",
       "charisma_or_wit"
@@ -469,7 +924,7 @@
             0,
             3
           ],
-          "effect": "Nothing \u2014 the account is healthy"
+          "effect": "Nothing — the account is healthy"
         },
         {
           "range": [
@@ -524,37 +979,112 @@
           {
             "name": "Borrowed Touch",
             "subtype": "open",
-            "cost": "1 Laughter / 1 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                },
+                {
+                  "resource": "debt",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A contact attack that ignores normal soak"
           },
           {
             "name": "The Other's Voice",
             "subtype": "open",
-            "cost": "1 Laughter / 1 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                },
+                {
+                  "resource": "debt",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "+2 dice to intimidation or presence for a scene"
           },
           {
             "name": "Collateral",
             "subtype": "open",
-            "cost": "2 Laughter / 1 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                },
+                {
+                  "resource": "debt",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Absorb the next blow that would drop you, once per scene"
           },
           {
             "name": "Whisper from Beyond",
             "subtype": "heir",
-            "cost": "1 Laughter / 1 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                },
+                {
+                  "resource": "debt",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Ask your Motley's spirit a question; get a short, reliable answer"
           },
           {
             "name": "Advance on Account",
             "subtype": "ward",
-            "cost": "0 Laughter / 2 Debt",
-            "effect": "Instantly regain 2 Laughter \u2014 Debt-only, can't be paid with Laughter"
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 0
+                },
+                {
+                  "resource": "debt",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "Instantly regain 2 Laughter — Debt-only, can't be paid with Laughter"
           },
           {
             "name": "Feed the Debt",
             "subtype": "debtor",
-            "cost": "Passive",
+            "cost": {
+              "type": "passive",
+              "parts": [],
+              "frequency": null,
+              "note": null
+            },
             "effect": "When you score Cheers, you may convert that Laughter into Debt payment at double efficiency"
           }
         ]
@@ -568,31 +1098,101 @@
           {
             "name": "Blow of the Leash",
             "subtype": "open",
-            "cost": "2 Laughter / 2 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                },
+                {
+                  "resource": "debt",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A small-area attack"
           },
           {
             "name": "Mark of the Pact",
             "subtype": "open",
-            "cost": "2 Laughter / 1 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                },
+                {
+                  "resource": "debt",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "+2 dice on all Prerogatives against a target you've marked, this scene"
           },
           {
             "name": "Borrowed Shield",
             "subtype": "open",
-            "cost": "2 Laughter / 2 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                },
+                {
+                  "resource": "debt",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Reduce incoming damage for a scene"
           },
           {
             "name": "Gestured Inheritance",
             "subtype": "heir",
-            "cost": "2 Laughter / 1 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                },
+                {
+                  "resource": "debt",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Temporarily use a minor Gift of the dead Clown whose Motley you carry (chosen at creation)"
           },
           {
             "name": "Call for Collection",
             "subtype": "ward",
-            "cost": "3 Laughter / 2 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                },
+                {
+                  "resource": "debt",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Call in a powerful one-time favor from your Patron, negotiated with the MC"
           }
         ]
@@ -606,31 +1206,101 @@
           {
             "name": "Harvest of Pain",
             "subtype": "open",
-            "cost": "3 Laughter / 2 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                },
+                {
+                  "resource": "debt",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A strong hit; if it drops the target, refund Laughter or pay down Debt, your choice"
           },
           {
             "name": "Binding Contract",
             "subtype": "open",
-            "cost": "3 Laughter / 2 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                },
+                {
+                  "resource": "debt",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Force a supernatural bargain on a target; breaking it harms them"
           },
           {
             "name": "Borrowed Form",
             "subtype": "open",
-            "cost": "3 Laughter / 3 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                },
+                {
+                  "resource": "debt",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Gain a fixed physical boon from your Patron for a scene (set when learned)"
           },
           {
             "name": "Possess the Scene",
             "subtype": "heir",
-            "cost": "3 Laughter / 2 Debt, +1 automatic Debt",
-            "effect": "Gain an extra action this turn \u2014 the spirit enjoys the wheel a little too much"
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                },
+                {
+                  "resource": "debt",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": "+1 automatic Debt"
+            },
+            "effect": "Gain an extra action this turn — the spirit enjoys the wheel a little too much"
           },
           {
             "name": "Debt Made Manifest",
             "subtype": "debtor",
-            "cost": "3 Laughter / 2 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                },
+                {
+                  "resource": "debt",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "An attack whose damage scales directly with your current Debt level"
           }
         ]
@@ -644,20 +1314,62 @@
           {
             "name": "Execute the Clause",
             "subtype": "open",
-            "cost": "5 Laughter / 4 Debt",
-            "effect": "The Shackled's biggest hit \u2014 massive damage to one target, or strong damage split among several"
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                },
+                {
+                  "resource": "debt",
+                  "amount": 4
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "The Shackled's biggest hit — massive damage to one target, or strong damage split among several"
           },
           {
             "name": "Shared Debt",
             "subtype": "open",
-            "cost": "4 Laughter / 3 Debt",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 4
+                },
+                {
+                  "resource": "debt",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Split your power and your burden with a willing ally for a scene"
           },
           {
             "name": "The Patron Manifests",
             "subtype": "ward",
-            "cost": "5 Laughter / 5 Debt",
-            "effect": "Your Patron intervenes directly \u2014 a major effect negotiated with the MC. Nearly guarantees a Collection soon"
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                },
+                {
+                  "resource": "debt",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "Your Patron intervenes directly — a major effect negotiated with the MC. Nearly guarantees a Collection soon"
           }
         ]
       },
@@ -670,11 +1382,23 @@
         "list": [
           {
             "name": "Settle the Account",
-            "effect": "Permanent, no cost: your Debt ceiling rises, but Collection can never Possess you or force an inescapable task again \u2014 you negotiate with your Patron as an equal."
+            "effect": "Your Debt ceiling rises, but Collection can never Possess you or force an inescapable task again — you negotiate with your Patron as an equal.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "permanent",
+              "note": null
+            }
           },
           {
             "name": "Break the Chains",
-            "effect": "Once per campaign, free: spend your entire accumulated Debt at once for an effect that scales with how much you owed. Debt resets to 0 \u2014 but the Patron is deeply, lastingly displeased."
+            "effect": "Spend your entire accumulated Debt at once for an effect that scales with how much you owed. Debt resets to 0 — but the Patron is deeply, lastingly displeased.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "once_per_campaign",
+              "note": "Effect spends entire current Debt as part of its effect (Debt resets to 0) — not a paid cost"
+            }
           }
         ]
       }
@@ -715,7 +1439,7 @@
       "name": "Diagnosis",
       "cost": "Free",
       "roll": "Knowledge + Perception/Awareness",
-      "effect": "Reveal a target's true resource state and hidden conditions \u2014 real Laughter/Face levels, a hidden Motley, a Pact, how close to 0 Face they are."
+      "effect": "Reveal a target's true resource state and hidden conditions — real Laughter/Face levels, a hidden Motley, a Pact, how close to 0 Face they are."
     },
     "gifts": [
       {
@@ -727,37 +1451,87 @@
           {
             "name": "Bedside Manner",
             "subtype": "open",
-            "cost": "",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": null,
+              "note": null
+            },
             "effect": "The base action: a scene of real care generates Comfort"
           },
           {
             "name": "First Aid",
             "subtype": "open",
-            "cost": "1 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Restore 1 Face, or stabilize a dying ally"
           },
           {
             "name": "Diagnosis",
             "subtype": "open",
-            "cost": "Free",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Reveal a target's true resource state and hidden conditions"
           },
           {
             "name": "Steady Hands",
             "subtype": "on_call",
-            "cost": "1 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Emergency healing usable as a reaction"
           },
           {
             "name": "Step In Front",
             "subtype": "guardian",
-            "cost": "1 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Redirect a blow meant for an adjacent ally onto yourself"
           },
           {
             "name": "Stay and Sit With",
             "subtype": "hospice",
-            "cost": "1 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Nullify a target's fear or despair for a scene"
           }
         ]
@@ -771,31 +1545,81 @@
           {
             "name": "Rounds",
             "subtype": "open",
-            "cost": "2 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Restore 1 Face to each of up to three allies"
           },
           {
             "name": "Carry the Pain",
             "subtype": "open",
-            "cost": "2 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Heal beyond what your Comfort covers, taking the overflow as Suspicion or strain"
           },
           {
             "name": "Inoculation",
             "subtype": "guardian",
-            "cost": "2 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Shield an ally against the next instance of a specific harm, for a scene"
           },
           {
             "name": "Resuscitation",
             "subtype": "on_call",
-            "cost": "3 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Bring a physically incapacitated ally back into the fight, with partial Health"
           },
           {
             "name": "Last Words",
             "subtype": "hospice",
-            "cost": "2 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Speak with the spirit of a recently fallen Clown; gain information or a closing effect"
           }
         ]
@@ -809,31 +1633,81 @@
           {
             "name": "Recovery Room",
             "subtype": "open",
-            "cost": "3 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A calm zone: allies inside slowly regain Face and resist fear/manipulation"
           },
           {
             "name": "Transfusion",
             "subtype": "open",
-            "cost": "Face",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "face",
+                  "amount": null
+                }
+              ],
+              "frequency": null,
+              "note": "Player chooses amount of Face given"
+            },
             "effect": "Give your own Face directly to another character"
           },
           {
             "name": "White Coat Wall",
             "subtype": "guardian",
-            "cost": "3 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Any grave hit against a nearby ally this scene can be redirected to you"
           },
           {
             "name": "Discharge Papers",
             "subtype": "on_call",
-            "cost": "3 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Clear all of a target's temporary afflictions"
           },
           {
             "name": "Disarm the Reaper",
             "subtype": "hospice",
-            "cost": "3 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Cut a fear-fed enemy off from its power for several rounds"
           }
         ]
@@ -847,19 +1721,49 @@
           {
             "name": "Ward Miracle",
             "subtype": "open",
-            "cost": "5 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Restore 3 Face to each ally in the scene, or fully restore one ally about to hit 0 Face"
           },
           {
             "name": "No One Falls Today",
             "subtype": "guardian",
-            "cost": "5 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "For a scene, allies near you can't be reduced below 1 Face by anything you could have blocked"
           },
           {
             "name": "Sit at the Threshold",
             "subtype": "hospice",
-            "cost": "4 Comfort",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "comfort",
+                  "amount": 4
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Suspends an ally at 0 Face instead of losing them, if the scene resolves in their favor"
           }
         ]
@@ -873,11 +1777,23 @@
         "list": [
           {
             "name": "The Last Rounds",
-            "effect": "Once per campaign, free: fully restore the whole party's Face, clear every affliction, revive the fallen, and deny the next break anyone would suffer this scene."
+            "effect": "Fully restore the whole party's Face, clear every affliction, revive the fallen, and deny the next break anyone would suffer this scene.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "once_per_campaign",
+              "note": null
+            }
           },
           {
             "name": "The One Who Carries Everyone",
-            "effect": "Permanent, no cost: no Comfort limit on Carry the Pain or Transfusion \u2014 always pay the overflow with your own Face, Suspicion, and strain, without end."
+            "effect": "No Comfort limit on Carry the Pain or Transfusion — always pay the overflow with your own Face, Suspicion, and strain, without end.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "permanent",
+              "note": null
+            }
           }
         ]
       }
@@ -886,7 +1802,7 @@
   {
     "id": "pickpocket",
     "name": "The Pickpocket",
-    "flavor": "Setup and payoff. Not a spending pool \u2014 a hand of prepared advantages, cashed in all at once.",
+    "flavor": "Setup and payoff. Not a spending pool — a hand of prepared advantages, cashed in all at once.",
     "primaryAttributes": [
       "wit",
       "grace"
@@ -923,37 +1839,93 @@
           {
             "name": "Set the Trick",
             "subtype": "open",
-            "cost": "Free (prep action)",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "prep_action",
+              "note": null
+            },
             "effect": "Earn 1 Card"
           },
           {
             "name": "Precise Strike",
             "subtype": "open",
-            "cost": "1+ Cards",
-            "effect": "The signature attack \u2014 damage scales with Cards spent; requires an opening"
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 1,
+                  "min": true
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "The signature attack — damage scales with Cards spent; requires an opening"
           },
           {
             "name": "Quick Hands",
             "subtype": "white_glove",
-            "cost": "1 Card",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Steal an object without being noticed"
           },
           {
             "name": "Cut the Laughter",
             "subtype": "comic_blade",
-            "cost": "1 Card",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Steal 1 Laughter from a target"
           },
           {
             "name": "Look Over There",
             "subtype": "zanni",
-            "cost": "1 Card",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Distract a target or small group, opening a window"
           },
           {
             "name": "Slip Away",
             "subtype": "open",
-            "cost": "1 Card",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Reposition and become hard to follow"
           }
         ]
@@ -967,31 +1939,76 @@
           {
             "name": "Extra Sleeve",
             "subtype": "open",
-            "cost": "Passive",
+            "cost": {
+              "type": "passive",
+              "parts": [],
+              "frequency": null,
+              "note": null
+            },
             "effect": "+1 hand size; gain a free Card at the start of combat"
           },
           {
             "name": "Theft in Plain Sight",
             "subtype": "white_glove",
-            "cost": "2 Cards",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Steal something guarded or from an alert target's hands"
           },
           {
             "name": "Clown's Stab",
             "subtype": "comic_blade",
-            "cost": "2 Cards",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A hit that bleeds through soak and applies a lingering status"
           },
           {
             "name": "The Con",
             "subtype": "zanni",
-            "cost": "2 Cards",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Convince a target of a useful falsehood for a scene"
           },
           {
             "name": "Steal the Spotlight",
             "subtype": "open",
-            "cost": "2 Cards",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Deny an enemy's next activation of the Spotlight"
           }
         ]
@@ -1005,31 +2022,82 @@
           {
             "name": "Full House",
             "subtype": "open",
-            "cost": "3+ Cards",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 3,
+                  "min": true
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A big hit, or damage split among several opened targets"
           },
           {
             "name": "The Big Score",
             "subtype": "white_glove",
-            "cost": "3 Cards",
-            "effect": "Steal something major \u2014 a key item, a debilitated enemy's Motley, a borrowed Gift for a scene"
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "Steal something major — a key item, a debilitated enemy's Motley, a borrowed Gift for a scene"
           },
           {
             "name": "Comic Execution",
             "subtype": "comic_blade",
-            "cost": "3 Cards",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A finishing blow against an opened, weakened target"
           },
           {
             "name": "Master of the Con",
             "subtype": "zanni",
-            "cost": "3 Cards",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Rewrite what a group believes happened"
           },
           {
             "name": "Never Was Here",
             "subtype": "open",
-            "cost": "2 Cards",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Erase evidence and attention of a recent act of yours"
           }
         ]
@@ -1043,19 +2111,54 @@
           {
             "name": "The Royal Flush",
             "subtype": "open",
-            "cost": "5+ Cards (full hand)",
-            "effect": "Dump your entire hand into one devastating finisher \u2014 the bigger the hand, the worse it hurts"
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 5,
+                  "min": true
+                }
+              ],
+              "frequency": null,
+              "note": "full hand"
+            },
+            "effect": "Dump your entire hand into one devastating finisher — the bigger the hand, the worse it hurts"
           },
           {
             "name": "The Heist of the Century",
             "subtype": "white_glove",
-            "cost": "4 Cards",
-            "effect": "Steal something that shouldn't be stealable \u2014 a cornered enemy's Face, a major artifact, a scene-defining prize"
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 4
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "Steal something that shouldn't be stealable — a cornered enemy's Face, a major artifact, a scene-defining prize"
           },
           {
             "name": "Puppeteer",
             "subtype": "zanni",
-            "cost": "3 Cards + 2 Laughter",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": 3
+                },
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Control a group of mortals or minor enemies for a scene through misdirection"
           }
         ]
@@ -1069,11 +2172,33 @@
         "list": [
           {
             "name": "The Hand No One Sees",
-            "effect": "Permanent, no cost: gain a free Card every turn in combat, and your hand size cap is removed."
+            "effect": "Gain a free Card every turn in combat, and your hand size cap is removed.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "permanent",
+              "note": null
+            }
           },
           {
             "name": "The Perfect Theft",
-            "effect": "Once per campaign, full hand + 5 Laughter: steal something truly impossible \u2014 Renown, a Pact, an identity, a moment reclaimed from the past."
+            "effect": "Steal something truly impossible — Renown, a Pact, an identity, a moment reclaimed from the past.",
+            "cost": {
+              "type": "compound",
+              "parts": [
+                {
+                  "resource": "cards",
+                  "amount": null,
+                  "special": "full_hand"
+                },
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                }
+              ],
+              "frequency": "once_per_campaign",
+              "note": "Cap = 2 + Grade"
+            }
           }
         ]
       }
@@ -1082,7 +2207,7 @@
   {
     "id": "strongman",
     "name": "The Strongman",
-    "flavor": "The game's simplest, most direct Path \u2014 deliberately so, and the best entry point for a new player. No spending pool to track beyond Laughter: just a chosen Stance and rising Grit.",
+    "flavor": "The game's simplest, most direct Path — deliberately so, and the best entry point for a new player. No spending pool to track beyond Laughter: just a chosen Stance and rising Grit.",
     "primaryAttributes": [
       "strength",
       "toughness"
@@ -1119,37 +2244,87 @@
           {
             "name": "Weighted Pie",
             "subtype": "open",
-            "cost": "1 Laughter",
-            "effect": "The signature hit \u2014 solid, reliable damage"
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "The signature hit — solid, reliable damage"
           },
           {
             "name": "Change Stance",
             "subtype": "open",
-            "cost": "Passive",
+            "cost": {
+              "type": "passive",
+              "parts": [],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Unlocks the three base Stances"
           },
           {
             "name": "Big Top Hide",
             "subtype": "open",
-            "cost": "Passive",
+            "cost": {
+              "type": "passive",
+              "parts": [],
+              "frequency": null,
+              "note": null
+            },
             "effect": "The best soak in the game: +2 to your Toughness soak"
           },
           {
             "name": "Lift Anything",
             "subtype": "powerhouse",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A feat of strength: lift, throw, or break something far beyond human norms"
           },
           {
             "name": "Human Wall",
             "subtype": "wall",
-            "cost": "1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Protect more than one adjacent ally at once while in Guard Stance"
           },
           {
             "name": "Return With Interest",
             "subtype": "rubber_clown",
-            "cost": "Reaction, 1 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 1
+                }
+              ],
+              "frequency": "reaction",
+              "note": null
+            },
             "effect": "Counterattack immediately after taking a hit, scaled by your current Grit bonus"
           }
         ]
@@ -1163,31 +2338,76 @@
           {
             "name": "Spinning Strike",
             "subtype": "open",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Hit all adjacent enemies at once"
           },
           {
             "name": "Second Wind",
             "subtype": "open",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Recover Health; the more hurt you are, the more you recover"
           },
           {
             "name": "Throw",
             "subtype": "powerhouse",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Grab and throw an enemy or heavy object, dealing damage and repositioning the target"
           },
           {
             "name": "Nobody Gets Past",
             "subtype": "wall",
-            "cost": "2 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "While in Guard Stance, enemies must overcome you to reach anyone behind you"
           },
           {
             "name": "The Angrier I Get",
             "subtype": "rubber_clown",
-            "cost": "Passive",
+            "cost": {
+              "type": "passive",
+              "parts": [],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Your Grit bonus applies to all damage rolls, not just your Main Action attack"
           }
         ]
@@ -1201,31 +2421,76 @@
           {
             "name": "A Hit Felt in the Room",
             "subtype": "open",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A devastating single-target strike that can stun"
           },
           {
             "name": "Colossus Stance",
             "subtype": "open",
-            "cost": "Passive (new Stance)",
+            "cost": {
+              "type": "passive",
+              "parts": [],
+              "frequency": null,
+              "note": "new Stance"
+            },
             "effect": "Very high offense and defense at once; while in it, you never seize the Spotlight ahead of anyone else who could act"
           },
           {
             "name": "Carnival Titan",
             "subtype": "powerhouse",
-            "cost": "3 Laughter",
-            "effect": "A feat of strength on a bigger scale \u2014 flip a vehicle, bring down a wall"
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "A feat of strength on a bigger scale — flip a vehicle, bring down a wall"
           },
           {
             "name": "Shield of the Weak",
             "subtype": "wall",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Redirect a grave hit meant for any ally in the scene onto yourself, not just adjacent ones"
           },
           {
             "name": "Demolition Ball",
             "subtype": "rubber_clown",
-            "cost": "3 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Launch yourself through multiple enemies in a line, damage scaled by Grit"
           }
         ]
@@ -1239,19 +2504,44 @@
           {
             "name": "The Strength Number",
             "subtype": "open",
-            "cost": "5 Laughter",
-            "effect": "The biggest reliable hit in the game \u2014 massive, guaranteed damage, no special conditions needed"
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "The biggest reliable hit in the game — massive, guaranteed damage, no special conditions needed"
           },
           {
             "name": "Unmovable",
             "subtype": "wall",
-            "cost": "5 Laughter",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "laughter",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "For a scene, you can't be moved, knocked down, or bypassed by any means short of a Renown 8+ effect"
           },
           {
             "name": "I Don't Know When to Quit",
             "subtype": "rubber_clown",
-            "cost": "Once per scene, free",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "once_per_scene",
+              "note": null
+            },
             "effect": "Rise from a hit that should have dropped you, at 1 Health box and full Grit bonus"
           }
         ]
@@ -1265,11 +2555,23 @@
         "list": [
           {
             "name": "The One Who Stands Before the World",
-            "effect": "Permanent, no cost: while you stand and are able to take a hit in someone's place, nearby allies can't be reduced to 0 Face."
+            "effect": "While you stand and are able to take a hit in someone's place, nearby allies can't be reduced to 0 Face.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "permanent",
+              "note": null
+            }
           },
           {
             "name": "One Single Hit",
-            "effect": "Once per campaign, free: one devastating blow, its power scaling with how hurt you already are, strong enough to fell even a top-tier boss outright."
+            "effect": "One devastating blow, its power scaling with how hurt you already are, strong enough to fell even a top-tier boss outright.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "once_per_campaign",
+              "note": null
+            }
           }
         ]
       }
@@ -1322,37 +2624,92 @@
           {
             "name": "The Vow Made Force",
             "subtype": "open",
-            "cost": "Passive",
+            "cost": {
+              "type": "passive",
+              "parts": [],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Sets your Aura and Conviction generation in motion"
           },
           {
             "name": "Punishment",
             "subtype": "open",
-            "cost": "1 Conviction",
-            "effect": "The signature attack \u2014 extra damage against whatever your Oath condemns"
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
+            "effect": "The signature attack — extra damage against whatever your Oath condemns"
           },
           {
             "name": "Firm Word",
             "subtype": "open",
-            "cost": "1 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Shake off a fear or doubt effect and gain +2 dice to your next roll"
           },
           {
             "name": "Plant the Flag",
             "subtype": "ring",
-            "cost": "1 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Claim a zone: allies inside resist better and you hit harder against anyone who invades it"
           },
           {
             "name": "Challenge the Giant",
             "subtype": "rebel",
-            "cost": "1 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Gain bonuses against a specific higher-Renown or higher-status enemy for the scene"
           },
           {
             "name": "In Your Name",
             "subtype": "promise",
-            "cost": "1 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 1
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Invoke your Promise before acting: +2 dice, and success generates extra Conviction"
           }
         ]
@@ -1366,31 +2723,81 @@
           {
             "name": "Aura Ablaze",
             "subtype": "open",
-            "cost": "2 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Double your Aura's effect for a scene"
           },
           {
             "name": "Shield of the Vow",
             "subtype": "open",
-            "cost": "2 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Take a grave hit meant for an ally"
           },
           {
             "name": "Sentence",
             "subtype": "ring",
-            "cost": "2 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Impose a binding order on a target with real moral weight behind it"
           },
           {
             "name": "Cry of Rebellion",
             "subtype": "rebel",
-            "cost": "2 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Inspire allies against a powerful enemy: immediate extra attack or repositioning for the party"
           },
           {
             "name": "I Won't Fail You",
             "subtype": "promise",
-            "cost": "2 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 2
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "You and the one you swore to protect shield each other, even at a distance, for a scene"
           }
         ]
@@ -1404,31 +2811,81 @@
           {
             "name": "Greater Punishment",
             "subtype": "open",
-            "cost": "3 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "A bigger hit that can stun or knock down whatever your Oath condemns"
           },
           {
             "name": "Living Banner",
             "subtype": "open",
-            "cost": "3 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Your Aura extends to affect the entire scene, regardless of distance, for several rounds"
           },
           {
             "name": "Ring's Judgment",
             "subtype": "ring",
-            "cost": "3 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Restore order to a chaotic scene: calm crowds, reassert control in your favor"
           },
           {
             "name": "Voice of the Voiceless",
             "subtype": "rebel",
-            "cost": "3 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "Strip a powerful enemy's advantage of status against your weaker allies, for a scene"
           },
           {
             "name": "Until the End",
             "subtype": "promise",
-            "cost": "3 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 3
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "While actively honoring your Promise in the scene, you can't drop below \"standing\""
           }
         ]
@@ -1442,20 +2899,50 @@
           {
             "name": "Final Sentence",
             "subtype": "open",
-            "cost": "5 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "The Sworn's biggest, most decisive hit"
           },
           {
             "name": "Unbreakable Aura",
             "subtype": "open",
-            "cost": "5 Conviction",
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 5
+                }
+              ],
+              "frequency": null,
+              "note": null
+            },
             "effect": "For a scene, allies inside your Aura can't hit 0 Face while you stand and your Oath holds"
           },
           {
             "name": "The Vow That Moves Mountains",
             "subtype": "rebel_or_promise",
-            "cost": "Once per scene, 3 Conviction",
-            "effect": "Turn a Failure \u2014 yours or a nearby ally's \u2014 into a Success"
+            "cost": {
+              "type": "fixed",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": 3
+                }
+              ],
+              "frequency": "once_per_scene",
+              "note": null
+            },
+            "effect": "Turn a Failure — yours or a nearby ally's — into a Success"
           }
         ]
       },
@@ -1468,11 +2955,28 @@
         "list": [
           {
             "name": "The Oath Made Flesh",
-            "effect": "Permanent, no cost: your Aura can't be turned off except by Oathbreaking, and always runs at full strength."
+            "effect": "Your Aura can't be turned off except by Oathbreaking, and always runs at full strength.",
+            "cost": {
+              "type": "free",
+              "parts": [],
+              "frequency": "permanent",
+              "note": null
+            }
           },
           {
             "name": "The Final Word",
-            "effect": "Once per campaign: spend all your Conviction on one absolute, willed act that embodies your Oath at maximum scale."
+            "effect": "Spend all your Conviction on one absolute, willed act that embodies your Oath at maximum scale.",
+            "cost": {
+              "type": "variable",
+              "parts": [
+                {
+                  "resource": "conviction",
+                  "amount": null
+                }
+              ],
+              "frequency": "once_per_campaign",
+              "note": "Spends entire current Conviction pool"
+            }
           }
         ]
       }

@@ -235,3 +235,50 @@ textarea {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px 20px;
 }
+
+/* Room view: chat/log column on the left, everything else on the right. */
+.room-layout {
+  max-width: 1120px;
+  margin: 24px auto;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.room-chat-column {
+  width: 360px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  position: sticky;
+  top: 24px;
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.room-main-column {
+  flex: 1;
+  min-width: 0;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 860px) {
+  .room-layout {
+    flex-direction: column;
+  }
+  .room-chat-column {
+    width: 100%;
+    position: static;
+    max-height: 420px;
+  }
+}

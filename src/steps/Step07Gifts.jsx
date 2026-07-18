@@ -1,6 +1,7 @@
 import { useCharacter } from '../context/CharacterContext';
 import paths from '../data/paths.json';
 import { giftCountForRenown } from '../utils/calculations';
+import { formatCost } from '../utils/formatCost';
 
 export default function Step07Gifts() {
   const { character, dispatch } = useCharacter();
@@ -59,7 +60,7 @@ export default function Step07Gifts() {
               {gift.subtype && gift.subtype !== 'open' && (
                 <span style={{ fontSize: 11, color: 'var(--hint)' }}> [{gift.subtype}]</span>
               )}
-              <div className="gift-cost">Cost: {gift.cost}</div>
+              <div className="gift-cost">Cost: {formatCost(gift.cost)}</div>
               <div className="gift-effect">{gift.effect || gift.domain}</div>
               {gift.limit && <div style={{ fontSize: 11, color: 'var(--hint)' }}>Limit: {gift.limit}</div>}
             </label>

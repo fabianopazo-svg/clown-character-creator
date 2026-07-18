@@ -7,6 +7,7 @@ import core from '../data/core.json';
 import troupes from '../data/troupes.json';
 import paths from '../data/paths.json';
 import { findGearItem } from '../utils/gearLookup';
+import { formatCostShort } from '../utils/formatCost';
 import {
   applyAgeModifiers,
   calcStartingLaughter,
@@ -275,7 +276,7 @@ export default function CharacterPdf({ character }) {
           const known = gradeBlock.capstone
             ? character.capstoneGift === gift.name
             : character.gifts.includes(gift.name);
-          let costDisplay = gift.cost || gradeBlock.costEach || '';
+          let costDisplay = formatCostShort(gift.cost);
           if (path?.pathResource?.abbrev) {
             costDisplay = costDisplay.replace(new RegExp(path.pathResource.name, 'g'), path.pathResource.abbrev);
           }

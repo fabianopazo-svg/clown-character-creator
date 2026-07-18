@@ -32,6 +32,12 @@ export const initialCharacter = {
   purseCurrent: null,
   clown: { makeup: '', humanDescription: '', relationshipToFace: '', gettingReadyId: 'full' },
   backstory: { crypticSign: '', keepingTruthFrom: '', motleyWorn: '' },
+  // Live/current play state — distinct from the creation-time fields above.
+  // This field only ever holds a *saved snapshot* now: null until the
+  // character has been saved once from Play Mode, then whatever it was at
+  // last Save. Live in-session mutation happens in stores/playStore.js
+  // (a Zustand store), not through this reducer — see PlayMode.jsx.
+  play: null,
 };
 
 function characterReducer(state, action) {

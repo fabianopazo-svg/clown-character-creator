@@ -15,6 +15,13 @@ import Step08Clown from './steps/Step08Clown';
 import Step09Resources from './steps/Step09Resources';
 import Step10Gear from './steps/Step10Gear';
 import Summary from './steps/Summary';
+import PlayMode from './play/PlayMode';
+import Glossary from './components/Glossary';
+import { AuthProvider } from './context/AuthContext';
+import RoomJoin from './multiplayer/RoomJoin';
+import RoomLobby from './multiplayer/RoomLobby';
+import MCCorner from './multiplayer/MCCorner';
+import RulebookView from './rulebook/RulebookView';
 
 const steps = [
   { id: 1, label: 'Concept', Component: Step01Concept },
@@ -70,6 +77,7 @@ function Wizard({ onBackToList }) {
       <div style={{ maxWidth: 680, margin: '16px auto 0', padding: '0 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button className="small-btn" onClick={onBackToList}>&larr; Your Clowns</button>
         <div style={{ display: 'flex', gap: 6 }}>
+          <Glossary />
           <button className="small-btn" onClick={handleSave}>Save</button>
           <button className="small-btn" onClick={handleExport}>Export JSON</button>
           <button className="small-btn" onClick={handlePdfExport} disabled={pdfBusy}>
@@ -115,7 +123,8 @@ function Wizard({ onBackToList }) {
 }
 
 function Root() {
-  const [view, setView] = useState('list'); // 'list' | 'wizard'
+  const [view, setView] = useState('list'); // 'list' | 'wizard' | 'play' | 'room-join' | 'room-lobby' | 'mc-corner' | 'rulebook'
+  const [roomInfo, setRoomInfo] = useState(null); // { code, role }
   const { dispatch } = useCharacter();
 
   const openNew = () => {
@@ -128,16 +137,73 @@ function Root() {
     setView('wizard');
   };
 
+  const openPlay = (id, character) => {
+    dispatch({ type: 'LOAD_CHARACTER', character: character || initialCharacter });
+    setView('play');
+  };
+
+  const openMultiplayer = () => setView('room-join');
+  const openMcCorner = () => setView('mc-corner');
+  const openRulebook = () => setView('rulebook');
+
+  const handleEnterRoom = ({ code, role }) => {
+    setRoomInfo({ code, role });
+    setView('room-lobby');
+  };
+
+  const handleLeaveRoom = () => {
+    setRoomInfo(null);
+    setView('list');
+  };
+
   if (view === 'list') {
-    return <CharacterList onNew={openNew} onOpen={openExisting} />;
+    return <CharacterList onNew={openNew} onOpen={openExisting} onMultiplayer={openMultiplayer} onMcCorner={openMcCorner} onRulebook={openRulebook} />;
+  }
+  if (view === 'play') {
+    return <PlayMode onBack={() => setView('list')} />;
+  }
+  if (view === 'rulebook') {
+    return (
+      <>
+        <div style={{ maxWidth: 680, margin: '16px auto 0', padding: '0 4px' }}>
+          <button className="small-btn" onClick={() => setView('list')}>&larr; Your Clowns</button>
+        </div>
+        <RulebookView />
+      </>
+    );
+  }
+  if (view === 'mc-corner') {
+    return (
+      <>
+        <div style={{ maxWidth: 680, margin: '16px auto 0', padding: '0 4px' }}>
+          <button className="small-btn" onClick={() => setView('list')}>&larr; Your Clowns</button>
+        </div>
+        <MCCorner onEnterRoom={handleEnterRoom} />
+      </>
+    );
+  }
+  if (view === 'room-join') {
+    return (
+      <>
+        <div style={{ maxWidth: 680, margin: '16px auto 0', padding: '0 4px' }}>
+          <button className="small-btn" onClick={() => setView('list')}>&larr; Your Clowns</button>
+        </div>
+        <RoomJoin onEnterRoom={handleEnterRoom} />
+      </>
+    );
+  }
+  if (view === 'room-lobby') {
+    return <RoomLobby code={roomInfo.code} role={roomInfo.role} onLeave={handleLeaveRoom} />;
   }
   return <Wizard onBackToList={() => setView('list')} />;
 }
 
 export default function App() {
   return (
-    <CharacterProvider>
-      <Root />
-    </CharacterProvider>
+    <AuthProvider>
+      <CharacterProvider>
+        <Root />
+      </CharacterProvider>
+    </AuthProvider>
   );
 }

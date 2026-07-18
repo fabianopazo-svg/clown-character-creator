@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.5.1",
+    "firebase": "^12.16.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",

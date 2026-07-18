@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { listCharacters, loadCharacter, deleteCharacter, importCharacterFile } from '../utils/storage';
 
-export default function CharacterList({ onNew, onOpen }) {
+export default function CharacterList({ onNew, onOpen, onMultiplayer, onMcCorner, onRulebook }) {
   const [characters, setCharacters] = useState([]);
   const fileInputRef = useRef(null);
 
@@ -50,7 +50,7 @@ export default function CharacterList({ onNew, onOpen }) {
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
             <button className="small-btn" onClick={() => loadCharacter(c.id) && onOpen(c.id, loadCharacter(c.id))}>
-              Open
+              Edit
             </button>
             <button className="small-btn" onClick={() => handleDelete(c.id)}>Delete</button>
           </div>
@@ -60,6 +60,9 @@ export default function CharacterList({ onNew, onOpen }) {
       <div style={{ display: 'flex', gap: 8, marginTop: 20 }}>
         <button className="btn btn-primary" onClick={onNew}>+ New character</button>
         <button className="btn" onClick={handleImportClick}>Import from JSON file</button>
+        <button className="btn" onClick={onMultiplayer}>Join a room</button>
+        <button className="btn" onClick={onMcCorner}>🎪 The MC Corner</button>
+        <button className="btn" onClick={onRulebook}>📖 Rulebook</button>
         <input
           ref={fileInputRef}
           type="file"

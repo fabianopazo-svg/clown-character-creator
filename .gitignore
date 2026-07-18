@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Environment variables (contains Firebase config — .env.example is the committed template)
+.env
+
+# Firebase local state
+.firebase
+firebase-debug.log
+firestore-debug.log
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,6 +30,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-editor/node_modules
-editor/dist
-src/data/.editor-backups
+
+# Local Netlify folder
+.netlify

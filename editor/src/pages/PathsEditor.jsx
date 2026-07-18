@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchFile, saveFile } from '../api';
+import CostEditor from '../components/CostEditor';
 
 const GRADE_LABELS = {
   1: 'Grade 1 (Renown 1)',
@@ -10,9 +11,10 @@ const GRADE_LABELS = {
 };
 
 function emptyGift(usesDomain) {
+  const cost = { type: 'fixed', parts: [{ resource: 'laughter', amount: 1 }], frequency: null, note: null };
   return usesDomain
-    ? { name: 'New School', subtype: 'open', domain: '', limit: '' }
-    : { name: 'New Gift', subtype: 'open', cost: '1 Laughter', effect: '' };
+    ? { name: 'New School', subtype: 'open', domain: '', limit: '', cost }
+    : { name: 'New Gift', subtype: 'open', cost, effect: '' };
 }
 
 export default function PathsEditor() {
@@ -214,12 +216,13 @@ export default function PathsEditor() {
                       </div>
                     </div>
 
-                    {!gradeBlock.capstone && !usesDomain && (
-                      <div className="field-row">
-                        <label className="field-label">Cost</label>
-                        <input type="text" value={gift.cost || ''} onChange={e => updateGift(gradeBlock.grade, i, 'cost', e.target.value)} />
-                      </div>
-                    )}
+                    <div className="field-row">
+                      <label className="field-label">Cost</label>
+                      <CostEditor
+                        cost={gift.cost}
+                        onChange={(next) => updateGift(gradeBlock.grade, i, 'cost', next)}
+                      />
+                    </div>
 
                     {usesDomain ? (
                       <>
