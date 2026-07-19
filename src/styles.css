@@ -247,6 +247,12 @@ textarea {
   box-sizing: border-box;
 }
 
+/* Wider variant when the in-room rulebook panel is open, so the center
+   column doesn't get squeezed by the extra third column. */
+.room-layout-with-rulebook {
+  max-width: 1520px;
+}
+
 .room-chat-column {
   width: 360px;
   flex-shrink: 0;
@@ -272,6 +278,31 @@ textarea {
   box-sizing: border-box;
 }
 
+.room-rulebook-column {
+  width: 400px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  position: sticky;
+  top: 24px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1240px) {
+  .room-layout-with-rulebook {
+    flex-direction: column;
+  }
+  .room-rulebook-column {
+    width: 100%;
+    position: static;
+    max-height: 600px;
+  }
+}
+
 @media (max-width: 860px) {
   .room-layout {
     flex-direction: column;
@@ -281,4 +312,96 @@ textarea {
     position: static;
     max-height: 420px;
   }
+}
+
+/* Rulebook viewer typography — matches the app's existing design tokens
+   rather than a separate visual language. */
+.rulebook-content {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  line-height: 1.6;
+  max-width: 760px;
+}
+.rulebook-content h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 10px;
+}
+.rulebook-content h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 28px 0 10px;
+  color: var(--accent-text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+.rulebook-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 20px 0 8px;
+}
+.rulebook-content h4, .rulebook-content h5, .rulebook-content h6 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 16px 0 6px;
+}
+.rulebook-content p {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+.rulebook-content ul, .rulebook-content ol {
+  margin: 0 0 12px;
+  padding-left: 22px;
+  font-size: 14px;
+}
+.rulebook-content li {
+  margin-bottom: 4px;
+}
+.rulebook-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 16px;
+  font-size: 13px;
+}
+.rulebook-content th, .rulebook-content td {
+  border: 0.5px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.rulebook-content th {
+  background: var(--surface-1);
+  font-weight: 700;
+}
+.rulebook-content blockquote {
+  border-left: 3px solid var(--accent-border);
+  margin: 0 0 12px;
+  padding: 4px 14px;
+  color: var(--muted);
+  background: var(--accent-bg);
+}
+.rulebook-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+.rulebook-content strong {
+  font-weight: 700;
+}
+.rulebook-content code {
+  background: var(--surface-1);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.rulebook-toc-item {
+  font-size: 12px;
+  cursor: pointer;
+  padding: 3px 0;
+  color: var(--accent-text);
+}
+.rulebook-toc-item:hover {
+  text-decoration: underline;
 }

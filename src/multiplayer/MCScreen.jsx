@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { subscribeMcNotes, saveMcNotes } from '../utils/roomsApi';
 import NpcTrackers from './NpcTrackers';
 import SuspicionSpend from './SuspicionSpend';
+import McDiceRoller from './McDiceRoller';
 
 // Only ever rendered when isMc is true (see RoomLobby), and Firestore
 // rules independently enforce the same boundary server-side — so even a
@@ -54,6 +55,8 @@ export default function MCScreen({ code, uid, room }) {
       <NpcTrackers code={code} />
 
       <SuspicionSpend code={code} uid={uid} room={room} />
+
+      <McDiceRoller code={code} room={room} />
 
       {error && (
         <p className="helper-text" style={{ marginTop: 6, color: '#c0392b' }}>

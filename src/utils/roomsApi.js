@@ -72,6 +72,9 @@ export async function deleteRoomCompletely(code, mcUid) {
   const suspicionSpendsSnap = await getDocs(collection(db, 'rooms', roomCode, 'suspicionSpends'));
   await Promise.all(suspicionSpendsSnap.docs.map((s) => deleteDoc(s.ref)));
 
+  const giftIntentsSnap = await getDocs(collection(db, 'rooms', roomCode, 'giftIntents'));
+  await Promise.all(giftIntentsSnap.docs.map((g) => deleteDoc(g.ref)));
+
   const playersSnap = await getDocs(collection(db, 'rooms', roomCode, 'players'));
   for (const playerDoc of playersSnap.docs) {
     const privateSnap = await getDocs(collection(db, 'rooms', roomCode, 'players', playerDoc.id, 'private'));
@@ -212,6 +215,27 @@ export async function removeReaction(code, rollId, uid) {
 export function subscribeReactions(code, rollId, callback) {
   return onSnapshot(collection(db, 'rooms', code.toUpperCase(), 'rolls', rollId, 'reactions'), (snap) => {
     callback(snap.docs.map((d) => ({ uid: d.id, ...d.data() })));
+  });
+}
+
+// "I want to use [Gift]" — a lightweight flag any player can post,
+// visible to the whole table, for the MC to then respond to with a
+// targeted prompt (createPrompt). Not linked further than that — using
+// the actual Gift on a roll is a separate, explicit choice made in
+// RollPanel when the roll happens.
+export async function postGiftIntent(code, uid, playerName, giftName) {
+  const intentsRef = collection(db, 'rooms', code.toUpperCase(), 'giftIntents');
+  await setDoc(doc(intentsRef), {
+    playerUid: uid,
+    playerName,
+    giftName,
+    createdAt: serverTimestamp(),
+  });
+}
+
+export function subscribeGiftIntents(code, callback) {
+  return onSnapshot(collection(db, 'rooms', code.toUpperCase(), 'giftIntents'), (snap) => {
+    callback(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
   });
 }
 

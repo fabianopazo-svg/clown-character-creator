@@ -4,36 +4,137 @@ import { listCustomMonsters } from '../utils/customBestiary';
 import { subscribeNpcs, addNpc, updateNpc, removeNpc } from '../utils/roomsApi';
 import DotTracker from '../components/DotTracker';
 import BoxTracker from '../components/BoxTracker';
+import GiftListEditor from '../components/GiftListEditor';
+import GiftListDisplay from '../components/GiftListDisplay';
 
-function NpcGiftsEditor({ gifts, onSave }) {
-  const [text, setText] = useState(gifts.join('\n'));
-  const dirty = text !== gifts.join('\n');
-
-  return (
-    <div style={{ marginTop: 6 }}>
-      <div style={{ fontSize: 12, color: 'var(--muted)', marginBottom: 2 }}>Gifts / Special Skills</div>
-      <textarea
-        rows={2}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="One per line — fill in later if you don't have them yet"
-        style={{ width: '100%', boxSizing: 'border-box', fontSize: 12 }}
-      />
-      <button
-        type="button"
-        className="small-btn"
-        style={{ marginTop: 2 }}
-        disabled={!dirty}
-        onClick={() => onSave(text.split('\n').map((s) => s.trim()).filter(Boolean))}
-      >
-        Save
-      </button>
-    </div>
-  );
+// Normalizes a gift entry that might be the OLD flat-string format or the
+// new {name, effect} shape, so NPCs created before this feature existed
+// don't break or need a manual migration step.
+function normalizeGifts(gifts) {
+  return (gifts || []).map((g) => (typeof g === 'string' ? { name: g, effect: '' } : { name: g?.name || '', effect: g?.effect || '' }));
 }
 
 function emptyForm() {
-  return { sourceId: '', name: '', healthMax: '', laughterMax: '', faceMax: '', giftsText: '' };
+  return { sourceId: '', name: '', healthMax: '', laughterMax: '', faceMax: '', toughness: '', dodge: '', gifts: [] };
+}
+
+// One live NPC's card — its own component so collapse and gift-edit state
+// stay cleanly per-NPC without threading a bunch of keyed state through
+// the parent.
+function NpcCard({ code, npc, onRemove }) {
+  const [collapsed, setCollapsed] = useState(false);
+  const [editingGifts, setEditingGifts] = useState(false);
+  const [giftsDraft, setGiftsDraft] = useState(() => normalizeGifts(npc.gifts));
+  const [error, setError] = useState(null);
+
+  const handleFieldChange = (field, value) => {
+    updateNpc(code, npc.id, { [field]: value }).catch((err) => setError(err.message || String(err)));
+  };
+
+  const startEditingGifts = () => {
+    setGiftsDraft(normalizeGifts(npc.gifts));
+    setEditingGifts(true);
+  };
+
+  const saveGifts = () => {
+    const cleaned = giftsDraft.filter((g) => g.name.trim()).map((g) => ({ name: g.name.trim(), effect: g.effect.trim() }));
+    handleFieldChange('gifts', cleaned);
+    setEditingGifts(false);
+  };
+
+  if (collapsed) {
+    return (
+      <div style={{ border: '0.5px solid var(--border)', borderRadius: 'var(--radius)', padding: 8, marginBottom: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span className="gift-name">{npc.name}</span>
+        <button type="button" className="small-btn" onClick={() => setCollapsed(false)}>Show</button>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ border: '0.5px solid var(--border)', borderRadius: 'var(--radius)', padding: 8, marginBottom: 8 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+        <span className="gift-name">{npc.name}</span>
+        <div style={{ display: 'flex', gap: 4 }}>
+          <button type="button" className="small-btn" onClick={() => setCollapsed(true)}>Hide</button>
+          <button type="button" className="small-btn" onClick={() => onRemove(npc.id)}>Remove</button>
+        </div>
+      </div>
+
+      {npc.healthMax != null && (
+        <div className="stat-row" style={{ maxWidth: 360 }}>
+          <span style={{ fontSize: 12 }}>Health</span>
+          <BoxTracker value={npc.health || 0} max={npc.healthMax} onChange={(v) => handleFieldChange('health', v)} />
+        </div>
+      )}
+      {npc.laughterMax != null && (
+        <div className="stat-row" style={{ maxWidth: 360 }}>
+          <span style={{ fontSize: 12 }}>Laughter</span>
+          <DotTracker value={npc.laughter || 0} max={npc.laughterMax} onChange={(v) => handleFieldChange('laughter', v)} />
+        </div>
+      )}
+      {npc.faceMax != null && (
+        <div className="stat-row" style={{ maxWidth: 360 }}>
+          <span style={{ fontSize: 12 }}>Face</span>
+          <DotTracker value={npc.face || 0} max={npc.faceMax} onChange={(v) => handleFieldChange('face', v)} />
+        </div>
+      )}
+
+      <div style={{ display: 'flex', gap: 12, marginTop: 4 }}>
+        <label style={{ fontSize: 12 }}>
+          Toughness:{' '}
+          <input
+            type="number"
+            min={0}
+            value={npc.toughness ?? ''}
+            onChange={(e) => handleFieldChange('toughness', e.target.value === '' ? null : Number(e.target.value))}
+            style={{ width: 55 }}
+          />
+        </label>
+        <label style={{ fontSize: 12 }}>
+          Dodge:{' '}
+          <input
+            type="number"
+            min={0}
+            value={npc.dodge ?? ''}
+            onChange={(e) => handleFieldChange('dodge', e.target.value === '' ? null : Number(e.target.value))}
+            style={{ width: 55 }}
+          />
+        </label>
+      </div>
+
+      <div style={{ marginTop: 8 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+          <span style={{ fontSize: 12, color: 'var(--muted)' }}>Gifts / Special Skills</span>
+          {!editingGifts && (
+            <button type="button" className="small-btn" onClick={startEditingGifts}>Edit skills</button>
+          )}
+        </div>
+
+        {editingGifts ? (
+          <>
+            <GiftListEditor gifts={giftsDraft} onChange={setGiftsDraft} />
+            <div style={{ marginTop: 4, display: 'flex', gap: 4 }}>
+              <button type="button" className="small-btn" onClick={saveGifts}>Save</button>
+              <button type="button" className="small-btn" onClick={() => setEditingGifts(false)}>Cancel</button>
+            </div>
+          </>
+        ) : (
+          <>
+            {normalizeGifts(npc.gifts).length === 0 ? (
+              <p className="helper-text" style={{ margin: 0 }}>No skills listed yet.</p>
+            ) : (
+              <GiftListDisplay gifts={npc.gifts} />
+            )}
+          </>
+        )}
+      </div>
+
+      {error && (
+        <p className="helper-text" style={{ marginTop: 6, color: '#c0392b' }}>{error}</p>
+      )}
+    </div>
+  );
 }
 
 export default function NpcTrackers({ code }) {
@@ -65,7 +166,9 @@ export default function NpcTrackers({ code }) {
       healthMax: entry.health ?? '',
       laughterMax: entry.laughterMax ?? entry.laughter ?? '',
       faceMax: entry.faceMax ?? entry.face ?? '',
-      giftsText: (entry.gifts || []).join('\n'),
+      toughness: entry.toughness ?? '',
+      dodge: entry.dodge ?? '',
+      gifts: normalizeGifts(entry.gifts),
     });
   };
 
@@ -86,7 +189,9 @@ export default function NpcTrackers({ code }) {
         laughterMax,
         face: faceMax,
         faceMax,
-        gifts: form.giftsText.split('\n').map((s) => s.trim()).filter(Boolean),
+        toughness: form.toughness === '' ? null : Number(form.toughness),
+        dodge: form.dodge === '' ? null : Number(form.dodge),
+        gifts: form.gifts.filter((g) => g.name.trim()).map((g) => ({ name: g.name.trim(), effect: g.effect.trim() })),
         notes: '',
       });
       setForm(emptyForm());
@@ -95,10 +200,6 @@ export default function NpcTrackers({ code }) {
     } finally {
       setAdding(false);
     }
-  };
-
-  const handleFieldChange = (npc, field, value) => {
-    updateNpc(code, npc.id, { [field]: value }).catch((err) => setError(err.message || String(err)));
   };
 
   const handleRemove = (npcId) => {
@@ -145,15 +246,28 @@ export default function NpcTrackers({ code }) {
           onChange={(e) => setForm({ ...form, faceMax: e.target.value })}
           style={{ width: 70 }}
         />
+        <input
+          type="number"
+          placeholder="Toughness"
+          value={form.toughness}
+          onChange={(e) => setForm({ ...form, toughness: e.target.value })}
+          style={{ width: 75 }}
+        />
+        <input
+          type="number"
+          placeholder="Dodge"
+          value={form.dodge}
+          onChange={(e) => setForm({ ...form, dodge: e.target.value })}
+          style={{ width: 70 }}
+        />
       </div>
-      <textarea
-        rows={2}
-        placeholder={'Gifts / Special Skills, one per line'}
-        value={form.giftsText}
-        onChange={(e) => setForm({ ...form, giftsText: e.target.value })}
-        style={{ width: '100%', boxSizing: 'border-box', fontSize: 12, marginBottom: 6 }}
-      />
+
       <div style={{ marginBottom: 6 }}>
+        <div style={{ fontSize: 12, color: 'var(--muted)', marginBottom: 2 }}>Gifts / Special Skills</div>
+        <GiftListEditor gifts={form.gifts} onChange={(gifts) => setForm({ ...form, gifts })} />
+      </div>
+
+      <div style={{ marginBottom: 10 }}>
         <button type="button" className="small-btn" onClick={handleAdd} disabled={adding || !form.name.trim()}>
           {adding ? 'Adding…' : '+ Add'}
         </button>
@@ -164,37 +278,7 @@ export default function NpcTrackers({ code }) {
       )}
 
       {npcs.map((npc) => (
-        <div key={npc.id} style={{ border: '0.5px solid var(--border)', borderRadius: 'var(--radius)', padding: 8, marginBottom: 8 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-            <span className="gift-name">{npc.name}</span>
-            <button type="button" className="small-btn" onClick={() => handleRemove(npc.id)}>Remove</button>
-          </div>
-
-          {npc.healthMax != null && (
-            <div className="stat-row" style={{ maxWidth: 360 }}>
-              <span style={{ fontSize: 12 }}>Health</span>
-              <BoxTracker value={npc.health || 0} max={npc.healthMax} onChange={(v) => handleFieldChange(npc, 'health', v)} />
-            </div>
-          )}
-          {npc.laughterMax != null && (
-            <div className="stat-row" style={{ maxWidth: 360 }}>
-              <span style={{ fontSize: 12 }}>Laughter</span>
-              <DotTracker value={npc.laughter || 0} max={npc.laughterMax} onChange={(v) => handleFieldChange(npc, 'laughter', v)} />
-            </div>
-          )}
-          {npc.faceMax != null && (
-            <div className="stat-row" style={{ maxWidth: 360 }}>
-              <span style={{ fontSize: 12 }}>Face</span>
-              <DotTracker value={npc.face || 0} max={npc.faceMax} onChange={(v) => handleFieldChange(npc, 'face', v)} />
-            </div>
-          )}
-
-          <NpcGiftsEditor
-            key={npc.id}
-            gifts={npc.gifts || []}
-            onSave={(gifts) => handleFieldChange(npc, 'gifts', gifts)}
-          />
-        </div>
+        <NpcCard key={npc.id} code={code} npc={npc} onRemove={handleRemove} />
       ))}
 
       {error && (

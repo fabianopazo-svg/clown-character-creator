@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import bestiaryData from '../data/bestiary.json';
 import { listCustomMonsters, saveCustomMonster, removeCustomMonster } from '../utils/customBestiary';
+import GiftListEditor from '../components/GiftListEditor';
+import GiftListDisplay from '../components/GiftListDisplay';
 
 const CATEGORY_LABELS = {
   mundane: 'Mundane Threats',
@@ -24,9 +26,11 @@ function emptyDraft() {
     laughterMax: '',
     face: '',
     faceMax: '',
+    toughness: '',
+    dodge: '',
     description: '',
     hook: '',
-    giftsText: '',
+    gifts: [],
   };
 }
 
@@ -44,6 +48,8 @@ function StatLine({ entry }) {
   } else if (entry.faceMax) {
     parts.push(`Face max ${entry.faceMax}`);
   }
+  if (entry.toughness != null && entry.toughness !== '') parts.push(`Toughness ${entry.toughness}`);
+  if (entry.dodge != null && entry.dodge !== '') parts.push(`Dodge ${entry.dodge}`);
   if (entry.renownEquivalent != null) parts.push(`Renown-equiv ${entry.renownEquivalent}`);
   if (parts.length === 0) return null;
   return <div className="gift-effect">{parts.join(' \u00b7 ')}</div>;
@@ -81,18 +87,19 @@ export default function Compendium() {
       laughterMax: entry.laughterMax ?? '',
       face: entry.face ?? '',
       faceMax: entry.faceMax ?? '',
+      toughness: entry.toughness ?? '',
+      dodge: entry.dodge ?? '',
       description: entry.description || '',
       hook: entry.hook || '',
-      giftsText: (entry.gifts || []).join('\n'),
+      gifts: (entry.gifts || []).map((g) => (typeof g === 'string' ? { name: g, effect: '' } : { name: g.name || '', effect: g.effect || '' })),
     });
     setShowForm(true);
   };
 
   const handleSave = () => {
     if (!draft.name.trim()) return;
-    const { giftsText, ...rest } = draft;
     saveCustomMonster({
-      ...rest,
+      ...draft,
       name: draft.name.trim(),
       pool: draft.pool === '' ? null : Number(draft.pool),
       health: draft.health === '' ? null : Number(draft.health),
@@ -100,7 +107,9 @@ export default function Compendium() {
       laughterMax: draft.laughterMax === '' ? null : Number(draft.laughterMax),
       face: draft.face === '' ? null : Number(draft.face),
       faceMax: draft.faceMax === '' ? null : Number(draft.faceMax),
-      gifts: giftsText.split('\n').map((s) => s.trim()).filter(Boolean),
+      toughness: draft.toughness === '' ? null : Number(draft.toughness),
+      dodge: draft.dodge === '' ? null : Number(draft.dodge),
+      gifts: draft.gifts.filter((g) => g.name.trim()).map((g) => ({ name: g.name.trim(), effect: g.effect.trim() })),
     });
     refreshCustom();
     setDraft(emptyDraft());
@@ -181,6 +190,14 @@ export default function Compendium() {
               <label className="field-label">Face max</label>
               <input type="number" value={draft.faceMax} onChange={(e) => setDraft({ ...draft, faceMax: e.target.value })} />
             </div>
+            <div className="field-row">
+              <label className="field-label">Toughness</label>
+              <input type="number" value={draft.toughness} onChange={(e) => setDraft({ ...draft, toughness: e.target.value })} />
+            </div>
+            <div className="field-row">
+              <label className="field-label">Dodge</label>
+              <input type="number" value={draft.dodge} onChange={(e) => setDraft({ ...draft, dodge: e.target.value })} />
+            </div>
           </div>
           <div className="field-row">
             <label className="field-label">Description</label>
@@ -191,14 +208,8 @@ export default function Compendium() {
             <textarea rows={2} value={draft.hook} onChange={(e) => setDraft({ ...draft, hook: e.target.value })} style={{ width: '100%', boxSizing: 'border-box' }} />
           </div>
           <div className="field-row">
-            <label className="field-label">Gifts / Special Skills (one per line)</label>
-            <textarea
-              rows={3}
-              value={draft.giftsText}
-              onChange={(e) => setDraft({ ...draft, giftsText: e.target.value })}
-              placeholder={'e.g.\nWeighted Pie\nSet the Trick'}
-              style={{ width: '100%', boxSizing: 'border-box' }}
-            />
+            <label className="field-label">Gifts / Special Skills</label>
+            <GiftListEditor gifts={draft.gifts} onChange={(gifts) => setDraft({ ...draft, gifts })} />
           </div>
           <button type="button" className="btn btn-primary" onClick={handleSave} disabled={!draft.name.trim()}>
             {draft.id ? 'Save changes' : 'Add to compendium'}
@@ -218,11 +229,9 @@ export default function Compendium() {
                   <StatLine entry={entry} />
                   {entry.pathInfo && <div className="gift-effect">{entry.pathInfo}</div>}
                   {entry.gifts && entry.gifts.length > 0 && (
-                    <div className="gift-effect" style={{ marginTop: 4 }}>
-                      Gifts:
-                      <ul style={{ margin: '2px 0 0 0', paddingLeft: 18 }}>
-                        {entry.gifts.map((g, i) => <li key={i}>{g}</li>)}
-                      </ul>
+                    <div style={{ marginTop: 4 }}>
+                      <div className="gift-effect" style={{ marginBottom: 2 }}>Gifts:</div>
+                      <GiftListDisplay gifts={entry.gifts} />
                     </div>
                   )}
                   {entry.description && <div className="gift-effect" style={{ marginTop: 4 }}>{entry.description}</div>}

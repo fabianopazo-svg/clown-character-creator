@@ -31,9 +31,18 @@ service cloud.firestore {
         // Anyone in the room can see the roll log.
         allow read: if request.auth != null;
         // Anyone can log a roll, but only as themself — rollerUid must match
-        // the caller, so nobody can post a roll pretending to be someone else.
+        // the caller, so nobody can post a roll pretending to be someone
+        // else. One exception: the MC can post a roll with rollerUid ==
+        // null, used for NPC/freeform rolls via the MC Dice Roller — these
+        // aren't attributed to any player's own account at all.
         allow create: if request.auth != null
-                      && request.resource.data.rollerUid == request.auth.uid;
+                      && (
+                        request.resource.data.rollerUid == request.auth.uid
+                        || (
+                          request.resource.data.rollerUid == null
+                          && get(/databases/$(database)/documents/rooms/$(roomCode)).data.mcUid == request.auth.uid
+                        )
+                      );
         // Rolls are otherwise an honest historical log — no edits, except
         // three narrow cases, all one-directional: the MC recording a
         // Flop-award decision (only flopAwarded, only on outcome 'flop');
@@ -69,6 +78,16 @@ service cloud.firestore {
                        && (request.auth.uid == reactorUid
                            || get(/databases/$(database)/documents/rooms/$(roomCode)).data.mcUid == request.auth.uid);
         }
+      }
+
+      match /giftIntents/{intentId} {
+        // "I want to use [Gift]" flags — any player can post their own,
+        // visible to everyone (especially the MC, who responds with a
+        // targeted prompt). Immutable once posted.
+        allow read: if request.auth != null;
+        allow create: if request.auth != null
+                      && request.resource.data.playerUid == request.auth.uid;
+        allow update, delete: if false;
       }
 
       match /suspicionSpends/{spendId} {
@@ -142,7 +161,16 @@ service cloud.firestore {
           // never touch gifts, attributes, other resources, or anything
           // else on a player's sheet through this path. A second MC
           // exception allows a full delete (request.resource == null) —
-          // used only by cascading room deletion in the MC Corner.
+          // used only by cascading room deletion in the MC Corner. A third
+          // exception lets ANY room member adjust specific resource fields
+          // on another player's sheet — used for Gift effects that target
+          // an ally (e.g. Physician's First Aid healing someone else's
+          // Face). Scoped to a fixed allowlist of fields, not an amount —
+          // the actual amount is a client-side concern driven by which
+          // specific Gift is being used, not something these rules can
+          // know about. The client always writes via increment(), which
+          // Firestore resolves to a real number before rules evaluate it,
+          // so this same diff-based check works identically either way.
           allow write: if request.auth != null
                        && (
                          request.auth.uid == playerId
@@ -157,6 +185,14 @@ service cloud.firestore {
                              // Or a full delete, for cascading room deletion.
                              || request.resource == null
                            )
+                         )
+                         || (
+                           // Any room member: Gift-effect resource adjustments on an ally.
+                           request.resource != null
+                           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['character', 'updatedAt'])
+                           && request.resource.data.character.diff(resource.data.character).affectedKeys().hasOnly(['play'])
+                           && request.resource.data.character.play.diff(resource.data.character.play).affectedKeys().hasOnly(['face', 'laughter', 'pathResource'])
+                           && request.resource.data.character.play.pathResource.diff(resource.data.character.play.pathResource).affectedKeys().hasOnly(['comfort', 'debt', 'conviction', 'cardsInHand'])
                          )
                        );
         }

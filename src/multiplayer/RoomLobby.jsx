@@ -9,11 +9,13 @@ import ChatLog from './ChatLog';
 import RoomAudio from './RoomAudio';
 import MCScreen from './MCScreen';
 import InspirationPrompts from './InspirationPrompts';
+import RulebookViewer from '../rulebook/RulebookViewer';
 
 export default function RoomLobby({ code, role, onLeave }) {
   const { uid } = useAuth();
   const [room, setRoom] = useState(null);
   const [players, setPlayers] = useState([]);
+  const [showRulebook, setShowRulebook] = useState(false);
   // Only relevant for role === 'player' — this room's copy of *my own*
   // character, kept live so the leave-flow below can offer to save its
   // current resources back to this device's local copy.
@@ -78,7 +80,7 @@ export default function RoomLobby({ code, role, onLeave }) {
   };
 
   return (
-    <div className="room-layout">
+    <div className={`room-layout${showRulebook ? ' room-layout-with-rulebook' : ''}`}>
       <div className="room-chat-column">
         <ChatLog
           code={code}
@@ -105,6 +107,15 @@ export default function RoomLobby({ code, role, onLeave }) {
           </span>
         </div>
 
+        <button
+          type="button"
+          className="small-btn"
+          onClick={() => setShowRulebook((v) => !v)}
+          style={{ marginBottom: 16 }}
+        >
+          {showRulebook ? '📖 Hide Rulebook' : '📖 Rulebook'}
+        </button>
+
         {!room && <p className="helper-text">Loading room...</p>}
 
         {room && (
@@ -122,6 +133,7 @@ export default function RoomLobby({ code, role, onLeave }) {
                 key={p.uid}
                 code={code}
                 player={p}
+                players={players}
                 canSeeResources={isMc || p.uid === uid}
                 isSelf={p.uid === uid}
                 room={room}
@@ -129,13 +141,6 @@ export default function RoomLobby({ code, role, onLeave }) {
                 onClearPrompt={() => setActivePrompt(null)}
               />
             ))}
-
-            <p className="helper-text" style={{ marginTop: 16 }}>
-              {isMc
-                ? "As MC, you can see every player's live resources — they can only see their own, and only they can edit them. Post roll prompts and resolve Flop awards in Table Chat."
-                : 'You can see and edit your own resources here. Other players\' totals stay private to them and the MC.'}
-              {' '}The rest of the soundboard and animations come in the next phases.
-            </p>
           </>
         )}
 
@@ -143,6 +148,13 @@ export default function RoomLobby({ code, role, onLeave }) {
           {leaving ? 'Leaving…' : 'Leave room'}
         </button>
       </div>
+
+      {showRulebook && (
+        <div className="room-rulebook-column">
+          <div className="section-title" style={{ marginTop: 0 }}>📖 Rulebook</div>
+          <RulebookViewer refreshKey={0} compact />
+        </div>
+      )}
     </div>
   );
 }

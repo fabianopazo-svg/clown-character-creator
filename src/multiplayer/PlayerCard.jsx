@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { subscribePlayerSheet, updatePlayResource, updatePlayPathResource } from '../utils/roomsApi';
+import { subscribePlayerSheet, updatePlayResource, updatePlayPathResource, postGiftIntent } from '../utils/roomsApi';
 import paths from '../data/paths.json';
 import troupes from '../data/troupes.json';
 import { getRankForRenown } from '../utils/calculations';
@@ -7,6 +7,8 @@ import UniversalResources from '../play/UniversalResources';
 import PathResourcePanel from '../play/PathResourcePanel';
 import NotebookSection from './NotebookSection';
 import RollPanel from './RollPanel';
+import PlayerGifts from './PlayerGifts';
+import PassiveTraits from './PassiveTraits';
 
 // Renders one player's row in the room lobby. Roster info (name, Troupe,
 // Path, Renown) is always shown — it comes from the public roster doc that
@@ -17,7 +19,7 @@ import RollPanel from './RollPanel';
 // the MC's view of another player's card is always read-only, and Firestore
 // rules enforce that server-side too, so this is UI convenience, not the
 // actual security boundary.
-export default function PlayerCard({ code, player, canSeeResources, isSelf, room, activePrompt, onClearPrompt }) {
+export default function PlayerCard({ code, player, players, canSeeResources, isSelf, room, activePrompt, onClearPrompt }) {
   const [sheet, setSheet] = useState(undefined);
   const [sheetError, setSheetError] = useState(null);
   const [writeError, setWriteError] = useState(null);
@@ -84,12 +86,13 @@ export default function PlayerCard({ code, player, canSeeResources, isSelf, room
               />
             </div>
           )}
-          {isSelf && (
-            <p className="helper-text" style={{ marginTop: 6, fontSize: 11 }}>
-              Changes here save to this room live, but not to your local character file —
-              use Play Mode's Save for that.
-            </p>
+          {character && (
+            <PlayerGifts
+              character={character}
+              onPerform={isSelf ? (gift) => postGiftIntent(code, player.uid, player.displayName, gift.name) : undefined}
+            />
           )}
+          {character && <PassiveTraits character={character} renown={player.renown} />}
           {isSelf && room && (
             <RollPanel
               code={code}
@@ -97,6 +100,8 @@ export default function PlayerCard({ code, player, canSeeResources, isSelf, room
               displayName={player.displayName}
               character={character}
               room={room}
+              players={players}
+              renown={player.renown}
               activePrompt={activePrompt}
               onClearPrompt={onClearPrompt}
             />

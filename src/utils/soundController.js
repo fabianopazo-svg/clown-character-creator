@@ -5,11 +5,11 @@
 // elements and playback logic; React components just call these functions.
 
 const MOOD_FILES = {
-  neutral: '/audio/mood/mood-neutral.mp3',
-  tense: '/audio/mood/mood-tense.mp3',
-  high_energy: '/audio/mood/mood-high-energy.mp3',
+  neutral: "/audio/mood/mood-neutral.mp3",
+  tense: "/audio/mood/mood-tense.mp3",
+  high_energy: "/audio/mood/mood-high-energy.mp3",
 };
-const DRUMROLL_FILE = '/audio/sfx/drumroll.mp3';
+const DRUMROLL_FILE = "/audio/sfx/drumroll.mp3";
 const FADE_MS = 1500;
 
 let moodElA = null;
@@ -21,7 +21,7 @@ let unlocked = false;
 
 function readStoredMute(key) {
   try {
-    return localStorage.getItem(key) === 'true';
+    return localStorage.getItem(key) === "true";
   } catch {
     return false;
   }
@@ -38,7 +38,9 @@ function readStoredVolume(key, fallback) {
     const raw = localStorage.getItem(key);
     if (raw === null) return fallback;
     const parsed = Number(raw);
-    return Number.isFinite(parsed) ? Math.min(1, Math.max(0, parsed)) : fallback;
+    return Number.isFinite(parsed)
+      ? Math.min(1, Math.max(0, parsed))
+      : fallback;
   } catch {
     return fallback;
   }
@@ -51,10 +53,10 @@ function writeStoredVolume(key, value) {
   }
 }
 
-let musicMuted = readStoredMute('clown_musicMuted');
-let drumrollMuted = readStoredMute('clown_drumrollMuted');
-let musicVolume = readStoredVolume('clown_musicVolume', 0.8);
-let drumrollVolume = readStoredVolume('clown_drumrollVolume', 1);
+let musicMuted = readStoredMute("clown_musicMuted");
+let drumrollMuted = readStoredMute("clown_drumrollMuted");
+let musicVolume = readStoredVolume("clown_musicVolume", 0.2);
+let drumrollVolume = readStoredVolume("clown_drumrollVolume", 0.4);
 
 function ensureMoodElements() {
   if (moodElA) return;
@@ -85,7 +87,9 @@ export function unlockAudio() {
   [moodElA, moodElB].forEach((el) => {
     const prevVolume = el.volume;
     el.volume = 0;
-    el.play().then(() => el.pause()).catch(() => {});
+    el.play()
+      .then(() => el.pause())
+      .catch(() => {});
     el.volume = prevVolume;
   });
 }
@@ -99,10 +103,10 @@ export function getMusicMuted() {
 }
 export function setMusicMuted(muted) {
   musicMuted = muted;
-  writeStoredMute('clown_musicMuted', muted);
+  writeStoredMute("clown_musicMuted", muted);
   if (!fadeRafId) {
-    if (moodElA) moodElA.volume = musicMuted ? 0 : (activeIsA ? musicVolume : 0);
-    if (moodElB) moodElB.volume = musicMuted ? 0 : (activeIsA ? 0 : musicVolume);
+    if (moodElA) moodElA.volume = musicMuted ? 0 : activeIsA ? musicVolume : 0;
+    if (moodElB) moodElB.volume = musicMuted ? 0 : activeIsA ? 0 : musicVolume;
   }
 }
 
@@ -111,7 +115,7 @@ export function getMusicVolume() {
 }
 export function setMusicVolume(volume) {
   musicVolume = Math.min(1, Math.max(0, volume));
-  writeStoredVolume('clown_musicVolume', musicVolume);
+  writeStoredVolume("clown_musicVolume", musicVolume);
   // No fade in progress -- apply immediately for responsive slider feedback.
   // If a fade IS in progress, its next frame already reads musicVolume
   // fresh each tick, so it picks up the new target on its own.
@@ -125,7 +129,7 @@ export function getDrumrollMuted() {
 }
 export function setDrumrollMuted(muted) {
   drumrollMuted = muted;
-  writeStoredMute('clown_drumrollMuted', muted);
+  writeStoredMute("clown_drumrollMuted", muted);
 }
 
 export function getDrumrollVolume() {
@@ -133,7 +137,7 @@ export function getDrumrollVolume() {
 }
 export function setDrumrollVolume(volume) {
   drumrollVolume = Math.min(1, Math.max(0, volume));
-  writeStoredVolume('clown_drumrollVolume', drumrollVolume);
+  writeStoredVolume("clown_drumrollVolume", drumrollVolume);
 }
 
 // Crossfades to a new mood (or fades out to silence if moodId is null/
@@ -179,7 +183,7 @@ export function setMood(moodId) {
     } else {
       fadeRafId = null;
       outgoing.pause();
-      outgoing.removeAttribute('src');
+      outgoing.removeAttribute("src");
     }
   }
   fadeRafId = requestAnimationFrame(step);
@@ -200,8 +204,8 @@ export function playDrumrollLocally() {
       settled = true;
       resolve();
     };
-    el.addEventListener('ended', finish);
-    el.addEventListener('error', finish);
+    el.addEventListener("ended", finish);
+    el.addEventListener("error", finish);
     setTimeout(finish, 6000);
     el.play().catch(finish);
   });

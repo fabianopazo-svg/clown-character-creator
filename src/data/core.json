@@ -55,8 +55,7 @@
       "id": "toughness",
       "name": "Toughness",
       "attribute": null,
-      "covers": "How much punishment the body absorbs; used as flat soak in combat, never rolled",
-      "flatSoak": true
+      "covers": "How much punishment the body absorbs; roll it to reduce or shrug off incoming harm"
     },
     {
       "id": "persuasion",
@@ -100,7 +99,7 @@
     "costPerNormalDot": 1,
     "maxDotsAtCreation": 5,
     "allowUnspentPoints": true,
-    "note": "Player may spend up to 18 points across the 9 Skills and Performance, and may spend fewer than 18 if they choose. Performance costs 2 points per dot within this same pool (see performance.costPerDot) \u2014 the other nine Skills cost 1 point per dot."
+    "note": "Player may spend up to 18 points across the 9 Skills and Performance, and may spend fewer than 18 if they choose. Performance costs 2 points per dot within this same pool (see performance.costPerDot) — the other nine Skills cost 1 point per dot."
   },
   "performance": {
     "id": "performance",

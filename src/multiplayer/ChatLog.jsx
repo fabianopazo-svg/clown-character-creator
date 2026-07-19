@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { subscribePrompts, subscribeRollLog, subscribeSuspicionSpends, createPrompt, awardFlopLaughter } from '../utils/roomsApi';
+import { subscribePrompts, subscribeRollLog, subscribeSuspicionSpends, subscribeGiftIntents, createPrompt, awardFlopLaughter } from '../utils/roomsApi';
 import { OUTCOME_LABELS } from '../utils/rollEngine';
 import RollReactions from './RollReactions';
 import core from '../data/core.json';
@@ -55,6 +55,7 @@ export default function ChatLog({ code, uid, isMc, onSelectPrompt, activePromptI
   const [prompts, setPrompts] = useState([]);
   const [rolls, setRolls] = useState([]);
   const [spends, setSpends] = useState([]);
+  const [giftIntents, setGiftIntents] = useState([]);
   const [promptText, setPromptText] = useState('');
   const [promptDifficulty, setPromptDifficulty] = useState(1);
   const [promptDrumroll, setPromptDrumroll] = useState(false);
@@ -67,10 +68,12 @@ export default function ChatLog({ code, uid, isMc, onSelectPrompt, activePromptI
     const unsubPrompts = subscribePrompts(code, setPrompts);
     const unsubRolls = subscribeRollLog(code, setRolls);
     const unsubSpends = subscribeSuspicionSpends(code, setSpends);
+    const unsubGiftIntents = subscribeGiftIntents(code, setGiftIntents);
     return () => {
       unsubPrompts();
       unsubRolls();
       unsubSpends();
+      unsubGiftIntents();
     };
   }, [code]);
 
@@ -84,8 +87,9 @@ export default function ChatLog({ code, uid, isMc, onSelectPrompt, activePromptI
     const promptEntries = prompts.map((p) => ({ ...p, entryType: 'prompt', _ts: toMillis(p.createdAt) }));
     const rollEntries = rolls.map((r) => ({ ...r, entryType: 'roll', _ts: toMillis(r.createdAt) }));
     const spendEntries = spends.map((s) => ({ ...s, entryType: 'spend', _ts: toMillis(s.createdAt) }));
-    return [...promptEntries, ...rollEntries, ...spendEntries].sort((a, b) => a._ts - b._ts);
-  }, [prompts, rolls, spends]);
+    const intentEntries = giftIntents.map((g) => ({ ...g, entryType: 'giftIntent', _ts: toMillis(g.createdAt) }));
+    return [...promptEntries, ...rollEntries, ...spendEntries, ...intentEntries].sort((a, b) => a._ts - b._ts);
+  }, [prompts, rolls, spends, giftIntents]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -160,6 +164,17 @@ export default function ChatLog({ code, uid, isMc, onSelectPrompt, activePromptI
             );
           }
 
+          if (entry.entryType === 'giftIntent') {
+            return (
+              <div
+                key={entry.id}
+                style={{ fontSize: 12, marginBottom: 8, paddingBottom: 8, borderBottom: '0.5px solid var(--border)', fontStyle: 'italic' }}
+              >
+                🎁 <strong>{entry.playerName}</strong> wants to use <strong>{entry.giftName}</strong>
+              </div>
+            );
+          }
+
           if (entry.entryType === 'spend') {
             return (
               <div
@@ -217,7 +232,14 @@ export default function ChatLog({ code, uid, isMc, onSelectPrompt, activePromptI
               {entry.drumroll && entry.revealed === false && (
                 <div style={{ fontSize: 11, color: 'var(--accent-text)', fontWeight: 700 }}>🥁 Drumroll — only you and the MC can see this so far</div>
               )}
-              <strong>{entry.rollerName}</strong> — {attr?.name}+{skill?.name} ({entry.poolSize} dice{entry.gambitUsed ? ', Gambit' : ''}, Diff {entry.difficulty ?? 1}): {entry.successCount} success{entry.successCount === 1 ? '' : 'es'}
+              {entry.isNpcRoll ? (
+                <>🎭 <strong>{entry.rollerName}</strong> rolls ({entry.poolSize} dice, Diff {entry.difficulty ?? 1}): {entry.successCount} success{entry.successCount === 1 ? '' : 'es'}</>
+              ) : (
+                <><strong>{entry.rollerName}</strong> — {attr?.name}+{skill?.name} ({entry.poolSize} dice{entry.gambitUsed ? ', Gambit' : ''}, Diff {entry.difficulty ?? 1}): {entry.successCount} success{entry.successCount === 1 ? '' : 'es'}</>
+              )}
+              {entry.giftName && <span style={{ color: 'var(--accent-text)' }}> · Gift: {entry.giftName}</span>}
+              {entry.commonAction && <span style={{ color: 'var(--muted)' }}> · {entry.commonAction}</span>}
+              {entry.reaction && <span style={{ color: 'var(--muted)' }}> · Reaction: {entry.reaction}</span>}
               {' · '}House Die {entry.houseDieOutcome === 'cheers' ? 'Cheers' : 'Jeers'}
               {' → '}
               <span style={{ color: OUTCOME_COLORS[entry.outcome], fontWeight: 700 }}>{OUTCOME_LABELS[entry.outcome]}</span>

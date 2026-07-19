@@ -1457,7 +1457,13 @@
               "frequency": null,
               "note": null
             },
-            "effect": "The base action: a scene of real care generates Comfort"
+            "effect": "The base action: a scene of real care generates Comfort",
+            "mechanicalEffect": {
+              "type": "resource_delta",
+              "resource": "comfort",
+              "amountMode": "player_choice",
+              "targetMode": "self"
+            }
           },
           {
             "name": "First Aid",
@@ -1473,7 +1479,13 @@
               "frequency": null,
               "note": null
             },
-            "effect": "Restore 1 Face, or stabilize a dying ally"
+            "effect": "Restore 1 Face, or stabilize a dying ally",
+            "mechanicalEffect": {
+              "type": "resource_delta",
+              "resource": "face",
+              "amount": 1,
+              "targetMode": "choose_one"
+            }
           },
           {
             "name": "Diagnosis",
@@ -1556,7 +1568,14 @@
               "frequency": null,
               "note": null
             },
-            "effect": "Restore 1 Face to each of up to three allies"
+            "effect": "Restore 1 Face to each of up to three allies",
+            "mechanicalEffect": {
+              "type": "resource_delta",
+              "resource": "face",
+              "amount": 1,
+              "targetMode": "choose_up_to_n",
+              "maxTargets": 3
+            }
           },
           {
             "name": "Carry the Pain",
@@ -1660,7 +1679,13 @@
               "frequency": null,
               "note": "Player chooses amount of Face given"
             },
-            "effect": "Give your own Face directly to another character"
+            "effect": "Give your own Face directly to another character",
+            "mechanicalEffect": {
+              "type": "transfer",
+              "resource": "face",
+              "amountMode": "player_choice",
+              "targetMode": "choose_one"
+            }
           },
           {
             "name": "White Coat Wall",
@@ -1732,7 +1757,24 @@
               "frequency": null,
               "note": null
             },
-            "effect": "Restore 3 Face to each ally in the scene, or fully restore one ally about to hit 0 Face"
+            "effect": "Restore 3 Face to each ally in the scene, or fully restore one ally about to hit 0 Face",
+            "mechanicalEffect": {
+              "type": "choice",
+              "variants": [
+                {
+                  "label": "Restore 3 Face to each ally in the scene",
+                  "resource": "face",
+                  "amount": 3,
+                  "targetMode": "all_players"
+                },
+                {
+                  "label": "Fully restore one ally's Face",
+                  "resource": "face",
+                  "setToMax": true,
+                  "targetMode": "choose_one"
+                }
+              ]
+            }
           },
           {
             "name": "No One Falls Today",
@@ -1845,7 +1887,13 @@
               "frequency": "prep_action",
               "note": null
             },
-            "effect": "Earn 1 Card"
+            "effect": "Earn 1 Card",
+            "mechanicalEffect": {
+              "type": "resource_delta",
+              "resource": "cards",
+              "amount": 1,
+              "targetMode": "self"
+            }
           },
           {
             "name": "Precise Strike",
@@ -1894,7 +1942,14 @@
               "frequency": null,
               "note": null
             },
-            "effect": "Steal 1 Laughter from a target"
+            "effect": "Steal 1 Laughter from a target",
+            "mechanicalEffect": {
+              "type": "transfer",
+              "resource": "laughter",
+              "direction": "steal",
+              "amount": 1,
+              "targetMode": "choose_one"
+            }
           },
           {
             "name": "Look Over There",

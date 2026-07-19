@@ -123,7 +123,9 @@ export default function RoomJoin({ onEnterRoom }) {
         </>
       )}
 
-      <div className="section-title">{joinedRooms.length > 0 ? 'Join a different room' : 'Join a room'}</div>
+      {joinedRooms.length > 0 && (
+        <div className="section-title">Join a different room</div>
+      )}
 
       <div className="field-row">
         <label className="field-label">Room code</label>

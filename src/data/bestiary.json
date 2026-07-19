@@ -1,10 +1,55 @@
 {
   "quickScaling": [
-    { "renownRange": [1, 2], "health": 3, "laughterMax": "3-4", "faceMax": "5-6", "knownGifts": "3-4" },
-    { "renownRange": [3, 4], "health": 4, "laughterMax": "5-6", "faceMax": "6-7", "knownGifts": "5-6" },
-    { "renownRange": [5, 6], "health": 5, "laughterMax": "7-8", "faceMax": "7-8", "knownGifts": "7-8" },
-    { "renownRange": [7, 8], "health": 6, "laughterMax": "9-10", "faceMax": "8-9", "knownGifts": "9-10" },
-    { "renownRange": [9, 10], "health": "7-8", "laughterMax": "10+", "faceMax": "9-10", "knownGifts": "11 + capstone" }
+    {
+      "renownRange": [
+        1,
+        2
+      ],
+      "health": 3,
+      "laughterMax": "3-4",
+      "faceMax": "5-6",
+      "knownGifts": "3-4"
+    },
+    {
+      "renownRange": [
+        3,
+        4
+      ],
+      "health": 4,
+      "laughterMax": "5-6",
+      "faceMax": "6-7",
+      "knownGifts": "5-6"
+    },
+    {
+      "renownRange": [
+        5,
+        6
+      ],
+      "health": 5,
+      "laughterMax": "7-8",
+      "faceMax": "7-8",
+      "knownGifts": "7-8"
+    },
+    {
+      "renownRange": [
+        7,
+        8
+      ],
+      "health": 6,
+      "laughterMax": "9-10",
+      "faceMax": "8-9",
+      "knownGifts": "9-10"
+    },
+    {
+      "renownRange": [
+        9,
+        10
+      ],
+      "health": "7-8",
+      "laughterMax": "10+",
+      "faceMax": "9-10",
+      "knownGifts": "11 + capstone"
+    }
   ],
   "entries": [
     {
@@ -104,7 +149,20 @@
       "laughterMax": 10,
       "face": 6,
       "faceMax": 10,
-      "gifts": ["Slippery Hands", "Look Over There", "Set the Trick"],
+      "gifts": [
+        {
+          "name": "Slippery Hands",
+          "effect": ""
+        },
+        {
+          "name": "Look Over There",
+          "effect": ""
+        },
+        {
+          "name": "Set the Trick",
+          "effect": ""
+        }
+      ],
       "hook": "Steals out of need, not malice — almost always resolved by talking or intimidation rather than a fight. A good first Clown-on-Clown encounter for a new party."
     },
     {
@@ -119,7 +177,28 @@
       "laughterMax": 10,
       "face": 7,
       "faceMax": 10,
-      "gifts": ["Precise Strike", "Clown's Stab", "Cut the Laughter", "Full House", "Calculated Disaster (Troupe Affinity)"],
+      "gifts": [
+        {
+          "name": "Precise Strike",
+          "effect": ""
+        },
+        {
+          "name": "Clown's Stab",
+          "effect": ""
+        },
+        {
+          "name": "Cut the Laughter",
+          "effect": ""
+        },
+        {
+          "name": "Full House",
+          "effect": ""
+        },
+        {
+          "name": "Calculated Disaster (Troupe Affinity)",
+          "effect": ""
+        }
+      ],
       "hook": "She builds her hand patiently — pressure her before she cashes it in, and she's far weaker than she looks. Ambushing the ambusher flips the fight."
     },
     {
@@ -135,7 +214,28 @@
       "face": 8,
       "faceMax": 10,
       "faceNote": "fragile emotionally — see hook",
-      "gifts": ["The Vow Made Force", "Punishment", "Sentence", "Greater Punishment", "Living Banner"],
+      "gifts": [
+        {
+          "name": "The Vow Made Force",
+          "effect": ""
+        },
+        {
+          "name": "Punishment",
+          "effect": ""
+        },
+        {
+          "name": "Sentence",
+          "effect": ""
+        },
+        {
+          "name": "Greater Punishment",
+          "effect": ""
+        },
+        {
+          "name": "Living Banner",
+          "effect": ""
+        }
+      ],
       "description": "A former rising Ring Legend who broke his own Oath for power and is stuck in permanent Oathbreaking — unable to generate Conviction, compensating with pure cruelty toward his old apprentices.",
       "hook": "His Aura is dead (Oathbreaking), so his followers stay out of fear, not loyalty, and can be turned mid-fight if offered a way out. Confronting him with proof of his own betrayal can break him emotionally before anyone lands a physical blow."
     },
